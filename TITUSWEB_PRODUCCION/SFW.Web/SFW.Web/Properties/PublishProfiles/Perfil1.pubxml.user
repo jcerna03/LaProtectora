@@ -1,0 +1,407 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+Este archivo es utilizado por el proceso de paquete/publicación de nuestro proyecto Web. Puede personalizar el comportamiento de este proceso
+editando este archivo MSBuild. Para conocer más acerca de esto, visite http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <LastUsedBuildConfiguration>Release</LastUsedBuildConfiguration>
+    <LastUsedPlatform>Any CPU</LastUsedPlatform>
+    <TimeStampOfAssociatedLegacyPublishXmlFile>2018-01-24T10:55:25.8314893-05:00</TimeStampOfAssociatedLegacyPublishXmlFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="App_Browsers/BrowserFile1.browser">
+      <publishTime>08/31/2015 10:33:45</publishTime>
+    </File>
+    <File Include="App_Browsers/IE11.browser">
+      <publishTime>08/31/2015 10:33:22</publishTime>
+    </File>
+    <File Include="bin/AjaxControlToolkit.dll">
+      <publishTime>12/14/2013 09:04:04</publishTime>
+    </File>
+    <File Include="bin/AjaxMin.dll">
+      <publishTime>12/04/2013 14:25:38</publishTime>
+    </File>
+    <File Include="bin/amqmdnet.dll">
+      <publishTime>06/27/2013 01:00:00</publishTime>
+    </File>
+    <File Include="bin/DiffieHellman.dll">
+      <publishTime>06/24/2007 21:03:00</publishTime>
+    </File>
+    <File Include="bin/EPPlus.dll">
+      <publishTime>04/24/2015 09:37:40</publishTime>
+    </File>
+    <File Include="bin/IKVM.OpenJDK.Core.dll">
+      <publishTime>12/06/2012 09:52:26</publishTime>
+    </File>
+    <File Include="bin/IKVM.Runtime.dll">
+      <publishTime>12/06/2012 09:53:02</publishTime>
+    </File>
+    <File Include="bin/itextsharp.dll">
+      <publishTime>06/20/2016 14:35:38</publishTime>
+    </File>
+    <File Include="bin/itextsharp.xmlworker.dll">
+      <publishTime>06/20/2016 14:35:39</publishTime>
+    </File>
+    <File Include="bin/jr-afiliacion-susalud-04102016.dll">
+      <publishTime>10/04/2016 11:44:56</publishTime>
+    </File>
+    <File Include="bin/Org.Mentalis.Security.dll">
+      <publishTime>06/24/2007 21:03:02</publishTime>
+    </File>
+    <File Include="bin/SFW.BE.dll">
+      <publishTime>01/31/2019 09:35:35</publishTime>
+    </File>
+    <File Include="bin/SFW.BL.dll">
+      <publishTime>01/31/2019 09:35:37</publishTime>
+    </File>
+    <File Include="bin/SFW.DAO.dll">
+      <publishTime>01/31/2019 09:35:36</publishTime>
+    </File>
+    <File Include="bin/SFW.Web.dll">
+      <publishTime>01/31/2019 09:44:30</publishTime>
+    </File>
+    <File Include="bin/Tamir.SharpSSH.dll">
+      <publishTime>06/24/2007 21:14:04</publishTime>
+    </File>
+    <File Include="Content/bootstrap-datetimepicker.css">
+      <publishTime>01/12/2018 13:44:09</publishTime>
+    </File>
+    <File Include="Content/bootstrap-datetimepicker.min.css">
+      <publishTime>01/12/2018 13:44:09</publishTime>
+    </File>
+    <File Include="Content/bootstrap-theme.css">
+      <publishTime>01/12/2018 13:44:09</publishTime>
+    </File>
+    <File Include="Content/bootstrap-theme.min.css">
+      <publishTime>01/12/2018 13:44:09</publishTime>
+    </File>
+    <File Include="Content/bootstrap.css">
+      <publishTime>01/12/2018 13:44:09</publishTime>
+    </File>
+    <File Include="Content/bootstrap.min.css">
+      <publishTime>01/12/2018 13:44:09</publishTime>
+    </File>
+    <File Include="Content/chosen-sprite%402x.png">
+      <publishTime>01/12/2018 11:08:51</publishTime>
+    </File>
+    <File Include="Content/chosen-sprite.png">
+      <publishTime>01/12/2018 11:08:51</publishTime>
+    </File>
+    <File Include="Content/chosen.css">
+      <publishTime>01/11/2018 17:04:52</publishTime>
+    </File>
+    <File Include="Content/chosen.min.css">
+      <publishTime>01/11/2018 17:04:52</publishTime>
+    </File>
+    <File Include="Content/Ficha.css">
+      <publishTime>01/12/2018 13:44:09</publishTime>
+    </File>
+    <File Include="Content/fileinput.css">
+      <publishTime>01/12/2018 13:44:09</publishTime>
+    </File>
+    <File Include="Content/fileinput.min.css">
+      <publishTime>01/12/2018 13:44:09</publishTime>
+    </File>
+    <File Include="Content/fonts/glyphicons-halflings-regular.svg">
+      <publishTime>01/12/2018 13:44:10</publishTime>
+    </File>
+    <File Include="Content/jasny-bootstrap.css">
+      <publishTime>01/12/2018 13:44:10</publishTime>
+    </File>
+    <File Include="Content/jasny-bootstrap.min.css">
+      <publishTime>01/12/2018 13:44:10</publishTime>
+    </File>
+    <File Include="Content/MYG.css">
+      <publishTime>01/12/2018 15:10:23</publishTime>
+    </File>
+    <File Include="Content/MYG2901.css">
+      <publishTime>01/12/2018 15:10:36</publishTime>
+    </File>
+    <File Include="Content/uploadify.css">
+      <publishTime>01/12/2018 13:44:10</publishTime>
+    </File>
+    <File Include="Ficha2.aspx">
+      <publishTime>11/18/2015 17:38:18</publishTime>
+    </File>
+    <File Include="FichaPersonal.aspx">
+      <publishTime>11/18/2015 17:39:04</publishTime>
+    </File>
+    <File Include="font-awesome-4.1.0/css/font-awesome.css">
+      <publishTime>01/12/2018 13:44:07</publishTime>
+    </File>
+    <File Include="font-awesome-4.1.0/css/font-awesome.min.css">
+      <publishTime>01/12/2018 13:44:07</publishTime>
+    </File>
+    <File Include="font-awesome-4.1.0/fonts/fontawesome-webfont.svg">
+      <publishTime>01/12/2018 13:44:09</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.svg">
+      <publishTime>01/12/2018 13:44:10</publishTime>
+    </File>
+    <File Include="GestionVoip.aspx">
+      <publishTime>01/14/2019 14:46:51</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>02/16/2016 15:30:04</publishTime>
+    </File>
+    <File Include="Hospitalizados.aspx">
+      <publishTime>02/05/2018 11:29:00</publishTime>
+    </File>
+    <File Include="image/404.jpg">
+      <publishTime>02/04/2016 13:00:37</publishTime>
+    </File>
+    <File Include="image/alertas.gif">
+      <publishTime>08/25/2015 15:35:10</publishTime>
+    </File>
+    <File Include="image/cancel.png">
+      <publishTime>02/10/2016 18:01:53</publishTime>
+    </File>
+    <File Include="image/cargando.gif">
+      <publishTime>04/18/2016 10:28:18</publishTime>
+    </File>
+    <File Include="image/cloud.png">
+      <publishTime>05/18/2015 10:34:39</publishTime>
+    </File>
+    <File Include="image/edit.gif">
+      <publishTime>05/18/2015 10:34:39</publishTime>
+    </File>
+    <File Include="image/imagen001.jpg">
+      <publishTime>05/18/2015 10:34:39</publishTime>
+    </File>
+    <File Include="image/load.gif">
+      <publishTime>11/24/2015 13:27:53</publishTime>
+    </File>
+    <File Include="image/loading.gif">
+      <publishTime>11/25/2015 11:11:52</publishTime>
+    </File>
+    <File Include="image/loading1.gif">
+      <publishTime>11/25/2015 11:58:26</publishTime>
+    </File>
+    <File Include="image/login - copia.png">
+      <publishTime>05/18/2015 10:34:39</publishTime>
+    </File>
+    <File Include="image/login.png">
+      <publishTime>05/18/2015 10:34:39</publishTime>
+    </File>
+    <File Include="image/loginrojo.png">
+      <publishTime>05/18/2015 10:34:39</publishTime>
+    </File>
+    <File Include="image/logo.JPG">
+      <publishTime>05/18/2015 10:34:39</publishTime>
+    </File>
+    <File Include="image/Logo.png">
+      <publishTime>05/18/2015 10:34:39</publishTime>
+    </File>
+    <File Include="image/NuevoLogo.png">
+      <publishTime>09/14/2015 15:39:35</publishTime>
+    </File>
+    <File Include="image/NuevoLogoS.png">
+      <publishTime>09/14/2015 15:40:32</publishTime>
+    </File>
+    <File Include="image/photo.png">
+      <publishTime>05/18/2015 10:34:39</publishTime>
+    </File>
+    <File Include="images/logoLP.png">
+      <publishTime>08/08/2017 15:55:28</publishTime>
+    </File>
+    <File Include="images/pdf-icon.png">
+      <publishTime>06/23/2017 11:23:14</publishTime>
+    </File>
+    <File Include="NuevaGestion.aspx">
+      <publishTime>01/30/2019 15:25:36</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>01/12/2018 11:09:06</publishTime>
+    </File>
+    <File Include="PDF.aspx">
+      <publishTime>11/25/2018 12:36:17</publishTime>
+    </File>
+    <File Include="ReportePrincipal.aspx">
+      <publishTime>01/23/2019 09:13:05</publishTime>
+    </File>
+    <File Include="ReportesEstadisticos.aspx">
+      <publishTime>02/19/2016 09:09:43</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap-datetimepicker.js">
+      <publishTime>01/12/2018 13:44:10</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap-datetimepicker.min.js">
+      <publishTime>01/12/2018 13:44:10</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.js">
+      <publishTime>01/12/2018 13:44:10</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.min.js">
+      <publishTime>01/12/2018 13:44:10</publishTime>
+    </File>
+    <File Include="Scripts/chosen.jquery.js">
+      <publishTime>01/12/2018 15:16:24</publishTime>
+    </File>
+    <File Include="Scripts/chosen.jquery.min.js">
+      <publishTime>01/11/2018 17:05:12</publishTime>
+    </File>
+    <File Include="Scripts/FileInput/fileinput.js">
+      <publishTime>01/12/2018 13:44:10</publishTime>
+    </File>
+    <File Include="Scripts/FileInput/fileinput.min.js">
+      <publishTime>01/12/2018 13:44:10</publishTime>
+    </File>
+    <File Include="Scripts/FileInput/fileinput_locale_es.js">
+      <publishTime>01/12/2018 13:44:10</publishTime>
+    </File>
+    <File Include="Scripts/jasny-bootstrap.js">
+      <publishTime>01/12/2018 13:44:10</publishTime>
+    </File>
+    <File Include="Scripts/jasny-bootstrap.min.js">
+      <publishTime>01/12/2018 13:44:10</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.11.3.min.js">
+      <publishTime>01/12/2018 13:44:10</publishTime>
+    </File>
+    <File Include="Scripts/jquery-2.1.1.min.js">
+      <publishTime>01/12/2018 13:44:10</publishTime>
+    </File>
+    <File Include="Scripts/jquery.cookie.js">
+      <publishTime>01/12/2018 13:44:10</publishTime>
+    </File>
+    <File Include="Scripts/MultipleAttach/jquery-1.3.2.min.js">
+      <publishTime>01/12/2018 13:44:10</publishTime>
+    </File>
+    <File Include="Scripts/MultipleAttach/jquery.uploadify.js">
+      <publishTime>01/12/2018 13:44:10</publishTime>
+    </File>
+    <File Include="Scripts/MultipleAttach/uploader.swf">
+      <publishTime>01/12/2018 13:44:10</publishTime>
+    </File>
+    <File Include="Sesion.aspx">
+      <publishTime>12/04/2018 17:49:45</publishTime>
+    </File>
+    <File Include="TramaSoat.aspx">
+      <publishTime>01/12/2018 13:51:56</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>01/31/2019 09:44:31</publishTime>
+    </File>
+    <File Include="wfAlertas.aspx">
+      <publishTime>02/16/2016 15:35:45</publishTime>
+    </File>
+    <File Include="wfMantenimiento.aspx">
+      <publishTime>11/14/2018 17:39:22</publishTime>
+    </File>
+    <File Include="xml/1114e6aa-c689-4874-a271-847503eccb6d.xml">
+      <publishTime>03/01/2018 18:06:44</publishTime>
+    </File>
+    <File Include="xml/1771ec10-bdae-4528-8e9f-721150a6c303.xml">
+      <publishTime>03/01/2018 16:09:10</publishTime>
+    </File>
+    <File Include="xml/1fcd6ba4-e33a-472f-8c2f-38c3dcecc6c9.xml">
+      <publishTime>03/02/2018 16:52:43</publishTime>
+    </File>
+    <File Include="xml/2029a41a-c47c-4c6f-86d4-e5b6d161ad27.xml">
+      <publishTime>02/28/2018 16:31:10</publishTime>
+    </File>
+    <File Include="xml/24bcf05b-1157-4ea0-8094-adf8ca77377d.xml">
+      <publishTime>03/02/2018 15:39:44</publishTime>
+    </File>
+    <File Include="xml/29f18c32-d5b7-4cbd-9623-2b81d9b54508.xml">
+      <publishTime>03/01/2018 11:20:33</publishTime>
+    </File>
+    <File Include="xml/2b8e8a26-ebba-45db-9ce1-54d726dd3daa.xml">
+      <publishTime>03/02/2018 10:28:50</publishTime>
+    </File>
+    <File Include="xml/350dc4bb-68f7-4752-acc3-5e04521c3cd2.xml">
+      <publishTime>03/01/2018 16:53:16</publishTime>
+    </File>
+    <File Include="xml/37797616-d280-4eba-8479-0cede1bfcc11.xml">
+      <publishTime>03/01/2018 15:35:23</publishTime>
+    </File>
+    <File Include="xml/3d47701a-fd31-41a6-8d8a-93d99e67178a.xml">
+      <publishTime>03/02/2018 11:35:00</publishTime>
+    </File>
+    <File Include="xml/40764446-dd75-42cf-8f38-ed91039898b4.xml">
+      <publishTime>03/02/2018 16:45:06</publishTime>
+    </File>
+    <File Include="xml/4724ce3d-a5a0-40bc-8413-e87727ca4b19.xml">
+      <publishTime>03/01/2018 19:54:08</publishTime>
+    </File>
+    <File Include="xml/51804464-f40e-401d-8a09-7078f0baf745.xml">
+      <publishTime>03/01/2018 15:39:42</publishTime>
+    </File>
+    <File Include="xml/5f3587a2-73e4-465e-ad31-f13e8949f0b4.xml">
+      <publishTime>03/02/2018 16:45:03</publishTime>
+    </File>
+    <File Include="xml/5fbf27eb-987f-4a6f-a7ca-9a72edce76a2.xml">
+      <publishTime>03/01/2018 18:04:15</publishTime>
+    </File>
+    <File Include="xml/688eb8a3-c388-45f8-b187-2d0fdb904a94.xml">
+      <publishTime>03/01/2018 17:06:05</publishTime>
+    </File>
+    <File Include="xml/6944f4b4-2a1a-4739-a03e-d35fab0b72b3.xml">
+      <publishTime>03/02/2018 15:40:50</publishTime>
+    </File>
+    <File Include="xml/785db1ed-9382-4eb0-a25b-927fe8262499.xml">
+      <publishTime>02/28/2018 18:02:31</publishTime>
+    </File>
+    <File Include="xml/7cfbd1ff-31ef-4063-98f6-781f126f7ad4.xml">
+      <publishTime>03/01/2018 19:28:53</publishTime>
+    </File>
+    <File Include="xml/7e4e98a2-e775-4513-9595-f01ea1c1775b.xml">
+      <publishTime>03/01/2018 18:00:32</publishTime>
+    </File>
+    <File Include="xml/824da82a-b8ae-4f33-9909-c6e29895548e.xml">
+      <publishTime>03/01/2018 11:35:21</publishTime>
+    </File>
+    <File Include="xml/82b665ff-874b-48d7-9c89-1783209f5a2d.xml">
+      <publishTime>03/01/2018 19:26:16</publishTime>
+    </File>
+    <File Include="xml/907f4c02-ab05-41c3-96bc-23a466670aef.xml">
+      <publishTime>03/01/2018 12:49:14</publishTime>
+    </File>
+    <File Include="xml/97bbbade-2fa6-4e2c-9f05-29371a0ecf40.xml">
+      <publishTime>02/28/2018 19:11:15</publishTime>
+    </File>
+    <File Include="xml/986d7329-327f-4f86-9e13-33087536bce1.xml">
+      <publishTime>03/01/2018 14:49:40</publishTime>
+    </File>
+    <File Include="xml/99be5e41-323d-42d1-b297-4018f761b975.xml">
+      <publishTime>02/28/2018 16:31:01</publishTime>
+    </File>
+    <File Include="xml/a1048dd0-2c38-4dff-8d65-f0094fe42c5a.xml">
+      <publishTime>03/01/2018 17:25:18</publishTime>
+    </File>
+    <File Include="xml/b45bdae0-b476-4cbe-b9de-e6e9e4c953cf.xml">
+      <publishTime>02/28/2018 16:23:37</publishTime>
+    </File>
+    <File Include="xml/b7b2658a-adb8-42d0-ae37-eb973fef9dbd.xml">
+      <publishTime>03/02/2018 15:40:56</publishTime>
+    </File>
+    <File Include="xml/b93e9914-2b6e-41fa-956d-34290801c8af.xml">
+      <publishTime>02/28/2018 17:00:03</publishTime>
+    </File>
+    <File Include="xml/bb125e5d-2b3a-4799-94d5-9717f5ad85bc.xml">
+      <publishTime>03/01/2018 15:51:15</publishTime>
+    </File>
+    <File Include="xml/cc0ce608-eec8-404d-983f-9a2c368910ec.xml">
+      <publishTime>03/02/2018 16:37:25</publishTime>
+    </File>
+    <File Include="xml/d11f50df-1883-4f7a-99b3-6721ea904071.xml">
+      <publishTime>03/02/2018 15:57:42</publishTime>
+    </File>
+    <File Include="xml/d565e83b-3bcf-4d41-9484-54a13aa0350b.xml">
+      <publishTime>03/02/2018 15:57:42</publishTime>
+    </File>
+    <File Include="xml/d6ab73ad-fe10-445e-a10c-5ece3db86fa5.xml">
+      <publishTime>02/28/2018 16:13:07</publishTime>
+    </File>
+    <File Include="xml/db3b2a33-f196-442a-bcc0-f35ed9f5f6f5.xml">
+      <publishTime>03/02/2018 16:42:15</publishTime>
+    </File>
+    <File Include="xml/eee87fe4-51c7-4589-bd8d-e7529bed5fa7.xml">
+      <publishTime>03/02/2018 12:14:07</publishTime>
+    </File>
+    <File Include="xml/fcf1013c-a996-4dc2-b4d7-76908895534d.xml">
+      <publishTime>03/02/2018 12:37:33</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

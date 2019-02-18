@@ -1,0 +1,53 @@
+﻿.navbar-custom {
+	background-color:#f8f8f8;
+	border-color: #e7e7e7;
+    color:#ffffff;
+  	border-radius:0;
+  	height:70px
+}
+  
+.navbar-custom .navbar-nav > li > a {
+  	color:#fff;
+  	padding-left:20px;
+  	padding-right:20px;
+}
+.navbar-custom .navbar-nav > .active > a, .navbar-nav > .active > a:hover, .navbar-nav > .active > a:focus {
+    color: #A7BAF9;
+	background-color:transparent;
+}
+      
+.navbar-custom .navbar-nav > li > a:hover, .nav > li > a:focus {
+    text-decoration: none;
+    color: #5e5e5e;
+    background-color: transparent;
+}
+      
+.navbar-custom .navbar-brand {
+  	color:#eeeeee;
+}
+.navbar-custom .navbar-toggle {
+  	background-color:#eeeeee;
+}
+.navbar-custom .icon-bar {
+  	background-color:#33aa33;
+}
+
+
+/*BOTON EN NAV*/
+
+.button-custom {
+	background-color:#f8f8f8;
+}
+
+.button-custom > .active > a, .navbar-nav > .active > a:hover, .navbar-nav > .active > a:focus {
+    color: #A7BAF9;
+	background-color:transparent;
+}
+
+.button-custom > li > a:hover, .nav > li > a:focus {
+    text-decoration: none;
+    color: #5e5e5e;
+    background-color: transparent;
+}
+
+  

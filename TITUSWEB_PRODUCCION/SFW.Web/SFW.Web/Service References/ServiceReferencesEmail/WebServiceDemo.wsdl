@@ -1,0 +1,2110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.laprotectora.com.pe/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://www.laprotectora.com.pe/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.laprotectora.com.pe/">
+      <s:element name="EVOPREMIUM_USUARIO_ValidarAsignacionCliente">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Par_UsuarioWS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Par_ClaveUsuarioWS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Par_Usuario_Login" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Par_Clave_Login" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EVOPREMIUM_USUARIO_ValidarAsignacionClienteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EVOPREMIUM_USUARIO_ValidarAsignacionClienteResult" type="tns:BE_USUARIO_LOGIN" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="BE_USUARIO_LOGIN">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="IdCliente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ValidacionUsuario" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Perfil" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CodigoAutoGenerado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CodigoTrasaccion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MensajeTrasaccion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ContraseñaNueva" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CodigoUsuario" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IdRegistrado" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="EVOPREMIUM_USUARIO_SolicitarCodigoAutoGenerado">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Par_UsuarioWS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Par_ClaveUsuarioWS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Par_Usuario_Login" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Par_CorreoElectronico_Login" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EVOPREMIUM_USUARIO_SolicitarCodigoAutoGeneradoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EVOPREMIUM_USUARIO_SolicitarCodigoAutoGeneradoResult" type="tns:BE_USUARIO_LOGIN" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EVOPREMIUM_USUARIO_ActualizarContrasenia">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Par_UsuarioWS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Par_ClaveUsuarioWS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Par_Usuario_Login" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Par_CodigoAutogenerado_Login" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Par_ClaveNueva_Login" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EVOPREMIUM_USUARIO_ActualizarContraseniaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EVOPREMIUM_USUARIO_ActualizarContraseniaResult" type="tns:BE_USUARIO_LOGIN" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EVOPREMIUM_CLIENTE_Listado">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Par_UsuarioWS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Par_ClaveUsuarioWS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Par_Busqueda" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EVOPREMIUM_CLIENTE_ListadoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EVOPREMIUM_CLIENTE_ListadoResult" type="tns:ArrayOfBE_CLIENTE" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfBE_CLIENTE">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="BE_CLIENTE" nillable="true" type="tns:BE_CLIENTE" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BE_CLIENTE">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="o_BE_PRODUCTO" type="tns:ArrayOfBE_Producto" />
+          <s:element minOccurs="1" maxOccurs="1" name="Codigo" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="NroDocumento" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NombreCorto" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Telefono" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FechaRegistro" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ESTADO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NomCorto_UN" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfBE_Producto">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="BE_Producto" nillable="true" type="tns:BE_Producto" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BE_Producto">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="o_BE_DETALLEPOLIZA" type="tns:ArrayOfBE_DetallePoliza" />
+          <s:element minOccurs="1" maxOccurs="1" name="CIASEG" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ASEGURADORA" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NROPOLIZA" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RIESGO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="GRUPO_RIESGO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NOMBRE_CLIENTE" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PRIMANETA" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PRIMATOTAL" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MONEDA" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AGENTE" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UNIDAD_NEGOCIO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FUNCIONARIO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FECVIG" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ESTADO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="acceso_web" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RUTA" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="VIGINI" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="VIGFIN" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="unidadnegocio_cli" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfBE_DetallePoliza">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="BE_DetallePoliza" nillable="true" type="tns:BE_DetallePoliza" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BE_DetallePoliza">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="o_BE_DETALLEPRIMA" type="tns:ArrayOfBE_DetallePrima" />
+          <s:element minOccurs="0" maxOccurs="1" name="o_BE_DETALLEVEHICULO" type="tns:ArrayOfBE_DetalleVehiculo" />
+          <s:element minOccurs="0" maxOccurs="1" name="o_BE_DETALLESINIESTRO" type="tns:ArrayOfBE_DetalleSiniestro" />
+          <s:element minOccurs="0" maxOccurs="1" name="ASEGURADORA" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NROPOLIZA" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NOMBRE_CLIENTE" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ESTADO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FECHA_VIGENCIA" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MONEDA" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PRIMA_NETA_ACUMULADA" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PRIMA_TOTAL_ACUMULADA" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="GRUPO_RIESGO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RIESGO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EJECUTIVO_CUENTA" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AGENTE" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="COMISION" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="COMISION_AGENTE" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NRO_SINIESTROS" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="USUREG_USUMOD" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfBE_DetallePrima">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="BE_DetallePrima" nillable="true" type="tns:BE_DetallePrima" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BE_DetallePrima">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="o_BE_FinanciamientoCupones" type="tns:ArrayOfBE_FinanciamientoCupones" />
+          <s:element minOccurs="0" maxOccurs="1" name="DocumentoPrima" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="idRiesgo" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="riesgo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cliente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="emision" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="vigencia" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PNeta" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PTotal" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PrimaNeta" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PrimaTotal" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="idEstado" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="estado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipo" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Financiamiento" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="Factura" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="USUARIO_REG_FECHA_REG" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="USUARIO_MOD_FECHA_MOD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="REGCOBRO" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfBE_FinanciamientoCupones">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="BE_FinanciamientoCupones" nillable="true" type="tns:BE_FinanciamientoCupones" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BE_FinanciamientoCupones">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Nro" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NroCupon" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="MontoCupon" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="FechaVencimiento" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FechaCancelacion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Factura" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Estado" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfBE_DetalleVehiculo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="BE_DetalleVehiculo" nillable="true" type="tns:BE_DetalleVehiculo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BE_DetalleVehiculo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="idVehAseg" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClienteContratante" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IncisoCiaSeg" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Placa" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Clase" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Marca" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Modelo" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ANIO" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ESTADO" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="idPoliza" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfBE_DetalleSiniestro">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="BE_DetalleSiniestro" nillable="true" type="tns:BE_DetalleSiniestro" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BE_DetalleSiniestro">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="o_BE_DetalleSeguimiento" type="tns:ArrayOfBE_DetalleSeguimiento" />
+          <s:element minOccurs="0" maxOccurs="1" name="o_BE_DetalleDocumentoFoto" type="tns:ArrayOfBE_DetalleDocumentoFoto" />
+          <s:element minOccurs="1" maxOccurs="1" name="ClienteContratante" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Siniestro" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ASEGURADORA" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RIESGO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="POLIZA" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="GRUPO_RIESGO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NOMBRE_CLIENTE" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MONTO_PERDIDA" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MONTO_DEDUCIBLE" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MONTO_INDEMNIZADO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MONEDA" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UNIDAD_NEGOCIO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FECHAINDEMNIZACION" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ESTADO" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="idpoliza" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfBE_DetalleSeguimiento">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="BE_DetalleSeguimiento" nillable="true" type="tns:BE_DetalleSeguimiento" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BE_DetalleSeguimiento">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IdOperacion" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="FechaActividad" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Usuario" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UnidadNegocio" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Ejecutivo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Descripcion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Estado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FechaRegistro_FechaResuelto" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfBE_DetalleDocumentoFoto">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="BE_DetalleDocumentoFoto" nillable="true" type="tns:BE_DetalleDocumentoFoto" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BE_DetalleDocumentoFoto">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IdDocumento" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Tipo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NombreArchivo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Estado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FechaRegistro" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Usuario" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="EVOPREMIUM_CLIENTE_Buscar">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Par_UsuarioWS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Par_ClaveUsuarioWS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Par_IdCliente" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Par_Perfil" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EVOPREMIUM_CLIENTE_BuscarResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EVOPREMIUM_CLIENTE_BuscarResult" type="tns:ArrayOfBE_CLIENTE" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EVOPREMIUM_USUARIO_RecuperarContrasenia">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Par_UsuarioWS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Par_ClaveUsuarioWS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Par_CorreoElectronico_Login" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EVOPREMIUM_USUARIO_RecuperarContraseniaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EVOPREMIUM_USUARIO_RecuperarContraseniaResult" type="tns:BE_USUARIO_LOGIN" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EVOPREMIUM_USUARIO_Registro">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Par_UsuarioWS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Par_ClaveUsuarioWS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Par_IdTipoDocumento" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Par_NumeroDocumento" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Par_NombresCliente" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Par_ApellidosCliente" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Par_CelularCliente" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Par_CorreoElectronicoCliente" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Par_ContrasenaCliente" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EVOPREMIUM_USUARIO_RegistroResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EVOPREMIUM_USUARIO_RegistroResult" type="tns:BE_USUARIO_LOGIN" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EVOPREMIUM_USUARIO_ValidarCodigoSMS">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Par_UsuarioWS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Par_ClaveUsuarioWS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Par_CodigoEnviado" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Par_CelularUsuario" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EVOPREMIUM_USUARIO_ValidarCodigoSMSResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EVOPREMIUM_USUARIO_ValidarCodigoSMSResult" type="tns:BE_USUARIO_LOGIN" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EVOPREMIUM_USUARIO_ReValidarCodigoSMS">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Par_UsuarioWS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Par_ClaveUsuarioWS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Par_CodigoEnviado" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Par_CelularUsuario" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EVOPREMIUM_USUARIO_ReValidarCodigoSMSResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EVOPREMIUM_USUARIO_ReValidarCodigoSMSResult" type="tns:BE_USUARIO_LOGIN" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EVOPREMIUM_SOS_Registro">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Par_UsuarioWS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Par_ClaveUsuarioWS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Par_CodigoCliente" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Par_PlacaVehiculo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Par_TipoSOS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Par_Latitud" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Par_Longitud" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EVOPREMIUM_SOS_RegistroResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EVOPREMIUM_SOS_RegistroResult" type="tns:BE_USUARIO_LOGIN" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EVOPREMIUM_TABLAS_Consultar">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Par_UsuarioWS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Par_ClaveUsuarioWS" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Par_TipoTabla" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EVOPREMIUM_TABLAS_ConsultarResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EVOPREMIUM_TABLAS_ConsultarResult" type="tns:ArrayOfBE_Parametros_Tabla" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfBE_Parametros_Tabla">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="BE_Parametros_Tabla" nillable="true" type="tns:BE_Parametros_Tabla" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BE_Parametros_Tabla">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Codigo" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Descripcion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Datos" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="EVOPREMIUM_TABLAS_ListarNombres">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Par_UsuarioWS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Par_ClaveUsuarioWS" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EVOPREMIUM_TABLAS_ListarNombresResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EVOPREMIUM_TABLAS_ListarNombresResult" type="tns:ArrayOfBE_Parametros_TipoTabla" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfBE_Parametros_TipoTabla">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="BE_Parametros_TipoTabla" nillable="true" type="tns:BE_Parametros_TipoTabla" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BE_Parametros_TipoTabla">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IdTipoTabla" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="DesTipoTabla" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="COTIZADOR_ConsultarTablas">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Par_UsuarioWS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Par_ClaveUsuarioWS" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Par_TipoTabla" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Par_IdMarca_TablaTipo5" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="COTIZADOR_ConsultarTablasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="COTIZADOR_ConsultarTablasResult" type="tns:ArrayOfBE_Cotizador_DetalleAuto" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfBE_Cotizador_DetalleAuto">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="BE_Cotizador_DetalleAuto" nillable="true" type="tns:BE_Cotizador_DetalleAuto" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BE_Cotizador_DetalleAuto">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Descripcion" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="COTIZADOR_Listar_NombresTablas">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Par_UsuarioWS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Par_ClaveUsuarioWS" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="COTIZADOR_Listar_NombresTablasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="COTIZADOR_Listar_NombresTablasResult" type="tns:ArrayOfBE_Cotizador_Tablas" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfBE_Cotizador_Tablas">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="BE_Cotizador_Tablas" nillable="true" type="tns:BE_Cotizador_Tablas" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BE_Cotizador_Tablas">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IdTabla" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="DescripcionTabla" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="COTIZADOR_InsertarCotizacion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Par_UsuarioWS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Par_ClaveUsuarioWS" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Par_IdDepartamento" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Par_IdUso" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Par_IdMarca" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Par_IdModelo" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Par_AnoCompleto" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Par_SumaAsegurada" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Par_Placavehiculo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Par_IdUsuario_Registro" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Par_TipoDocumento" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Par_NumeroDocumento" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Par_TipoUsuario" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="COTIZADOR_InsertarCotizacionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="COTIZADOR_InsertarCotizacionResult" type="tns:ArrayOfBE_Cotizador_CotizacionVehicular" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfBE_Cotizador_CotizacionVehicular">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="BE_Cotizador_CotizacionVehicular" nillable="true" type="tns:BE_Cotizador_CotizacionVehicular" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BE_Cotizador_CotizacionVehicular">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="BE_Cotizador_DetalleProducto" type="tns:ArrayOfBE_Cotizador_DetalleProducto" />
+          <s:element minOccurs="0" maxOccurs="1" name="Nombres_Cliente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Descripcion_TipoDocumento" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NumeroDocumento_Cliente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Telefono_Cliente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Correo_Cliente" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IdCotizacion" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="GTB_IdEstadoCotizacion" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Descripcion_TipoSeguro" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Descripcion_MedioCaptacion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Descripcion_EstadoCotizacion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FechaCreacion_Cotizacion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FechaModificacion_Cotizacion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FechaAnulacion_Cotizacion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CreadoPor_Cotizacion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ModificadoPor_Cotizacion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AnuladoPor_Cotizacion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MotivoAnulacion_Cotizacion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Descripcion_Departamento" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Descripcion_Uso" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Descripcion_Marca" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Descripcion_Modelo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Descripcion_EstadoVehiculo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Descripcion_Año" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Descripcion_TipoMoneda" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Descripcion_SumaAsegurada" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Descripcion_TimonCambiado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Descripcion_VersionAmericana" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AUX_CodigoRespuesta" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AUX_MensajeRespuesta" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfBE_Cotizador_DetalleProducto">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="BE_Cotizador_DetalleProducto" nillable="true" type="tns:BE_Cotizador_DetalleProducto" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BE_Cotizador_DetalleProducto">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="MensajeVisualizacion" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CAS_IdAseguradora" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="CAS_NombreAseguradora" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CPA_IdPlanAseguradora" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="CPA_NombrePlanAseguradora" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AUX_AseguradoraPlanAseguradora" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CTA_TasaCIA" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="GTB_IdTipoMoneda" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="GTB_AbreviaturaTipoMoneda" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PrimaNeta" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PrimaTotalContado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CGA_RequiereGPS" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CAS_NumeroCuotas_SinIntereses" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ImporteCuotaSinInteres" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CAS_NumeroCuotas_ConIntereses" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ImporteCuotaConInteres" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PDC_DescripcionVehiculo_LOG" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PDC_EsPublico" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Dbl_PrimaNeta" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="Dbl_PrimaTotalContado" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="Dbl_ImporteCuotaSinInteres" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="Dbl_ImporteCuotaConInteres" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="PDC_Url_CobBenDed" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="COTIZADOR_ActualizarCliente">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Par_UsuarioWS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Par_ClaveUsuarioWS" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Par_IdCotizacion" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Par_IdTipoDocumento" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Par_NumeroIdentificacionCliente" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Par_NombresCliente" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Par_TelefonoCliente" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Par_CuentaCorreoCliente" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="COTIZADOR_ActualizarClienteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="COTIZADOR_ActualizarClienteResult" type="tns:ArrayOfBE_Cotizador_Cliente" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfBE_Cotizador_Cliente">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="BE_Cotizador_Cliente" nillable="true" type="tns:BE_Cotizador_Cliente" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BE_Cotizador_Cliente">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="CCL_IdCliente" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="GTB_IdTipoDocumento" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="GTB_NombreTipoDocumento" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CCL_NumeroIdentificacion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CCL_DescripcionCliente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CCL_TelefonoCliente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CCL_CuentaCorreoCliente" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="COTIZADOR_Enviar_Correo_UE">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Par_UsuarioWS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Par_ClaveUsuarioWS" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Par_CantidadTotal_PorEnviar" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Par_Cantidad_Enviada" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Par_TipoDocumento" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Par_NumeroDocumento" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Par_IdEstadoCotizacion" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Par_SUS_IdUsuario" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Par_PCO_IdCotizacion" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="Par_PDC_EsPublico" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="Par_CAS_IdAseguradora" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Par_CPA_IdPlanAseguradora" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Par_CPA_TasaCIA" type="s:double" />
+            <s:element minOccurs="0" maxOccurs="1" name="Par_GTB_AbreviaturaTipoMoneda" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Par_Dbl_PDC_PrimaNeta" type="s:double" />
+            <s:element minOccurs="1" maxOccurs="1" name="Par_Dbl_PDC_PrimaTotalContado" type="s:double" />
+            <s:element minOccurs="0" maxOccurs="1" name="CGA_RequiereGPS" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Par_PDC_NumeroCuotas_SinIntereses" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Par_Dbl_PDC_Importe_Cuota_SinIntereses" type="s:double" />
+            <s:element minOccurs="1" maxOccurs="1" name="Par_PDC_NumeroCuotas_ConIntereses" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Par_Dbl_PDC_Importe_Cuota_ConIntereses" type="s:double" />
+            <s:element minOccurs="0" maxOccurs="1" name="Par_PDC_DescripcionVehiculo_LOG" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Par_AUX_Url_CobBenDed" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Par_PDC_Cotizacion_Enviar" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="COTIZADOR_Enviar_Correo_UEResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="COTIZADOR_Enviar_Correo_UEResult" type="tns:ArrayOfBE_Cotizador_CotizacionVehicular" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CorreoMasivo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Par_UsuarioWS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Par_ClaveUsuarioWS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Par_Tipo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Par_CorreoEntrada" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Par_CorreoEntradaCC" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Par_Asunto" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Par_Descripcion" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CorreoMasivoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CorreoMasivoResult" type="tns:BE_MENSAJERESPUESTA" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="BE_MENSAJERESPUESTA">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="MensajeTransaccion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CodigoTransaccion" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="BE_USUARIO_LOGIN" nillable="true" type="tns:BE_USUARIO_LOGIN" />
+      <s:element name="ArrayOfBE_CLIENTE" nillable="true" type="tns:ArrayOfBE_CLIENTE" />
+      <s:element name="ArrayOfBE_Parametros_Tabla" nillable="true" type="tns:ArrayOfBE_Parametros_Tabla" />
+      <s:element name="ArrayOfBE_Parametros_TipoTabla" nillable="true" type="tns:ArrayOfBE_Parametros_TipoTabla" />
+      <s:element name="ArrayOfBE_Cotizador_DetalleAuto" nillable="true" type="tns:ArrayOfBE_Cotizador_DetalleAuto" />
+      <s:element name="ArrayOfBE_Cotizador_Tablas" nillable="true" type="tns:ArrayOfBE_Cotizador_Tablas" />
+      <s:element name="ArrayOfBE_Cotizador_CotizacionVehicular" nillable="true" type="tns:ArrayOfBE_Cotizador_CotizacionVehicular" />
+      <s:element name="ArrayOfBE_Cotizador_Cliente" nillable="true" type="tns:ArrayOfBE_Cotizador_Cliente" />
+      <s:element name="BE_MENSAJERESPUESTA" nillable="true" type="tns:BE_MENSAJERESPUESTA" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="EVOPREMIUM_USUARIO_ValidarAsignacionClienteSoapIn">
+    <wsdl:part name="parameters" element="tns:EVOPREMIUM_USUARIO_ValidarAsignacionCliente" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_USUARIO_ValidarAsignacionClienteSoapOut">
+    <wsdl:part name="parameters" element="tns:EVOPREMIUM_USUARIO_ValidarAsignacionClienteResponse" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_USUARIO_SolicitarCodigoAutoGeneradoSoapIn">
+    <wsdl:part name="parameters" element="tns:EVOPREMIUM_USUARIO_SolicitarCodigoAutoGenerado" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_USUARIO_SolicitarCodigoAutoGeneradoSoapOut">
+    <wsdl:part name="parameters" element="tns:EVOPREMIUM_USUARIO_SolicitarCodigoAutoGeneradoResponse" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_USUARIO_ActualizarContraseniaSoapIn">
+    <wsdl:part name="parameters" element="tns:EVOPREMIUM_USUARIO_ActualizarContrasenia" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_USUARIO_ActualizarContraseniaSoapOut">
+    <wsdl:part name="parameters" element="tns:EVOPREMIUM_USUARIO_ActualizarContraseniaResponse" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_CLIENTE_ListadoSoapIn">
+    <wsdl:part name="parameters" element="tns:EVOPREMIUM_CLIENTE_Listado" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_CLIENTE_ListadoSoapOut">
+    <wsdl:part name="parameters" element="tns:EVOPREMIUM_CLIENTE_ListadoResponse" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_CLIENTE_BuscarSoapIn">
+    <wsdl:part name="parameters" element="tns:EVOPREMIUM_CLIENTE_Buscar" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_CLIENTE_BuscarSoapOut">
+    <wsdl:part name="parameters" element="tns:EVOPREMIUM_CLIENTE_BuscarResponse" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_USUARIO_RecuperarContraseniaSoapIn">
+    <wsdl:part name="parameters" element="tns:EVOPREMIUM_USUARIO_RecuperarContrasenia" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_USUARIO_RecuperarContraseniaSoapOut">
+    <wsdl:part name="parameters" element="tns:EVOPREMIUM_USUARIO_RecuperarContraseniaResponse" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_USUARIO_RegistroSoapIn">
+    <wsdl:part name="parameters" element="tns:EVOPREMIUM_USUARIO_Registro" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_USUARIO_RegistroSoapOut">
+    <wsdl:part name="parameters" element="tns:EVOPREMIUM_USUARIO_RegistroResponse" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_USUARIO_ValidarCodigoSMSSoapIn">
+    <wsdl:part name="parameters" element="tns:EVOPREMIUM_USUARIO_ValidarCodigoSMS" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_USUARIO_ValidarCodigoSMSSoapOut">
+    <wsdl:part name="parameters" element="tns:EVOPREMIUM_USUARIO_ValidarCodigoSMSResponse" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_USUARIO_ReValidarCodigoSMSSoapIn">
+    <wsdl:part name="parameters" element="tns:EVOPREMIUM_USUARIO_ReValidarCodigoSMS" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_USUARIO_ReValidarCodigoSMSSoapOut">
+    <wsdl:part name="parameters" element="tns:EVOPREMIUM_USUARIO_ReValidarCodigoSMSResponse" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_SOS_RegistroSoapIn">
+    <wsdl:part name="parameters" element="tns:EVOPREMIUM_SOS_Registro" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_SOS_RegistroSoapOut">
+    <wsdl:part name="parameters" element="tns:EVOPREMIUM_SOS_RegistroResponse" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_TABLAS_ConsultarSoapIn">
+    <wsdl:part name="parameters" element="tns:EVOPREMIUM_TABLAS_Consultar" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_TABLAS_ConsultarSoapOut">
+    <wsdl:part name="parameters" element="tns:EVOPREMIUM_TABLAS_ConsultarResponse" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_TABLAS_ListarNombresSoapIn">
+    <wsdl:part name="parameters" element="tns:EVOPREMIUM_TABLAS_ListarNombres" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_TABLAS_ListarNombresSoapOut">
+    <wsdl:part name="parameters" element="tns:EVOPREMIUM_TABLAS_ListarNombresResponse" />
+  </wsdl:message>
+  <wsdl:message name="COTIZADOR_ConsultarTablasSoapIn">
+    <wsdl:part name="parameters" element="tns:COTIZADOR_ConsultarTablas" />
+  </wsdl:message>
+  <wsdl:message name="COTIZADOR_ConsultarTablasSoapOut">
+    <wsdl:part name="parameters" element="tns:COTIZADOR_ConsultarTablasResponse" />
+  </wsdl:message>
+  <wsdl:message name="COTIZADOR_Listar_NombresTablasSoapIn">
+    <wsdl:part name="parameters" element="tns:COTIZADOR_Listar_NombresTablas" />
+  </wsdl:message>
+  <wsdl:message name="COTIZADOR_Listar_NombresTablasSoapOut">
+    <wsdl:part name="parameters" element="tns:COTIZADOR_Listar_NombresTablasResponse" />
+  </wsdl:message>
+  <wsdl:message name="COTIZADOR_InsertarCotizacionSoapIn">
+    <wsdl:part name="parameters" element="tns:COTIZADOR_InsertarCotizacion" />
+  </wsdl:message>
+  <wsdl:message name="COTIZADOR_InsertarCotizacionSoapOut">
+    <wsdl:part name="parameters" element="tns:COTIZADOR_InsertarCotizacionResponse" />
+  </wsdl:message>
+  <wsdl:message name="COTIZADOR_ActualizarClienteSoapIn">
+    <wsdl:part name="parameters" element="tns:COTIZADOR_ActualizarCliente" />
+  </wsdl:message>
+  <wsdl:message name="COTIZADOR_ActualizarClienteSoapOut">
+    <wsdl:part name="parameters" element="tns:COTIZADOR_ActualizarClienteResponse" />
+  </wsdl:message>
+  <wsdl:message name="COTIZADOR_Enviar_Correo_UESoapIn">
+    <wsdl:part name="parameters" element="tns:COTIZADOR_Enviar_Correo_UE" />
+  </wsdl:message>
+  <wsdl:message name="COTIZADOR_Enviar_Correo_UESoapOut">
+    <wsdl:part name="parameters" element="tns:COTIZADOR_Enviar_Correo_UEResponse" />
+  </wsdl:message>
+  <wsdl:message name="CorreoMasivoSoapIn">
+    <wsdl:part name="parameters" element="tns:CorreoMasivo" />
+  </wsdl:message>
+  <wsdl:message name="CorreoMasivoSoapOut">
+    <wsdl:part name="parameters" element="tns:CorreoMasivoResponse" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_USUARIO_ValidarAsignacionClienteHttpGetIn">
+    <wsdl:part name="Par_UsuarioWS" type="s:string" />
+    <wsdl:part name="Par_ClaveUsuarioWS" type="s:string" />
+    <wsdl:part name="Par_Usuario_Login" type="s:string" />
+    <wsdl:part name="Par_Clave_Login" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_USUARIO_ValidarAsignacionClienteHttpGetOut">
+    <wsdl:part name="Body" element="tns:BE_USUARIO_LOGIN" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_USUARIO_SolicitarCodigoAutoGeneradoHttpGetIn">
+    <wsdl:part name="Par_UsuarioWS" type="s:string" />
+    <wsdl:part name="Par_ClaveUsuarioWS" type="s:string" />
+    <wsdl:part name="Par_Usuario_Login" type="s:string" />
+    <wsdl:part name="Par_CorreoElectronico_Login" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_USUARIO_SolicitarCodigoAutoGeneradoHttpGetOut">
+    <wsdl:part name="Body" element="tns:BE_USUARIO_LOGIN" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_USUARIO_ActualizarContraseniaHttpGetIn">
+    <wsdl:part name="Par_UsuarioWS" type="s:string" />
+    <wsdl:part name="Par_ClaveUsuarioWS" type="s:string" />
+    <wsdl:part name="Par_Usuario_Login" type="s:string" />
+    <wsdl:part name="Par_CodigoAutogenerado_Login" type="s:string" />
+    <wsdl:part name="Par_ClaveNueva_Login" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_USUARIO_ActualizarContraseniaHttpGetOut">
+    <wsdl:part name="Body" element="tns:BE_USUARIO_LOGIN" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_CLIENTE_ListadoHttpGetIn">
+    <wsdl:part name="Par_UsuarioWS" type="s:string" />
+    <wsdl:part name="Par_ClaveUsuarioWS" type="s:string" />
+    <wsdl:part name="Par_Busqueda" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_CLIENTE_ListadoHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfBE_CLIENTE" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_CLIENTE_BuscarHttpGetIn">
+    <wsdl:part name="Par_UsuarioWS" type="s:string" />
+    <wsdl:part name="Par_ClaveUsuarioWS" type="s:string" />
+    <wsdl:part name="Par_IdCliente" type="s:string" />
+    <wsdl:part name="Par_Perfil" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_CLIENTE_BuscarHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfBE_CLIENTE" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_USUARIO_RecuperarContraseniaHttpGetIn">
+    <wsdl:part name="Par_UsuarioWS" type="s:string" />
+    <wsdl:part name="Par_ClaveUsuarioWS" type="s:string" />
+    <wsdl:part name="Par_CorreoElectronico_Login" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_USUARIO_RecuperarContraseniaHttpGetOut">
+    <wsdl:part name="Body" element="tns:BE_USUARIO_LOGIN" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_USUARIO_RegistroHttpGetIn">
+    <wsdl:part name="Par_UsuarioWS" type="s:string" />
+    <wsdl:part name="Par_ClaveUsuarioWS" type="s:string" />
+    <wsdl:part name="Par_IdTipoDocumento" type="s:string" />
+    <wsdl:part name="Par_NumeroDocumento" type="s:string" />
+    <wsdl:part name="Par_NombresCliente" type="s:string" />
+    <wsdl:part name="Par_ApellidosCliente" type="s:string" />
+    <wsdl:part name="Par_CelularCliente" type="s:string" />
+    <wsdl:part name="Par_CorreoElectronicoCliente" type="s:string" />
+    <wsdl:part name="Par_ContrasenaCliente" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_USUARIO_RegistroHttpGetOut">
+    <wsdl:part name="Body" element="tns:BE_USUARIO_LOGIN" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_USUARIO_ValidarCodigoSMSHttpGetIn">
+    <wsdl:part name="Par_UsuarioWS" type="s:string" />
+    <wsdl:part name="Par_ClaveUsuarioWS" type="s:string" />
+    <wsdl:part name="Par_CodigoEnviado" type="s:string" />
+    <wsdl:part name="Par_CelularUsuario" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_USUARIO_ValidarCodigoSMSHttpGetOut">
+    <wsdl:part name="Body" element="tns:BE_USUARIO_LOGIN" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_USUARIO_ReValidarCodigoSMSHttpGetIn">
+    <wsdl:part name="Par_UsuarioWS" type="s:string" />
+    <wsdl:part name="Par_ClaveUsuarioWS" type="s:string" />
+    <wsdl:part name="Par_CodigoEnviado" type="s:string" />
+    <wsdl:part name="Par_CelularUsuario" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_USUARIO_ReValidarCodigoSMSHttpGetOut">
+    <wsdl:part name="Body" element="tns:BE_USUARIO_LOGIN" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_SOS_RegistroHttpGetIn">
+    <wsdl:part name="Par_UsuarioWS" type="s:string" />
+    <wsdl:part name="Par_ClaveUsuarioWS" type="s:string" />
+    <wsdl:part name="Par_CodigoCliente" type="s:string" />
+    <wsdl:part name="Par_PlacaVehiculo" type="s:string" />
+    <wsdl:part name="Par_TipoSOS" type="s:string" />
+    <wsdl:part name="Par_Latitud" type="s:string" />
+    <wsdl:part name="Par_Longitud" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_SOS_RegistroHttpGetOut">
+    <wsdl:part name="Body" element="tns:BE_USUARIO_LOGIN" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_TABLAS_ConsultarHttpGetIn">
+    <wsdl:part name="Par_UsuarioWS" type="s:string" />
+    <wsdl:part name="Par_ClaveUsuarioWS" type="s:string" />
+    <wsdl:part name="Par_TipoTabla" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_TABLAS_ConsultarHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfBE_Parametros_Tabla" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_TABLAS_ListarNombresHttpGetIn">
+    <wsdl:part name="Par_UsuarioWS" type="s:string" />
+    <wsdl:part name="Par_ClaveUsuarioWS" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_TABLAS_ListarNombresHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfBE_Parametros_TipoTabla" />
+  </wsdl:message>
+  <wsdl:message name="COTIZADOR_ConsultarTablasHttpGetIn">
+    <wsdl:part name="Par_UsuarioWS" type="s:string" />
+    <wsdl:part name="Par_ClaveUsuarioWS" type="s:string" />
+    <wsdl:part name="Par_TipoTabla" type="s:string" />
+    <wsdl:part name="Par_IdMarca_TablaTipo5" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="COTIZADOR_ConsultarTablasHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfBE_Cotizador_DetalleAuto" />
+  </wsdl:message>
+  <wsdl:message name="COTIZADOR_Listar_NombresTablasHttpGetIn">
+    <wsdl:part name="Par_UsuarioWS" type="s:string" />
+    <wsdl:part name="Par_ClaveUsuarioWS" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="COTIZADOR_Listar_NombresTablasHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfBE_Cotizador_Tablas" />
+  </wsdl:message>
+  <wsdl:message name="COTIZADOR_InsertarCotizacionHttpGetIn">
+    <wsdl:part name="Par_UsuarioWS" type="s:string" />
+    <wsdl:part name="Par_ClaveUsuarioWS" type="s:string" />
+    <wsdl:part name="Par_IdDepartamento" type="s:string" />
+    <wsdl:part name="Par_IdUso" type="s:string" />
+    <wsdl:part name="Par_IdMarca" type="s:string" />
+    <wsdl:part name="Par_IdModelo" type="s:string" />
+    <wsdl:part name="Par_AnoCompleto" type="s:string" />
+    <wsdl:part name="Par_SumaAsegurada" type="s:string" />
+    <wsdl:part name="Par_Placavehiculo" type="s:string" />
+    <wsdl:part name="Par_IdUsuario_Registro" type="s:string" />
+    <wsdl:part name="Par_TipoDocumento" type="s:string" />
+    <wsdl:part name="Par_NumeroDocumento" type="s:string" />
+    <wsdl:part name="Par_TipoUsuario" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="COTIZADOR_InsertarCotizacionHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfBE_Cotizador_CotizacionVehicular" />
+  </wsdl:message>
+  <wsdl:message name="COTIZADOR_ActualizarClienteHttpGetIn">
+    <wsdl:part name="Par_UsuarioWS" type="s:string" />
+    <wsdl:part name="Par_ClaveUsuarioWS" type="s:string" />
+    <wsdl:part name="Par_IdCotizacion" type="s:string" />
+    <wsdl:part name="Par_IdTipoDocumento" type="s:string" />
+    <wsdl:part name="Par_NumeroIdentificacionCliente" type="s:string" />
+    <wsdl:part name="Par_NombresCliente" type="s:string" />
+    <wsdl:part name="Par_TelefonoCliente" type="s:string" />
+    <wsdl:part name="Par_CuentaCorreoCliente" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="COTIZADOR_ActualizarClienteHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfBE_Cotizador_Cliente" />
+  </wsdl:message>
+  <wsdl:message name="COTIZADOR_Enviar_Correo_UEHttpGetIn">
+    <wsdl:part name="Par_UsuarioWS" type="s:string" />
+    <wsdl:part name="Par_ClaveUsuarioWS" type="s:string" />
+    <wsdl:part name="Par_CantidadTotal_PorEnviar" type="s:string" />
+    <wsdl:part name="Par_Cantidad_Enviada" type="s:string" />
+    <wsdl:part name="Par_TipoDocumento" type="s:string" />
+    <wsdl:part name="Par_NumeroDocumento" type="s:string" />
+    <wsdl:part name="Par_IdEstadoCotizacion" type="s:string" />
+    <wsdl:part name="Par_SUS_IdUsuario" type="s:string" />
+    <wsdl:part name="Par_PCO_IdCotizacion" type="s:string" />
+    <wsdl:part name="Par_PDC_EsPublico" type="s:string" />
+    <wsdl:part name="Par_CAS_IdAseguradora" type="s:string" />
+    <wsdl:part name="Par_CPA_IdPlanAseguradora" type="s:string" />
+    <wsdl:part name="Par_CPA_TasaCIA" type="s:string" />
+    <wsdl:part name="Par_GTB_AbreviaturaTipoMoneda" type="s:string" />
+    <wsdl:part name="Par_Dbl_PDC_PrimaNeta" type="s:string" />
+    <wsdl:part name="Par_Dbl_PDC_PrimaTotalContado" type="s:string" />
+    <wsdl:part name="CGA_RequiereGPS" type="s:string" />
+    <wsdl:part name="Par_PDC_NumeroCuotas_SinIntereses" type="s:string" />
+    <wsdl:part name="Par_Dbl_PDC_Importe_Cuota_SinIntereses" type="s:string" />
+    <wsdl:part name="Par_PDC_NumeroCuotas_ConIntereses" type="s:string" />
+    <wsdl:part name="Par_Dbl_PDC_Importe_Cuota_ConIntereses" type="s:string" />
+    <wsdl:part name="Par_PDC_DescripcionVehiculo_LOG" type="s:string" />
+    <wsdl:part name="Par_AUX_Url_CobBenDed" type="s:string" />
+    <wsdl:part name="Par_PDC_Cotizacion_Enviar" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="COTIZADOR_Enviar_Correo_UEHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfBE_Cotizador_CotizacionVehicular" />
+  </wsdl:message>
+  <wsdl:message name="CorreoMasivoHttpGetIn">
+    <wsdl:part name="Par_UsuarioWS" type="s:string" />
+    <wsdl:part name="Par_ClaveUsuarioWS" type="s:string" />
+    <wsdl:part name="Par_Tipo" type="s:string" />
+    <wsdl:part name="Par_CorreoEntrada" type="s:string" />
+    <wsdl:part name="Par_CorreoEntradaCC" type="s:string" />
+    <wsdl:part name="Par_Asunto" type="s:string" />
+    <wsdl:part name="Par_Descripcion" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CorreoMasivoHttpGetOut">
+    <wsdl:part name="Body" element="tns:BE_MENSAJERESPUESTA" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_USUARIO_ValidarAsignacionClienteHttpPostIn">
+    <wsdl:part name="Par_UsuarioWS" type="s:string" />
+    <wsdl:part name="Par_ClaveUsuarioWS" type="s:string" />
+    <wsdl:part name="Par_Usuario_Login" type="s:string" />
+    <wsdl:part name="Par_Clave_Login" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_USUARIO_ValidarAsignacionClienteHttpPostOut">
+    <wsdl:part name="Body" element="tns:BE_USUARIO_LOGIN" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_USUARIO_SolicitarCodigoAutoGeneradoHttpPostIn">
+    <wsdl:part name="Par_UsuarioWS" type="s:string" />
+    <wsdl:part name="Par_ClaveUsuarioWS" type="s:string" />
+    <wsdl:part name="Par_Usuario_Login" type="s:string" />
+    <wsdl:part name="Par_CorreoElectronico_Login" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_USUARIO_SolicitarCodigoAutoGeneradoHttpPostOut">
+    <wsdl:part name="Body" element="tns:BE_USUARIO_LOGIN" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_USUARIO_ActualizarContraseniaHttpPostIn">
+    <wsdl:part name="Par_UsuarioWS" type="s:string" />
+    <wsdl:part name="Par_ClaveUsuarioWS" type="s:string" />
+    <wsdl:part name="Par_Usuario_Login" type="s:string" />
+    <wsdl:part name="Par_CodigoAutogenerado_Login" type="s:string" />
+    <wsdl:part name="Par_ClaveNueva_Login" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_USUARIO_ActualizarContraseniaHttpPostOut">
+    <wsdl:part name="Body" element="tns:BE_USUARIO_LOGIN" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_CLIENTE_ListadoHttpPostIn">
+    <wsdl:part name="Par_UsuarioWS" type="s:string" />
+    <wsdl:part name="Par_ClaveUsuarioWS" type="s:string" />
+    <wsdl:part name="Par_Busqueda" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_CLIENTE_ListadoHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfBE_CLIENTE" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_CLIENTE_BuscarHttpPostIn">
+    <wsdl:part name="Par_UsuarioWS" type="s:string" />
+    <wsdl:part name="Par_ClaveUsuarioWS" type="s:string" />
+    <wsdl:part name="Par_IdCliente" type="s:string" />
+    <wsdl:part name="Par_Perfil" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_CLIENTE_BuscarHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfBE_CLIENTE" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_USUARIO_RecuperarContraseniaHttpPostIn">
+    <wsdl:part name="Par_UsuarioWS" type="s:string" />
+    <wsdl:part name="Par_ClaveUsuarioWS" type="s:string" />
+    <wsdl:part name="Par_CorreoElectronico_Login" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_USUARIO_RecuperarContraseniaHttpPostOut">
+    <wsdl:part name="Body" element="tns:BE_USUARIO_LOGIN" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_USUARIO_RegistroHttpPostIn">
+    <wsdl:part name="Par_UsuarioWS" type="s:string" />
+    <wsdl:part name="Par_ClaveUsuarioWS" type="s:string" />
+    <wsdl:part name="Par_IdTipoDocumento" type="s:string" />
+    <wsdl:part name="Par_NumeroDocumento" type="s:string" />
+    <wsdl:part name="Par_NombresCliente" type="s:string" />
+    <wsdl:part name="Par_ApellidosCliente" type="s:string" />
+    <wsdl:part name="Par_CelularCliente" type="s:string" />
+    <wsdl:part name="Par_CorreoElectronicoCliente" type="s:string" />
+    <wsdl:part name="Par_ContrasenaCliente" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_USUARIO_RegistroHttpPostOut">
+    <wsdl:part name="Body" element="tns:BE_USUARIO_LOGIN" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_USUARIO_ValidarCodigoSMSHttpPostIn">
+    <wsdl:part name="Par_UsuarioWS" type="s:string" />
+    <wsdl:part name="Par_ClaveUsuarioWS" type="s:string" />
+    <wsdl:part name="Par_CodigoEnviado" type="s:string" />
+    <wsdl:part name="Par_CelularUsuario" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_USUARIO_ValidarCodigoSMSHttpPostOut">
+    <wsdl:part name="Body" element="tns:BE_USUARIO_LOGIN" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_USUARIO_ReValidarCodigoSMSHttpPostIn">
+    <wsdl:part name="Par_UsuarioWS" type="s:string" />
+    <wsdl:part name="Par_ClaveUsuarioWS" type="s:string" />
+    <wsdl:part name="Par_CodigoEnviado" type="s:string" />
+    <wsdl:part name="Par_CelularUsuario" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_USUARIO_ReValidarCodigoSMSHttpPostOut">
+    <wsdl:part name="Body" element="tns:BE_USUARIO_LOGIN" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_SOS_RegistroHttpPostIn">
+    <wsdl:part name="Par_UsuarioWS" type="s:string" />
+    <wsdl:part name="Par_ClaveUsuarioWS" type="s:string" />
+    <wsdl:part name="Par_CodigoCliente" type="s:string" />
+    <wsdl:part name="Par_PlacaVehiculo" type="s:string" />
+    <wsdl:part name="Par_TipoSOS" type="s:string" />
+    <wsdl:part name="Par_Latitud" type="s:string" />
+    <wsdl:part name="Par_Longitud" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_SOS_RegistroHttpPostOut">
+    <wsdl:part name="Body" element="tns:BE_USUARIO_LOGIN" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_TABLAS_ConsultarHttpPostIn">
+    <wsdl:part name="Par_UsuarioWS" type="s:string" />
+    <wsdl:part name="Par_ClaveUsuarioWS" type="s:string" />
+    <wsdl:part name="Par_TipoTabla" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_TABLAS_ConsultarHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfBE_Parametros_Tabla" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_TABLAS_ListarNombresHttpPostIn">
+    <wsdl:part name="Par_UsuarioWS" type="s:string" />
+    <wsdl:part name="Par_ClaveUsuarioWS" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EVOPREMIUM_TABLAS_ListarNombresHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfBE_Parametros_TipoTabla" />
+  </wsdl:message>
+  <wsdl:message name="COTIZADOR_ConsultarTablasHttpPostIn">
+    <wsdl:part name="Par_UsuarioWS" type="s:string" />
+    <wsdl:part name="Par_ClaveUsuarioWS" type="s:string" />
+    <wsdl:part name="Par_TipoTabla" type="s:string" />
+    <wsdl:part name="Par_IdMarca_TablaTipo5" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="COTIZADOR_ConsultarTablasHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfBE_Cotizador_DetalleAuto" />
+  </wsdl:message>
+  <wsdl:message name="COTIZADOR_Listar_NombresTablasHttpPostIn">
+    <wsdl:part name="Par_UsuarioWS" type="s:string" />
+    <wsdl:part name="Par_ClaveUsuarioWS" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="COTIZADOR_Listar_NombresTablasHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfBE_Cotizador_Tablas" />
+  </wsdl:message>
+  <wsdl:message name="COTIZADOR_InsertarCotizacionHttpPostIn">
+    <wsdl:part name="Par_UsuarioWS" type="s:string" />
+    <wsdl:part name="Par_ClaveUsuarioWS" type="s:string" />
+    <wsdl:part name="Par_IdDepartamento" type="s:string" />
+    <wsdl:part name="Par_IdUso" type="s:string" />
+    <wsdl:part name="Par_IdMarca" type="s:string" />
+    <wsdl:part name="Par_IdModelo" type="s:string" />
+    <wsdl:part name="Par_AnoCompleto" type="s:string" />
+    <wsdl:part name="Par_SumaAsegurada" type="s:string" />
+    <wsdl:part name="Par_Placavehiculo" type="s:string" />
+    <wsdl:part name="Par_IdUsuario_Registro" type="s:string" />
+    <wsdl:part name="Par_TipoDocumento" type="s:string" />
+    <wsdl:part name="Par_NumeroDocumento" type="s:string" />
+    <wsdl:part name="Par_TipoUsuario" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="COTIZADOR_InsertarCotizacionHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfBE_Cotizador_CotizacionVehicular" />
+  </wsdl:message>
+  <wsdl:message name="COTIZADOR_ActualizarClienteHttpPostIn">
+    <wsdl:part name="Par_UsuarioWS" type="s:string" />
+    <wsdl:part name="Par_ClaveUsuarioWS" type="s:string" />
+    <wsdl:part name="Par_IdCotizacion" type="s:string" />
+    <wsdl:part name="Par_IdTipoDocumento" type="s:string" />
+    <wsdl:part name="Par_NumeroIdentificacionCliente" type="s:string" />
+    <wsdl:part name="Par_NombresCliente" type="s:string" />
+    <wsdl:part name="Par_TelefonoCliente" type="s:string" />
+    <wsdl:part name="Par_CuentaCorreoCliente" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="COTIZADOR_ActualizarClienteHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfBE_Cotizador_Cliente" />
+  </wsdl:message>
+  <wsdl:message name="COTIZADOR_Enviar_Correo_UEHttpPostIn">
+    <wsdl:part name="Par_UsuarioWS" type="s:string" />
+    <wsdl:part name="Par_ClaveUsuarioWS" type="s:string" />
+    <wsdl:part name="Par_CantidadTotal_PorEnviar" type="s:string" />
+    <wsdl:part name="Par_Cantidad_Enviada" type="s:string" />
+    <wsdl:part name="Par_TipoDocumento" type="s:string" />
+    <wsdl:part name="Par_NumeroDocumento" type="s:string" />
+    <wsdl:part name="Par_IdEstadoCotizacion" type="s:string" />
+    <wsdl:part name="Par_SUS_IdUsuario" type="s:string" />
+    <wsdl:part name="Par_PCO_IdCotizacion" type="s:string" />
+    <wsdl:part name="Par_PDC_EsPublico" type="s:string" />
+    <wsdl:part name="Par_CAS_IdAseguradora" type="s:string" />
+    <wsdl:part name="Par_CPA_IdPlanAseguradora" type="s:string" />
+    <wsdl:part name="Par_CPA_TasaCIA" type="s:string" />
+    <wsdl:part name="Par_GTB_AbreviaturaTipoMoneda" type="s:string" />
+    <wsdl:part name="Par_Dbl_PDC_PrimaNeta" type="s:string" />
+    <wsdl:part name="Par_Dbl_PDC_PrimaTotalContado" type="s:string" />
+    <wsdl:part name="CGA_RequiereGPS" type="s:string" />
+    <wsdl:part name="Par_PDC_NumeroCuotas_SinIntereses" type="s:string" />
+    <wsdl:part name="Par_Dbl_PDC_Importe_Cuota_SinIntereses" type="s:string" />
+    <wsdl:part name="Par_PDC_NumeroCuotas_ConIntereses" type="s:string" />
+    <wsdl:part name="Par_Dbl_PDC_Importe_Cuota_ConIntereses" type="s:string" />
+    <wsdl:part name="Par_PDC_DescripcionVehiculo_LOG" type="s:string" />
+    <wsdl:part name="Par_AUX_Url_CobBenDed" type="s:string" />
+    <wsdl:part name="Par_PDC_Cotizacion_Enviar" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="COTIZADOR_Enviar_Correo_UEHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfBE_Cotizador_CotizacionVehicular" />
+  </wsdl:message>
+  <wsdl:message name="CorreoMasivoHttpPostIn">
+    <wsdl:part name="Par_UsuarioWS" type="s:string" />
+    <wsdl:part name="Par_ClaveUsuarioWS" type="s:string" />
+    <wsdl:part name="Par_Tipo" type="s:string" />
+    <wsdl:part name="Par_CorreoEntrada" type="s:string" />
+    <wsdl:part name="Par_CorreoEntradaCC" type="s:string" />
+    <wsdl:part name="Par_Asunto" type="s:string" />
+    <wsdl:part name="Par_Descripcion" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CorreoMasivoHttpPostOut">
+    <wsdl:part name="Body" element="tns:BE_MENSAJERESPUESTA" />
+  </wsdl:message>
+  <wsdl:portType name="webServiceDemoSoap">
+    <wsdl:operation name="EVOPREMIUM_USUARIO_ValidarAsignacionCliente">
+      <wsdl:input message="tns:EVOPREMIUM_USUARIO_ValidarAsignacionClienteSoapIn" />
+      <wsdl:output message="tns:EVOPREMIUM_USUARIO_ValidarAsignacionClienteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_USUARIO_SolicitarCodigoAutoGenerado">
+      <wsdl:input message="tns:EVOPREMIUM_USUARIO_SolicitarCodigoAutoGeneradoSoapIn" />
+      <wsdl:output message="tns:EVOPREMIUM_USUARIO_SolicitarCodigoAutoGeneradoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_USUARIO_ActualizarContrasenia">
+      <wsdl:input message="tns:EVOPREMIUM_USUARIO_ActualizarContraseniaSoapIn" />
+      <wsdl:output message="tns:EVOPREMIUM_USUARIO_ActualizarContraseniaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_CLIENTE_Listado">
+      <wsdl:input message="tns:EVOPREMIUM_CLIENTE_ListadoSoapIn" />
+      <wsdl:output message="tns:EVOPREMIUM_CLIENTE_ListadoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_CLIENTE_Buscar">
+      <wsdl:input message="tns:EVOPREMIUM_CLIENTE_BuscarSoapIn" />
+      <wsdl:output message="tns:EVOPREMIUM_CLIENTE_BuscarSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_USUARIO_RecuperarContrasenia">
+      <wsdl:input message="tns:EVOPREMIUM_USUARIO_RecuperarContraseniaSoapIn" />
+      <wsdl:output message="tns:EVOPREMIUM_USUARIO_RecuperarContraseniaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_USUARIO_Registro">
+      <wsdl:input message="tns:EVOPREMIUM_USUARIO_RegistroSoapIn" />
+      <wsdl:output message="tns:EVOPREMIUM_USUARIO_RegistroSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_USUARIO_ValidarCodigoSMS">
+      <wsdl:input message="tns:EVOPREMIUM_USUARIO_ValidarCodigoSMSSoapIn" />
+      <wsdl:output message="tns:EVOPREMIUM_USUARIO_ValidarCodigoSMSSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_USUARIO_ReValidarCodigoSMS">
+      <wsdl:input message="tns:EVOPREMIUM_USUARIO_ReValidarCodigoSMSSoapIn" />
+      <wsdl:output message="tns:EVOPREMIUM_USUARIO_ReValidarCodigoSMSSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_SOS_Registro">
+      <wsdl:input message="tns:EVOPREMIUM_SOS_RegistroSoapIn" />
+      <wsdl:output message="tns:EVOPREMIUM_SOS_RegistroSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_TABLAS_Consultar">
+      <wsdl:input message="tns:EVOPREMIUM_TABLAS_ConsultarSoapIn" />
+      <wsdl:output message="tns:EVOPREMIUM_TABLAS_ConsultarSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_TABLAS_ListarNombres">
+      <wsdl:input message="tns:EVOPREMIUM_TABLAS_ListarNombresSoapIn" />
+      <wsdl:output message="tns:EVOPREMIUM_TABLAS_ListarNombresSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="COTIZADOR_ConsultarTablas">
+      <wsdl:input message="tns:COTIZADOR_ConsultarTablasSoapIn" />
+      <wsdl:output message="tns:COTIZADOR_ConsultarTablasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="COTIZADOR_Listar_NombresTablas">
+      <wsdl:input message="tns:COTIZADOR_Listar_NombresTablasSoapIn" />
+      <wsdl:output message="tns:COTIZADOR_Listar_NombresTablasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="COTIZADOR_InsertarCotizacion">
+      <wsdl:input message="tns:COTIZADOR_InsertarCotizacionSoapIn" />
+      <wsdl:output message="tns:COTIZADOR_InsertarCotizacionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="COTIZADOR_ActualizarCliente">
+      <wsdl:input message="tns:COTIZADOR_ActualizarClienteSoapIn" />
+      <wsdl:output message="tns:COTIZADOR_ActualizarClienteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="COTIZADOR_Enviar_Correo_UE">
+      <wsdl:input message="tns:COTIZADOR_Enviar_Correo_UESoapIn" />
+      <wsdl:output message="tns:COTIZADOR_Enviar_Correo_UESoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CorreoMasivo">
+      <wsdl:input message="tns:CorreoMasivoSoapIn" />
+      <wsdl:output message="tns:CorreoMasivoSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="webServiceDemoHttpGet">
+    <wsdl:operation name="EVOPREMIUM_USUARIO_ValidarAsignacionCliente">
+      <wsdl:input message="tns:EVOPREMIUM_USUARIO_ValidarAsignacionClienteHttpGetIn" />
+      <wsdl:output message="tns:EVOPREMIUM_USUARIO_ValidarAsignacionClienteHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_USUARIO_SolicitarCodigoAutoGenerado">
+      <wsdl:input message="tns:EVOPREMIUM_USUARIO_SolicitarCodigoAutoGeneradoHttpGetIn" />
+      <wsdl:output message="tns:EVOPREMIUM_USUARIO_SolicitarCodigoAutoGeneradoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_USUARIO_ActualizarContrasenia">
+      <wsdl:input message="tns:EVOPREMIUM_USUARIO_ActualizarContraseniaHttpGetIn" />
+      <wsdl:output message="tns:EVOPREMIUM_USUARIO_ActualizarContraseniaHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_CLIENTE_Listado">
+      <wsdl:input message="tns:EVOPREMIUM_CLIENTE_ListadoHttpGetIn" />
+      <wsdl:output message="tns:EVOPREMIUM_CLIENTE_ListadoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_CLIENTE_Buscar">
+      <wsdl:input message="tns:EVOPREMIUM_CLIENTE_BuscarHttpGetIn" />
+      <wsdl:output message="tns:EVOPREMIUM_CLIENTE_BuscarHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_USUARIO_RecuperarContrasenia">
+      <wsdl:input message="tns:EVOPREMIUM_USUARIO_RecuperarContraseniaHttpGetIn" />
+      <wsdl:output message="tns:EVOPREMIUM_USUARIO_RecuperarContraseniaHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_USUARIO_Registro">
+      <wsdl:input message="tns:EVOPREMIUM_USUARIO_RegistroHttpGetIn" />
+      <wsdl:output message="tns:EVOPREMIUM_USUARIO_RegistroHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_USUARIO_ValidarCodigoSMS">
+      <wsdl:input message="tns:EVOPREMIUM_USUARIO_ValidarCodigoSMSHttpGetIn" />
+      <wsdl:output message="tns:EVOPREMIUM_USUARIO_ValidarCodigoSMSHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_USUARIO_ReValidarCodigoSMS">
+      <wsdl:input message="tns:EVOPREMIUM_USUARIO_ReValidarCodigoSMSHttpGetIn" />
+      <wsdl:output message="tns:EVOPREMIUM_USUARIO_ReValidarCodigoSMSHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_SOS_Registro">
+      <wsdl:input message="tns:EVOPREMIUM_SOS_RegistroHttpGetIn" />
+      <wsdl:output message="tns:EVOPREMIUM_SOS_RegistroHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_TABLAS_Consultar">
+      <wsdl:input message="tns:EVOPREMIUM_TABLAS_ConsultarHttpGetIn" />
+      <wsdl:output message="tns:EVOPREMIUM_TABLAS_ConsultarHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_TABLAS_ListarNombres">
+      <wsdl:input message="tns:EVOPREMIUM_TABLAS_ListarNombresHttpGetIn" />
+      <wsdl:output message="tns:EVOPREMIUM_TABLAS_ListarNombresHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="COTIZADOR_ConsultarTablas">
+      <wsdl:input message="tns:COTIZADOR_ConsultarTablasHttpGetIn" />
+      <wsdl:output message="tns:COTIZADOR_ConsultarTablasHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="COTIZADOR_Listar_NombresTablas">
+      <wsdl:input message="tns:COTIZADOR_Listar_NombresTablasHttpGetIn" />
+      <wsdl:output message="tns:COTIZADOR_Listar_NombresTablasHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="COTIZADOR_InsertarCotizacion">
+      <wsdl:input message="tns:COTIZADOR_InsertarCotizacionHttpGetIn" />
+      <wsdl:output message="tns:COTIZADOR_InsertarCotizacionHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="COTIZADOR_ActualizarCliente">
+      <wsdl:input message="tns:COTIZADOR_ActualizarClienteHttpGetIn" />
+      <wsdl:output message="tns:COTIZADOR_ActualizarClienteHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="COTIZADOR_Enviar_Correo_UE">
+      <wsdl:input message="tns:COTIZADOR_Enviar_Correo_UEHttpGetIn" />
+      <wsdl:output message="tns:COTIZADOR_Enviar_Correo_UEHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CorreoMasivo">
+      <wsdl:input message="tns:CorreoMasivoHttpGetIn" />
+      <wsdl:output message="tns:CorreoMasivoHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="webServiceDemoHttpPost">
+    <wsdl:operation name="EVOPREMIUM_USUARIO_ValidarAsignacionCliente">
+      <wsdl:input message="tns:EVOPREMIUM_USUARIO_ValidarAsignacionClienteHttpPostIn" />
+      <wsdl:output message="tns:EVOPREMIUM_USUARIO_ValidarAsignacionClienteHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_USUARIO_SolicitarCodigoAutoGenerado">
+      <wsdl:input message="tns:EVOPREMIUM_USUARIO_SolicitarCodigoAutoGeneradoHttpPostIn" />
+      <wsdl:output message="tns:EVOPREMIUM_USUARIO_SolicitarCodigoAutoGeneradoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_USUARIO_ActualizarContrasenia">
+      <wsdl:input message="tns:EVOPREMIUM_USUARIO_ActualizarContraseniaHttpPostIn" />
+      <wsdl:output message="tns:EVOPREMIUM_USUARIO_ActualizarContraseniaHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_CLIENTE_Listado">
+      <wsdl:input message="tns:EVOPREMIUM_CLIENTE_ListadoHttpPostIn" />
+      <wsdl:output message="tns:EVOPREMIUM_CLIENTE_ListadoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_CLIENTE_Buscar">
+      <wsdl:input message="tns:EVOPREMIUM_CLIENTE_BuscarHttpPostIn" />
+      <wsdl:output message="tns:EVOPREMIUM_CLIENTE_BuscarHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_USUARIO_RecuperarContrasenia">
+      <wsdl:input message="tns:EVOPREMIUM_USUARIO_RecuperarContraseniaHttpPostIn" />
+      <wsdl:output message="tns:EVOPREMIUM_USUARIO_RecuperarContraseniaHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_USUARIO_Registro">
+      <wsdl:input message="tns:EVOPREMIUM_USUARIO_RegistroHttpPostIn" />
+      <wsdl:output message="tns:EVOPREMIUM_USUARIO_RegistroHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_USUARIO_ValidarCodigoSMS">
+      <wsdl:input message="tns:EVOPREMIUM_USUARIO_ValidarCodigoSMSHttpPostIn" />
+      <wsdl:output message="tns:EVOPREMIUM_USUARIO_ValidarCodigoSMSHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_USUARIO_ReValidarCodigoSMS">
+      <wsdl:input message="tns:EVOPREMIUM_USUARIO_ReValidarCodigoSMSHttpPostIn" />
+      <wsdl:output message="tns:EVOPREMIUM_USUARIO_ReValidarCodigoSMSHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_SOS_Registro">
+      <wsdl:input message="tns:EVOPREMIUM_SOS_RegistroHttpPostIn" />
+      <wsdl:output message="tns:EVOPREMIUM_SOS_RegistroHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_TABLAS_Consultar">
+      <wsdl:input message="tns:EVOPREMIUM_TABLAS_ConsultarHttpPostIn" />
+      <wsdl:output message="tns:EVOPREMIUM_TABLAS_ConsultarHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_TABLAS_ListarNombres">
+      <wsdl:input message="tns:EVOPREMIUM_TABLAS_ListarNombresHttpPostIn" />
+      <wsdl:output message="tns:EVOPREMIUM_TABLAS_ListarNombresHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="COTIZADOR_ConsultarTablas">
+      <wsdl:input message="tns:COTIZADOR_ConsultarTablasHttpPostIn" />
+      <wsdl:output message="tns:COTIZADOR_ConsultarTablasHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="COTIZADOR_Listar_NombresTablas">
+      <wsdl:input message="tns:COTIZADOR_Listar_NombresTablasHttpPostIn" />
+      <wsdl:output message="tns:COTIZADOR_Listar_NombresTablasHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="COTIZADOR_InsertarCotizacion">
+      <wsdl:input message="tns:COTIZADOR_InsertarCotizacionHttpPostIn" />
+      <wsdl:output message="tns:COTIZADOR_InsertarCotizacionHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="COTIZADOR_ActualizarCliente">
+      <wsdl:input message="tns:COTIZADOR_ActualizarClienteHttpPostIn" />
+      <wsdl:output message="tns:COTIZADOR_ActualizarClienteHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="COTIZADOR_Enviar_Correo_UE">
+      <wsdl:input message="tns:COTIZADOR_Enviar_Correo_UEHttpPostIn" />
+      <wsdl:output message="tns:COTIZADOR_Enviar_Correo_UEHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CorreoMasivo">
+      <wsdl:input message="tns:CorreoMasivoHttpPostIn" />
+      <wsdl:output message="tns:CorreoMasivoHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="webServiceDemoSoap" type="tns:webServiceDemoSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="EVOPREMIUM_USUARIO_ValidarAsignacionCliente">
+      <soap:operation soapAction="http://www.laprotectora.com.pe/EVOPREMIUM_USUARIO_ValidarAsignacionCliente" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_USUARIO_SolicitarCodigoAutoGenerado">
+      <soap:operation soapAction="http://www.laprotectora.com.pe/EVOPREMIUM_USUARIO_SolicitarCodigoAutoGenerado" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_USUARIO_ActualizarContrasenia">
+      <soap:operation soapAction="http://www.laprotectora.com.pe/EVOPREMIUM_USUARIO_ActualizarContrasenia" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_CLIENTE_Listado">
+      <soap:operation soapAction="http://www.laprotectora.com.pe/EVOPREMIUM_CLIENTE_Listado" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_CLIENTE_Buscar">
+      <soap:operation soapAction="http://www.laprotectora.com.pe/EVOPREMIUM_CLIENTE_Buscar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_USUARIO_RecuperarContrasenia">
+      <soap:operation soapAction="http://www.laprotectora.com.pe/EVOPREMIUM_USUARIO_RecuperarContrasenia" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_USUARIO_Registro">
+      <soap:operation soapAction="http://www.laprotectora.com.pe/EVOPREMIUM_USUARIO_Registro" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_USUARIO_ValidarCodigoSMS">
+      <soap:operation soapAction="http://www.laprotectora.com.pe/EVOPREMIUM_USUARIO_ValidarCodigoSMS" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_USUARIO_ReValidarCodigoSMS">
+      <soap:operation soapAction="http://www.laprotectora.com.pe/EVOPREMIUM_USUARIO_ReValidarCodigoSMS" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_SOS_Registro">
+      <soap:operation soapAction="http://www.laprotectora.com.pe/EVOPREMIUM_SOS_Registro" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_TABLAS_Consultar">
+      <soap:operation soapAction="http://www.laprotectora.com.pe/EVOPREMIUM_TABLAS_Consultar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_TABLAS_ListarNombres">
+      <soap:operation soapAction="http://www.laprotectora.com.pe/EVOPREMIUM_TABLAS_ListarNombres" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="COTIZADOR_ConsultarTablas">
+      <soap:operation soapAction="http://www.laprotectora.com.pe/COTIZADOR_ConsultarTablas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="COTIZADOR_Listar_NombresTablas">
+      <soap:operation soapAction="http://www.laprotectora.com.pe/COTIZADOR_Listar_NombresTablas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="COTIZADOR_InsertarCotizacion">
+      <soap:operation soapAction="http://www.laprotectora.com.pe/COTIZADOR_InsertarCotizacion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="COTIZADOR_ActualizarCliente">
+      <soap:operation soapAction="http://www.laprotectora.com.pe/COTIZADOR_ActualizarCliente" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="COTIZADOR_Enviar_Correo_UE">
+      <soap:operation soapAction="http://www.laprotectora.com.pe/COTIZADOR_Enviar_Correo_UE" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CorreoMasivo">
+      <soap:operation soapAction="http://www.laprotectora.com.pe/CorreoMasivo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="webServiceDemoSoap12" type="tns:webServiceDemoSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="EVOPREMIUM_USUARIO_ValidarAsignacionCliente">
+      <soap12:operation soapAction="http://www.laprotectora.com.pe/EVOPREMIUM_USUARIO_ValidarAsignacionCliente" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_USUARIO_SolicitarCodigoAutoGenerado">
+      <soap12:operation soapAction="http://www.laprotectora.com.pe/EVOPREMIUM_USUARIO_SolicitarCodigoAutoGenerado" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_USUARIO_ActualizarContrasenia">
+      <soap12:operation soapAction="http://www.laprotectora.com.pe/EVOPREMIUM_USUARIO_ActualizarContrasenia" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_CLIENTE_Listado">
+      <soap12:operation soapAction="http://www.laprotectora.com.pe/EVOPREMIUM_CLIENTE_Listado" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_CLIENTE_Buscar">
+      <soap12:operation soapAction="http://www.laprotectora.com.pe/EVOPREMIUM_CLIENTE_Buscar" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_USUARIO_RecuperarContrasenia">
+      <soap12:operation soapAction="http://www.laprotectora.com.pe/EVOPREMIUM_USUARIO_RecuperarContrasenia" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_USUARIO_Registro">
+      <soap12:operation soapAction="http://www.laprotectora.com.pe/EVOPREMIUM_USUARIO_Registro" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_USUARIO_ValidarCodigoSMS">
+      <soap12:operation soapAction="http://www.laprotectora.com.pe/EVOPREMIUM_USUARIO_ValidarCodigoSMS" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_USUARIO_ReValidarCodigoSMS">
+      <soap12:operation soapAction="http://www.laprotectora.com.pe/EVOPREMIUM_USUARIO_ReValidarCodigoSMS" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_SOS_Registro">
+      <soap12:operation soapAction="http://www.laprotectora.com.pe/EVOPREMIUM_SOS_Registro" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_TABLAS_Consultar">
+      <soap12:operation soapAction="http://www.laprotectora.com.pe/EVOPREMIUM_TABLAS_Consultar" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_TABLAS_ListarNombres">
+      <soap12:operation soapAction="http://www.laprotectora.com.pe/EVOPREMIUM_TABLAS_ListarNombres" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="COTIZADOR_ConsultarTablas">
+      <soap12:operation soapAction="http://www.laprotectora.com.pe/COTIZADOR_ConsultarTablas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="COTIZADOR_Listar_NombresTablas">
+      <soap12:operation soapAction="http://www.laprotectora.com.pe/COTIZADOR_Listar_NombresTablas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="COTIZADOR_InsertarCotizacion">
+      <soap12:operation soapAction="http://www.laprotectora.com.pe/COTIZADOR_InsertarCotizacion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="COTIZADOR_ActualizarCliente">
+      <soap12:operation soapAction="http://www.laprotectora.com.pe/COTIZADOR_ActualizarCliente" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="COTIZADOR_Enviar_Correo_UE">
+      <soap12:operation soapAction="http://www.laprotectora.com.pe/COTIZADOR_Enviar_Correo_UE" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CorreoMasivo">
+      <soap12:operation soapAction="http://www.laprotectora.com.pe/CorreoMasivo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="webServiceDemoHttpGet" type="tns:webServiceDemoHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="EVOPREMIUM_USUARIO_ValidarAsignacionCliente">
+      <http:operation location="/EVOPREMIUM_USUARIO_ValidarAsignacionCliente" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_USUARIO_SolicitarCodigoAutoGenerado">
+      <http:operation location="/EVOPREMIUM_USUARIO_SolicitarCodigoAutoGenerado" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_USUARIO_ActualizarContrasenia">
+      <http:operation location="/EVOPREMIUM_USUARIO_ActualizarContrasenia" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_CLIENTE_Listado">
+      <http:operation location="/EVOPREMIUM_CLIENTE_Listado" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_CLIENTE_Buscar">
+      <http:operation location="/EVOPREMIUM_CLIENTE_Buscar" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_USUARIO_RecuperarContrasenia">
+      <http:operation location="/EVOPREMIUM_USUARIO_RecuperarContrasenia" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_USUARIO_Registro">
+      <http:operation location="/EVOPREMIUM_USUARIO_Registro" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_USUARIO_ValidarCodigoSMS">
+      <http:operation location="/EVOPREMIUM_USUARIO_ValidarCodigoSMS" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_USUARIO_ReValidarCodigoSMS">
+      <http:operation location="/EVOPREMIUM_USUARIO_ReValidarCodigoSMS" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_SOS_Registro">
+      <http:operation location="/EVOPREMIUM_SOS_Registro" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_TABLAS_Consultar">
+      <http:operation location="/EVOPREMIUM_TABLAS_Consultar" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_TABLAS_ListarNombres">
+      <http:operation location="/EVOPREMIUM_TABLAS_ListarNombres" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="COTIZADOR_ConsultarTablas">
+      <http:operation location="/COTIZADOR_ConsultarTablas" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="COTIZADOR_Listar_NombresTablas">
+      <http:operation location="/COTIZADOR_Listar_NombresTablas" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="COTIZADOR_InsertarCotizacion">
+      <http:operation location="/COTIZADOR_InsertarCotizacion" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="COTIZADOR_ActualizarCliente">
+      <http:operation location="/COTIZADOR_ActualizarCliente" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="COTIZADOR_Enviar_Correo_UE">
+      <http:operation location="/COTIZADOR_Enviar_Correo_UE" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CorreoMasivo">
+      <http:operation location="/CorreoMasivo" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="webServiceDemoHttpPost" type="tns:webServiceDemoHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="EVOPREMIUM_USUARIO_ValidarAsignacionCliente">
+      <http:operation location="/EVOPREMIUM_USUARIO_ValidarAsignacionCliente" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_USUARIO_SolicitarCodigoAutoGenerado">
+      <http:operation location="/EVOPREMIUM_USUARIO_SolicitarCodigoAutoGenerado" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_USUARIO_ActualizarContrasenia">
+      <http:operation location="/EVOPREMIUM_USUARIO_ActualizarContrasenia" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_CLIENTE_Listado">
+      <http:operation location="/EVOPREMIUM_CLIENTE_Listado" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_CLIENTE_Buscar">
+      <http:operation location="/EVOPREMIUM_CLIENTE_Buscar" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_USUARIO_RecuperarContrasenia">
+      <http:operation location="/EVOPREMIUM_USUARIO_RecuperarContrasenia" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_USUARIO_Registro">
+      <http:operation location="/EVOPREMIUM_USUARIO_Registro" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_USUARIO_ValidarCodigoSMS">
+      <http:operation location="/EVOPREMIUM_USUARIO_ValidarCodigoSMS" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_USUARIO_ReValidarCodigoSMS">
+      <http:operation location="/EVOPREMIUM_USUARIO_ReValidarCodigoSMS" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_SOS_Registro">
+      <http:operation location="/EVOPREMIUM_SOS_Registro" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_TABLAS_Consultar">
+      <http:operation location="/EVOPREMIUM_TABLAS_Consultar" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EVOPREMIUM_TABLAS_ListarNombres">
+      <http:operation location="/EVOPREMIUM_TABLAS_ListarNombres" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="COTIZADOR_ConsultarTablas">
+      <http:operation location="/COTIZADOR_ConsultarTablas" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="COTIZADOR_Listar_NombresTablas">
+      <http:operation location="/COTIZADOR_Listar_NombresTablas" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="COTIZADOR_InsertarCotizacion">
+      <http:operation location="/COTIZADOR_InsertarCotizacion" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="COTIZADOR_ActualizarCliente">
+      <http:operation location="/COTIZADOR_ActualizarCliente" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="COTIZADOR_Enviar_Correo_UE">
+      <http:operation location="/COTIZADOR_Enviar_Correo_UE" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CorreoMasivo">
+      <http:operation location="/CorreoMasivo" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="webServiceDemo">
+    <wsdl:port name="webServiceDemoSoap" binding="tns:webServiceDemoSoap">
+      <soap:address location="http://aws.laprotectora.com.pe/WS_IOSANDROID_EVO/WebServiceDemo.asmx" />
+    </wsdl:port>
+    <wsdl:port name="webServiceDemoSoap12" binding="tns:webServiceDemoSoap12">
+      <soap12:address location="http://aws.laprotectora.com.pe/WS_IOSANDROID_EVO/WebServiceDemo.asmx" />
+    </wsdl:port>
+    <wsdl:port name="webServiceDemoHttpGet" binding="tns:webServiceDemoHttpGet">
+      <http:address location="http://aws.laprotectora.com.pe/WS_IOSANDROID_EVO/WebServiceDemo.asmx" />
+    </wsdl:port>
+    <wsdl:port name="webServiceDemoHttpPost" binding="tns:webServiceDemoHttpPost">
+      <http:address location="http://aws.laprotectora.com.pe/WS_IOSANDROID_EVO/WebServiceDemo.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

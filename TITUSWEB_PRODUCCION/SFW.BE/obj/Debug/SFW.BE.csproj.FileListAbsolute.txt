@@ -1,0 +1,104 @@
+F:\Proyectos\SFW\SFW.BE\bin\Debug\SFW.BE.dll
+F:\Proyectos\SFW\SFW.BE\bin\Debug\SFW.BE.pdb
+F:\Proyectos\SFW\SFW.BE\obj\Debug\SFW.BE.dll
+F:\Proyectos\SFW\SFW.BE\obj\Debug\SFW.BE.pdb
+C:\Users\waps\Desktop\SFW\SFW.BE\bin\Debug\SFW.BE.dll
+C:\Users\waps\Desktop\SFW\SFW.BE\bin\Debug\SFW.BE.pdb
+C:\Users\waps\Desktop\SFW\SFW.BE\obj\Debug\SFW.BE.dll
+C:\Users\waps\Desktop\SFW\SFW.BE\obj\Debug\SFW.BE.pdb
+D:\NET-Projects\SFW_Versiones\SFW\SFW.BE\bin\Debug\SFW.BE.dll
+D:\NET-Projects\SFW_Versiones\SFW\SFW.BE\bin\Debug\SFW.BE.pdb
+D:\NET-Projects\SFW_Versiones\SFW\SFW.BE\obj\Debug\SFW.BE.dll
+D:\NET-Projects\SFW_Versiones\SFW\SFW.BE\obj\Debug\SFW.BE.pdb
+F:\_PROYECTOS.NET\SFW\SFW.BE\bin\Debug\SFW.BE.dll
+F:\_PROYECTOS.NET\SFW\SFW.BE\bin\Debug\SFW.BE.pdb
+F:\_PROYECTOS.NET\SFW\SFW.BE\obj\Debug\SFW.BE.dll
+F:\_PROYECTOS.NET\SFW\SFW.BE\obj\Debug\SFW.BE.pdb
+E:\Documentacion LP\Proyectos\SFW\SWF_160916\SFW\SFW.BE\bin\Debug\SFW.BE.dll
+E:\Documentacion LP\Proyectos\SFW\SWF_160916\SFW\SFW.BE\bin\Debug\SFW.BE.pdb
+E:\Documentacion LP\Proyectos\SFW\SWF_160916\SFW\SFW.BE\obj\Debug\SFW.BE.dll
+E:\Documentacion LP\Proyectos\SFW\SWF_160916\SFW\SFW.BE\obj\Debug\SFW.BE.pdb
+E:\Documentacion LP\Proyectos\SFW\SWF_160916\SFW\SFW.BE\obj\Debug\SFW.BE.csprojResolveAssemblyReference.cache
+D:\NET-Projects\SFW_Versiones\SFW_211016\SFW\SFW.BE\bin\Debug\SFW.BE.dll
+D:\NET-Projects\SFW_Versiones\SFW_211016\SFW\SFW.BE\bin\Debug\SFW.BE.pdb
+D:\NET-Projects\SFW_Versiones\SFW_211016\SFW\SFW.BE\obj\Debug\SFW.BE.dll
+D:\NET-Projects\SFW_Versiones\SFW_211016\SFW\SFW.BE\obj\Debug\SFW.BE.pdb
+E:\Documentacion LP\Proyectos\SFW\SWF_221016\SFW_Miguel_22102016\SFW.BE\bin\Debug\SFW.BE.dll
+E:\Documentacion LP\Proyectos\SFW\SWF_221016\SFW_Miguel_22102016\SFW.BE\bin\Debug\SFW.BE.pdb
+E:\Documentacion LP\Proyectos\SFW\SWF_221016\SFW_Miguel_22102016\SFW.BE\obj\Debug\SFW.BE.dll
+E:\Documentacion LP\Proyectos\SFW\SWF_221016\SFW_Miguel_22102016\SFW.BE\obj\Debug\SFW.BE.pdb
+C:\Users\wpazo\Desktop\SFW_Miguel_22102016\SFW_Miguel_22102016\SFW.BE\bin\Debug\SFW.BE.dll
+C:\Users\wpazo\Desktop\SFW_Miguel_22102016\SFW_Miguel_22102016\SFW.BE\bin\Debug\SFW.BE.pdb
+C:\Users\wpazo\Desktop\SFW_Miguel_22102016\SFW_Miguel_22102016\SFW.BE\obj\Debug\SFW.BE.dll
+C:\Users\wpazo\Desktop\SFW_Miguel_22102016\SFW_Miguel_22102016\SFW.BE\obj\Debug\SFW.BE.pdb
+D:\Carrasco\1. PROYECTOS\8. Titus Web\SFW_021116\SFW\SFW.BE\bin\Debug\SFW.BE.dll
+D:\Carrasco\1. PROYECTOS\8. Titus Web\SFW_021116\SFW\SFW.BE\bin\Debug\SFW.BE.pdb
+D:\Carrasco\1. PROYECTOS\8. Titus Web\SFW_021116\SFW\SFW.BE\obj\Debug\SFW.BE.dll
+D:\Carrasco\1. PROYECTOS\8. Titus Web\SFW_021116\SFW\SFW.BE\obj\Debug\SFW.BE.pdb
+D:\Carrasco\1. PROYECTOS\8. Titus Web\SFW_021116\SFW\SFW.BE\obj\Debug\SFW.BE.csprojResolveAssemblyReference.cache
+D:\NET-Projects\SFW_Versiones\SFW_031116\SFW\SFW.BE\bin\Debug\SFW.BE.dll
+D:\NET-Projects\SFW_Versiones\SFW_031116\SFW\SFW.BE\bin\Debug\SFW.BE.pdb
+D:\NET-Projects\SFW_Versiones\SFW_031116\SFW\SFW.BE\obj\Debug\SFW.BE.dll
+D:\NET-Projects\SFW_Versiones\SFW_031116\SFW\SFW.BE\obj\Debug\SFW.BE.pdb
+D:\NET-Projects\SFW_Versiones\SFW_031116\SFW\SFW.BE\obj\Debug\SFW.BE.csprojResolveAssemblyReference.cache
+D:\NET-Projects\SFW_Versiones\SFW_161116\SFW\SFW.BE\bin\Debug\SFW.BE.dll
+D:\NET-Projects\SFW_Versiones\SFW_161116\SFW\SFW.BE\bin\Debug\SFW.BE.pdb
+D:\NET-Projects\SFW_Versiones\SFW_161116\SFW\SFW.BE\obj\Debug\SFW.BE.dll
+D:\NET-Projects\SFW_Versiones\SFW_161116\SFW\SFW.BE\obj\Debug\SFW.BE.pdb
+C:\TitusWeb_120217\SFW\SFW.BE\bin\Debug\SFW.BE.dll
+C:\TitusWeb_120217\SFW\SFW.BE\bin\Debug\SFW.BE.pdb
+C:\TitusWeb_120217\SFW\SFW.BE\obj\Debug\SFW.BE.dll
+C:\TitusWeb_120217\SFW\SFW.BE\obj\Debug\SFW.BE.pdb
+D:\NET-Projects\SFW\SFW.BE\bin\Debug\SFW.BE.dll
+D:\NET-Projects\SFW\SFW.BE\bin\Debug\SFW.BE.pdb
+D:\NET-Projects\SFW\SFW.BE\obj\Debug\SFW.BE.dll
+D:\NET-Projects\SFW\SFW.BE\obj\Debug\SFW.BE.pdb
+D:\NET-Projects\SFW\SFW\SFW.BE\bin\Debug\SFW.BE.dll
+D:\NET-Projects\SFW\SFW\SFW.BE\bin\Debug\SFW.BE.pdb
+D:\NET-Projects\SFW\SFW\SFW.BE\obj\Debug\SFW.BE.dll
+D:\NET-Projects\SFW\SFW\SFW.BE\obj\Debug\SFW.BE.pdb
+D:\NET-Projects\SFW\SFW\SFW\SFW.BE\bin\Debug\SFW.BE.dll
+D:\NET-Projects\SFW\SFW\SFW\SFW.BE\bin\Debug\SFW.BE.pdb
+D:\NET-Projects\SFW\SFW\SFW\SFW.BE\obj\Debug\SFW.BE.dll
+D:\NET-Projects\SFW\SFW\SFW\SFW.BE\obj\Debug\SFW.BE.pdb
+D:\NET-Projects\SFW\SFW_300517\SFW\SFW.BE\bin\Debug\SFW.BE.dll
+D:\NET-Projects\SFW\SFW_300517\SFW\SFW.BE\bin\Debug\SFW.BE.pdb
+D:\NET-Projects\SFW\SFW_300517\SFW\SFW.BE\obj\Debug\SFW.BE.dll
+D:\NET-Projects\SFW\SFW_300517\SFW\SFW.BE\obj\Debug\SFW.BE.pdb
+D:\NET-Projects\SFW\SFW_12062017\SFW\SFW.BE\bin\Debug\SFW.BE.dll
+D:\NET-Projects\SFW\SFW_12062017\SFW\SFW.BE\bin\Debug\SFW.BE.pdb
+D:\NET-Projects\SFW\SFW_12062017\SFW\SFW.BE\obj\Debug\SFW.BE.dll
+D:\NET-Projects\SFW\SFW_12062017\SFW\SFW.BE\obj\Debug\SFW.BE.pdb
+D:\NET-Projects\SFW\SFW_12062017_bk\SFW\SFW.BE\bin\Debug\SFW.BE.dll
+D:\NET-Projects\SFW\SFW_12062017_bk\SFW\SFW.BE\bin\Debug\SFW.BE.pdb
+D:\NET-Projects\SFW\SFW_12062017_bk\SFW\SFW.BE\obj\Debug\SFW.BE.dll
+D:\NET-Projects\SFW\SFW_12062017_bk\SFW\SFW.BE\obj\Debug\SFW.BE.pdb
+D:\NET-Projects\SFW\SFW_12062017_bk\SFW\SFW.BE\obj\Debug\SFW.BE.csprojResolveAssemblyReference.cache
+D:\NET-Projects\SFW\SFW_21082017_\SFW_21082017\SFW\SFW.BE\bin\Debug\SFW.BE.dll
+D:\NET-Projects\SFW\SFW_21082017_\SFW_21082017\SFW\SFW.BE\bin\Debug\SFW.BE.pdb
+D:\NET-Projects\SFW\SFW_21082017_\SFW_21082017\SFW\SFW.BE\obj\Debug\SFW.BE.csprojResolveAssemblyReference.cache
+D:\NET-Projects\SFW\SFW_21082017_\SFW_21082017\SFW\SFW.BE\obj\Debug\SFW.BE.dll
+D:\NET-Projects\SFW\SFW_21082017_\SFW_21082017\SFW\SFW.BE\obj\Debug\SFW.BE.pdb
+D:\NET-Projects\SFW\SFW_21082017_PROD\TITUSWEB_PROD\TITUSWEB_PRODUCCION\SFW.BE\bin\Debug\SFW.BE.dll
+D:\NET-Projects\SFW\SFW_21082017_PROD\TITUSWEB_PROD\TITUSWEB_PRODUCCION\SFW.BE\bin\Debug\SFW.BE.pdb
+D:\NET-Projects\SFW\SFW_21082017_PROD\TITUSWEB_PROD\TITUSWEB_PRODUCCION\SFW.BE\obj\Debug\SFW.BE.dll
+D:\NET-Projects\SFW\SFW_21082017_PROD\TITUSWEB_PROD\TITUSWEB_PRODUCCION\SFW.BE\obj\Debug\SFW.BE.pdb
+F:\Proyectos\TITUSWEB_PROTECTA_V10\TITUSWEB_PROTECTA_V10\TITUSWEB_PROD\TITUSWEB_PRODUCCION\SFW.BE\bin\Debug\SFW.BE.dll
+F:\Proyectos\TITUSWEB_PROTECTA_V10\TITUSWEB_PROTECTA_V10\TITUSWEB_PROD\TITUSWEB_PRODUCCION\SFW.BE\bin\Debug\SFW.BE.pdb
+F:\Proyectos\TITUSWEB_PROTECTA_V10\TITUSWEB_PROTECTA_V10\TITUSWEB_PROD\TITUSWEB_PRODUCCION\SFW.BE\obj\Debug\SFW.BE.csprojResolveAssemblyReference.cache
+F:\Proyectos\TITUSWEB_PROTECTA_V10\TITUSWEB_PROTECTA_V10\TITUSWEB_PROD\TITUSWEB_PRODUCCION\SFW.BE\obj\Debug\SFW.BE.dll
+F:\Proyectos\TITUSWEB_PROTECTA_V10\TITUSWEB_PROTECTA_V10\TITUSWEB_PROD\TITUSWEB_PRODUCCION\SFW.BE\obj\Debug\SFW.BE.pdb
+C:\Users\User\Desktop\Codigo Fuente 2018\TITUSWEB_PRODUCCION\SFW.BE\bin\Debug\SFW.BE.dll
+C:\Users\User\Desktop\Codigo Fuente 2018\TITUSWEB_PRODUCCION\SFW.BE\bin\Debug\SFW.BE.pdb
+C:\Users\User\Desktop\Codigo Fuente 2018\TITUSWEB_PRODUCCION\SFW.BE\obj\Debug\SFW.BE.dll
+C:\Users\User\Desktop\Codigo Fuente 2018\TITUSWEB_PRODUCCION\SFW.BE\obj\Debug\SFW.BE.pdb
+\\10.10.0.242\area-sistemas\JORGE-CERNA\MIGRACION\Codigo Fuente 2018\TITUSWEB_PRODUCCION\SFW.BE\bin\Debug\SFW.BE.dll
+\\10.10.0.242\area-sistemas\JORGE-CERNA\MIGRACION\Codigo Fuente 2018\TITUSWEB_PRODUCCION\SFW.BE\bin\Debug\SFW.BE.pdb
+\\10.10.0.242\area-sistemas\JORGE-CERNA\MIGRACION\Codigo Fuente 2018\TITUSWEB_PRODUCCION\SFW.BE\obj\Debug\SFW.BE.csprojResolveAssemblyReference.cache
+\\10.10.0.242\area-sistemas\JORGE-CERNA\MIGRACION\Codigo Fuente 2018\TITUSWEB_PRODUCCION\SFW.BE\obj\Debug\SFW.BE.dll
+\\10.10.0.242\area-sistemas\JORGE-CERNA\MIGRACION\Codigo Fuente 2018\TITUSWEB_PRODUCCION\SFW.BE\obj\Debug\SFW.BE.pdb
+C:\Users\User\Desktop\VOIP PRODUCCION\TITUSWEB_PRODUCCION\SFW.BE\bin\Debug\SFW.BE.dll
+C:\Users\User\Desktop\VOIP PRODUCCION\TITUSWEB_PRODUCCION\SFW.BE\bin\Debug\SFW.BE.pdb
+C:\Users\User\Desktop\VOIP PRODUCCION\TITUSWEB_PRODUCCION\SFW.BE\obj\Debug\SFW.BE.dll
+C:\Users\User\Desktop\VOIP PRODUCCION\TITUSWEB_PRODUCCION\SFW.BE\obj\Debug\SFW.BE.pdb
+C:\Users\User\Desktop\VOIP PRODUCCION\TITUSWEB_PRODUCCION\SFW.BE\obj\Debug\SFW.BE.csprojResolveAssemblyReference.cache

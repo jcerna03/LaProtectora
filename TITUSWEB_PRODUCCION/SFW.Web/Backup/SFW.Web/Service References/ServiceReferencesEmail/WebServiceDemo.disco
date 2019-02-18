@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<discovery xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/disco/">
+  <contractRef ref="http://aws.laprotectora.com.pe/WS_IOSANDROID_EVO/WebServiceDemo.asmx?wsdl" docRef="http://aws.laprotectora.com.pe/WS_IOSANDROID_EVO/WebServiceDemo.asmx" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
+  <soap address="http://aws.laprotectora.com.pe/WS_IOSANDROID_EVO/WebServiceDemo.asmx" xmlns:q1="http://www.laprotectora.com.pe/" binding="q1:webServiceDemoSoap" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+  <soap address="http://aws.laprotectora.com.pe/WS_IOSANDROID_EVO/WebServiceDemo.asmx" xmlns:q2="http://www.laprotectora.com.pe/" binding="q2:webServiceDemoSoap12" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+</discovery>

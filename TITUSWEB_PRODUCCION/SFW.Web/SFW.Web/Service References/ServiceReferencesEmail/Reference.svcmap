@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="0b06b5b3-78ac-4779-b8c4-7380dcae5108" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://aws.laprotectora.com.pe/WS_IOSANDROID_EVO/WebServiceDemo.asmx?op=CorreoMasivo" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="WebServiceDemo.disco" MetadataType="Disco" ID="3f64717b-afbf-400d-b452-74f64b14cc67" SourceId="1" SourceUrl="http://aws.laprotectora.com.pe/WS_IOSANDROID_EVO/WebServiceDemo.asmx?disco" />
+    <MetadataFile FileName="WebServiceDemo.wsdl" MetadataType="Wsdl" ID="ba4b2070-4540-4c01-94ee-3fe7efc36ff1" SourceId="1" SourceUrl="http://aws.laprotectora.com.pe/WS_IOSANDROID_EVO/WebServiceDemo.asmx?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

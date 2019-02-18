@@ -1,0 +1,505 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{72D226F6-1674-4AFB-8F53-C4E4E688AFB2}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SFW.Web</RootNamespace>
+    <AssemblyName>SFW.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>false</UseIISExpress>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <FilesToIncludeForPublish>OnlyFilesToRunTheApp</FilesToIncludeForPublish>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AjaxControlToolkit">
+      <HintPath>..\..\..\_LIBRERIAS\AjaxControlToolkit.Binary.NET40\AjaxControlToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="AjaxMin">
+      <HintPath>..\..\..\AjaxControlToolkit.Binary.NET40\AjaxMin.dll</HintPath>
+    </Reference>
+    <Reference Include="amqmdnet">
+      <HintPath>..\..\..\..\..\SFW12_05102016_2\SFW\SFW.Web\SFW.Web\bin\amqmdnet.dll</HintPath>
+    </Reference>
+    <Reference Include="DiffieHellman">
+      <HintPath>C:\Users\ProyectosLP\Desktop\LP_dlls\SharpSSH-1.1.1.13.bin\SharpSSH-1.1.1.13.bin\DiffieHellman.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus">
+      <HintPath>C:\Users\ProyectosLP\Downloads\EPPlus 4.0.4\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Core">
+      <HintPath>..\..\..\..\..\..\_LIBRERIAS\IKVM.OpenJDK.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.Runtime">
+      <HintPath>..\..\..\..\..\SFW12_05102016_2\SFW\SFW.Web\SFW.Web\bin\IKVM.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp">
+      <HintPath>..\..\..\..\..\EVOPREMIUM_vs\EVO_0308\EVOPremium\EVOPremium\bin\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp.xmlworker">
+      <HintPath>..\..\..\..\..\EVOPREMIUM_vs\EVO_0308\EVOPremium\EVOPremium\bin\itextsharp.xmlworker.dll</HintPath>
+    </Reference>
+    <Reference Include="jr-afiliacion-susalud-04102016">
+      <HintPath>..\..\..\..\..\..\_LIBRERIAS\jr-afiliacion-susalud-04102016.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MySql.Data, Version=6.8.3.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="Org.Mentalis.Security">
+      <HintPath>C:\Users\ProyectosLP\Desktop\LP_dlls\SharpSSH-1.1.1.13.bin\SharpSSH-1.1.1.13.bin\Org.Mentalis.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.DataVisualization" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Tamir.SharpSSH, Version=1.1.1.13, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Tamir.SharpSSH.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap-datetimepicker.css" />
+    <Content Include="Content\bootstrap-datetimepicker.min.css" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\chosen-sprite%402x.png" />
+    <Content Include="Content\chosen-sprite.png" />
+    <Content Include="Content\chosen.css" />
+    <Content Include="Content\chosen.min.css" />
+    <Content Include="Content\Ficha.css" />
+    <Content Include="Content\fileinput.css" />
+    <Content Include="Content\fileinput.min.css" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\jasny-bootstrap.css" />
+    <Content Include="Content\jasny-bootstrap.min.css" />
+    <Content Include="Content\MYG.css" />
+    <Content Include="Content\MYG2901.css" />
+    <Content Include="Content\uploadify.css" />
+    <Content Include="Ficha2.aspx" />
+    <Content Include="FichaPersonal.aspx" />
+    <Content Include="font-awesome-4.1.0\css\font-awesome.css" />
+    <Content Include="font-awesome-4.1.0\css\font-awesome.min.css" />
+    <Content Include="font-awesome-4.1.0\fonts\fontawesome-webfont.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="GestionVoip.aspx" />
+    <Content Include="Global.asax" />
+    <Content Include="Hospitalizados.aspx" />
+    <Content Include="images\logoLP.png" />
+    <Content Include="images\pdf-icon.png" />
+    <Content Include="image\404.jpg" />
+    <Content Include="image\alertas.gif" />
+    <Content Include="image\cancel.png" />
+    <Content Include="image\cargando.gif" />
+    <Content Include="image\cloud.png" />
+    <Content Include="image\edit.gif" />
+    <Content Include="image\imagen001.jpg" />
+    <Content Include="image\load.gif" />
+    <Content Include="image\loading.gif" />
+    <Content Include="image\loading1.gif" />
+    <Content Include="image\login - copia.png" />
+    <Content Include="image\login.png" />
+    <Content Include="image\loginrojo.png" />
+    <Content Include="image\logo.JPG" />
+    <Content Include="image\Logo.png" />
+    <Content Include="image\NuevoLogo.png" />
+    <Content Include="image\NuevoLogoS.png" />
+    <Content Include="image\photo.png" />
+    <Content Include="NuevaGestion.aspx" />
+    <Content Include="TramaSoat.aspx" />
+    <Content Include="PDF.aspx" />
+    <Content Include="ReportePrincipal.aspx" />
+    <Content Include="ReportesEstadisticos.aspx" />
+    <Content Include="Scripts\bootstrap-datetimepicker.js" />
+    <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\chosen.jquery.js" />
+    <Content Include="Scripts\chosen.jquery.min.js" />
+    <Content Include="Scripts\FileInput\fileinput.js" />
+    <Content Include="Scripts\FileInput\fileinput.min.js" />
+    <Content Include="Scripts\FileInput\fileinput_locale_es.js" />
+    <Content Include="Scripts\jasny-bootstrap.js" />
+    <Content Include="Scripts\jasny-bootstrap.min.js" />
+    <Content Include="Scripts\jquery-1.11.3.min.js" />
+    <Content Include="Scripts\jquery-2.1.1.min.js" />
+    <Content Include="Scripts\jquery.cookie.js" />
+    <Content Include="Scripts\MultipleAttach\jquery-1.3.2.min.js" />
+    <Content Include="Scripts\MultipleAttach\jquery.uploadify.js" />
+    <Content Include="Scripts\MultipleAttach\uploader.swf" />
+    <Content Include="xml\1114e6aa-c689-4874-a271-847503eccb6d.xml" />
+    <Content Include="xml\1771ec10-bdae-4528-8e9f-721150a6c303.xml" />
+    <Content Include="xml\1fcd6ba4-e33a-472f-8c2f-38c3dcecc6c9.xml" />
+    <Content Include="xml\2029a41a-c47c-4c6f-86d4-e5b6d161ad27.xml" />
+    <Content Include="xml\24bcf05b-1157-4ea0-8094-adf8ca77377d.xml" />
+    <Content Include="xml\29f18c32-d5b7-4cbd-9623-2b81d9b54508.xml" />
+    <Content Include="xml\2b8e8a26-ebba-45db-9ce1-54d726dd3daa.xml" />
+    <Content Include="xml\350dc4bb-68f7-4752-acc3-5e04521c3cd2.xml" />
+    <Content Include="xml\37797616-d280-4eba-8479-0cede1bfcc11.xml" />
+    <Content Include="xml\3d47701a-fd31-41a6-8d8a-93d99e67178a.xml" />
+    <Content Include="xml\40764446-dd75-42cf-8f38-ed91039898b4.xml" />
+    <Content Include="xml\4724ce3d-a5a0-40bc-8413-e87727ca4b19.xml" />
+    <Content Include="xml\51804464-f40e-401d-8a09-7078f0baf745.xml" />
+    <Content Include="xml\5f3587a2-73e4-465e-ad31-f13e8949f0b4.xml" />
+    <Content Include="xml\5fbf27eb-987f-4a6f-a7ca-9a72edce76a2.xml" />
+    <Content Include="xml\688eb8a3-c388-45f8-b187-2d0fdb904a94.xml" />
+    <Content Include="xml\6944f4b4-2a1a-4739-a03e-d35fab0b72b3.xml" />
+    <Content Include="xml\785db1ed-9382-4eb0-a25b-927fe8262499.xml" />
+    <Content Include="xml\7cfbd1ff-31ef-4063-98f6-781f126f7ad4.xml" />
+    <Content Include="xml\7e4e98a2-e775-4513-9595-f01ea1c1775b.xml" />
+    <Content Include="xml\824da82a-b8ae-4f33-9909-c6e29895548e.xml" />
+    <Content Include="xml\82b665ff-874b-48d7-9c89-1783209f5a2d.xml" />
+    <Content Include="xml\907f4c02-ab05-41c3-96bc-23a466670aef.xml" />
+    <Content Include="xml\97bbbade-2fa6-4e2c-9f05-29371a0ecf40.xml" />
+    <Content Include="xml\986d7329-327f-4f86-9e13-33087536bce1.xml" />
+    <Content Include="xml\99be5e41-323d-42d1-b297-4018f761b975.xml" />
+    <Content Include="xml\a1048dd0-2c38-4dff-8d65-f0094fe42c5a.xml" />
+    <Content Include="xml\b45bdae0-b476-4cbe-b9de-e6e9e4c953cf.xml" />
+    <Content Include="xml\b7b2658a-adb8-42d0-ae37-eb973fef9dbd.xml" />
+    <Content Include="xml\b93e9914-2b6e-41fa-956d-34290801c8af.xml" />
+    <Content Include="xml\bb125e5d-2b3a-4799-94d5-9717f5ad85bc.xml" />
+    <Content Include="xml\cc0ce608-eec8-404d-983f-9a2c368910ec.xml" />
+    <Content Include="xml\d11f50df-1883-4f7a-99b3-6721ea904071.xml" />
+    <Content Include="xml\d565e83b-3bcf-4d41-9484-54a13aa0350b.xml" />
+    <Content Include="xml\d6ab73ad-fe10-445e-a10c-5ece3db86fa5.xml" />
+    <Content Include="xml\db3b2a33-f196-442a-bcc0-f35ed9f5f6f5.xml" />
+    <Content Include="xml\eee87fe4-51c7-4589-bd8d-e7529bed5fa7.xml" />
+    <Content Include="xml\fcf1013c-a996-4dc2-b4d7-76908895534d.xml" />
+    <None Include="fonts\glyphicons-halflings-regular.eot" />
+    <None Include="fonts\glyphicons-halflings-regular.ttf" />
+    <None Include="fonts\glyphicons-halflings-regular.woff" />
+    <None Include="Properties\PublishProfiles\Perfil1.pubxml" />
+    <None Include="Service References\ServiceReferencesEmail\SFW.Web.ServiceReferencesEmail.BE_CLIENTE.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceReferencesEmail\SFW.Web.ServiceReferencesEmail.BE_Cotizador_Cliente.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceReferencesEmail\SFW.Web.ServiceReferencesEmail.BE_Cotizador_CotizacionVehicular.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceReferencesEmail\SFW.Web.ServiceReferencesEmail.BE_Cotizador_DetalleAuto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceReferencesEmail\SFW.Web.ServiceReferencesEmail.BE_Cotizador_Tablas.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceReferencesEmail\SFW.Web.ServiceReferencesEmail.BE_MENSAJERESPUESTA.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceReferencesEmail\SFW.Web.ServiceReferencesEmail.BE_Parametros_Tabla.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceReferencesEmail\SFW.Web.ServiceReferencesEmail.BE_Parametros_TipoTabla.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceReferencesEmail\SFW.Web.ServiceReferencesEmail.BE_USUARIO_LOGIN.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceReferencesEmail\WebServiceDemo.disco" />
+    <None Include="Service References\ServiceReferencesEmail\configuration91.svcinfo" />
+    <None Include="Service References\ServiceReferencesEmail\configuration.svcinfo" />
+    <None Include="Service References\ServiceReferencesEmail\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Sesion.aspx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="wfAlertas.aspx" />
+    <Content Include="wfMantenimiento.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Ficha2.aspx.cs">
+      <DependentUpon>Ficha2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ficha2.aspx.designer.cs">
+      <DependentUpon>Ficha2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Datos.cs" />
+    <Compile Include="FichaPersonal.aspx.cs">
+      <DependentUpon>FichaPersonal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FichaPersonal.aspx.designer.cs">
+      <DependentUpon>FichaPersonal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionVoip.aspx.cs">
+      <DependentUpon>GestionVoip.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionVoip.aspx.designer.cs">
+      <DependentUpon>GestionVoip.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Hospitalizados.aspx.cs">
+      <DependentUpon>Hospitalizados.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Hospitalizados.aspx.designer.cs">
+      <DependentUpon>Hospitalizados.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NuevaGestion.aspx.cs">
+      <DependentUpon>NuevaGestion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NuevaGestion.aspx.designer.cs">
+      <DependentUpon>NuevaGestion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ReporteSUSALUD.cs" />
+    <Compile Include="TramaSoat.aspx.cs">
+      <DependentUpon>TramaSoat.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TramaSoat.aspx.designer.cs">
+      <DependentUpon>TramaSoat.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PDF.aspx.cs">
+      <DependentUpon>PDF.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PDF.aspx.designer.cs">
+      <DependentUpon>PDF.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReportePrincipal.aspx.cs">
+      <DependentUpon>ReportePrincipal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReportePrincipal.aspx.designer.cs">
+      <DependentUpon>ReportePrincipal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ReportesEstadisticos.aspx.cs">
+      <DependentUpon>ReportesEstadisticos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReportesEstadisticos.aspx.designer.cs">
+      <DependentUpon>ReportesEstadisticos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ServiceReferencesEmail\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Sesion.aspx.cs">
+      <DependentUpon>Sesion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sesion.aspx.designer.cs">
+      <DependentUpon>Sesion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Code\Util.cs" />
+    <Compile Include="wfAlertas.aspx.cs">
+      <DependentUpon>wfAlertas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="wfAlertas.aspx.designer.cs">
+      <DependentUpon>wfAlertas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="wfMantenimiento.aspx.cs">
+      <DependentUpon>wfMantenimiento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="wfMantenimiento.aspx.designer.cs">
+      <DependentUpon>wfMantenimiento.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="XSD\afi11request.cs" />
+    <Compile Include="XSD\Online271RegafiUpdateRequest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+    <Content Include="App_Browsers\BrowserFile1.browser" />
+    <Content Include="App_Browsers\IE11.browser" />
+    <None Include="Content\bootstrap\alerts.less" />
+    <None Include="Content\bootstrap\badges.less" />
+    <None Include="Content\bootstrap\bootstrap.less" />
+    <None Include="Content\bootstrap\breadcrumbs.less" />
+    <None Include="Content\bootstrap\button-groups.less" />
+    <None Include="Content\bootstrap\buttons.less" />
+    <None Include="Content\bootstrap\carousel.less" />
+    <None Include="Content\bootstrap\close.less" />
+    <None Include="Content\bootstrap\code.less" />
+    <None Include="Content\bootstrap\component-animations.less" />
+    <None Include="Content\bootstrap\dropdowns.less" />
+    <None Include="Content\bootstrap\forms.less" />
+    <None Include="Content\bootstrap\glyphicons.less" />
+    <None Include="Content\bootstrap\grid.less" />
+    <None Include="Content\bootstrap\input-groups.less" />
+    <None Include="Content\bootstrap\jumbotron.less" />
+    <None Include="Content\bootstrap\labels.less" />
+    <None Include="Content\bootstrap\list-group.less" />
+    <None Include="Content\bootstrap\media.less" />
+    <None Include="Content\bootstrap\mixins.less" />
+    <None Include="Content\bootstrap\modals.less" />
+    <None Include="Content\bootstrap\navbar.less" />
+    <None Include="Content\bootstrap\navs.less" />
+    <None Include="Content\bootstrap\normalize.less" />
+    <None Include="Content\bootstrap\pager.less" />
+    <None Include="Content\bootstrap\pagination.less" />
+    <None Include="Content\bootstrap\panels.less" />
+    <None Include="Content\bootstrap\popovers.less" />
+    <None Include="Content\bootstrap\print.less" />
+    <None Include="Content\bootstrap\progress-bars.less" />
+    <None Include="Content\bootstrap\responsive-utilities.less" />
+    <None Include="Content\bootstrap\scaffolding.less" />
+    <None Include="Content\bootstrap\tables.less" />
+    <None Include="Content\bootstrap\theme.less" />
+    <None Include="Content\bootstrap\thumbnails.less" />
+    <None Include="Content\bootstrap\tooltip.less" />
+    <None Include="Content\bootstrap\type.less" />
+    <None Include="Content\bootstrap\utilities.less" />
+    <None Include="Content\bootstrap\variables.less" />
+    <None Include="Content\bootstrap\wells.less" />
+    <None Include="Content\fonts\glyphicons-halflings-regular.eot" />
+    <None Include="Content\fonts\glyphicons-halflings-regular.ttf" />
+    <None Include="Content\fonts\glyphicons-halflings-regular.woff" />
+    <None Include="Content\less\bootstrap-datetimepicker-build.less" />
+    <None Include="Content\less\_bootstrap-datetimepicker.less" />
+    <None Include="font-awesome-4.1.0\fonts\fontawesome-webfont.eot" />
+    <None Include="font-awesome-4.1.0\fonts\fontawesome-webfont.ttf" />
+    <None Include="font-awesome-4.1.0\fonts\fontawesome-webfont.woff" />
+    <None Include="font-awesome-4.1.0\fonts\FontAwesome.otf" />
+    <None Include="font-awesome-4.1.0\less\bordered-pulled.less" />
+    <None Include="font-awesome-4.1.0\less\core.less" />
+    <None Include="font-awesome-4.1.0\less\fixed-width.less" />
+    <None Include="font-awesome-4.1.0\less\font-awesome.less" />
+    <None Include="font-awesome-4.1.0\less\icons.less" />
+    <None Include="font-awesome-4.1.0\less\larger.less" />
+    <None Include="font-awesome-4.1.0\less\list.less" />
+    <None Include="font-awesome-4.1.0\less\mixins.less" />
+    <None Include="font-awesome-4.1.0\less\path.less" />
+    <None Include="font-awesome-4.1.0\less\rotated-flipped.less" />
+    <None Include="font-awesome-4.1.0\less\spinning.less" />
+    <None Include="font-awesome-4.1.0\less\stacked.less" />
+    <None Include="font-awesome-4.1.0\less\variables.less" />
+    <None Include="font-awesome-4.1.0\scss\font-awesome.scss" />
+    <None Include="font-awesome-4.1.0\scss\_bordered-pulled.scss" />
+    <None Include="font-awesome-4.1.0\scss\_core.scss" />
+    <None Include="font-awesome-4.1.0\scss\_fixed-width.scss" />
+    <None Include="font-awesome-4.1.0\scss\_icons.scss" />
+    <None Include="font-awesome-4.1.0\scss\_larger.scss" />
+    <None Include="font-awesome-4.1.0\scss\_list.scss" />
+    <None Include="font-awesome-4.1.0\scss\_mixins.scss" />
+    <None Include="font-awesome-4.1.0\scss\_path.scss" />
+    <None Include="font-awesome-4.1.0\scss\_rotated-flipped.scss" />
+    <None Include="font-awesome-4.1.0\scss\_spinning.scss" />
+    <None Include="font-awesome-4.1.0\scss\_stacked.scss" />
+    <None Include="font-awesome-4.1.0\scss\_variables.scss" />
+    <None Include="Scripts\MultipleAttach\uploader.fla" />
+    <None Include="Service References\ServiceReferencesEmail\WebServiceDemo.wsdl" />
+    <None Include="SUBIDOS2\001809_01.PDF" />
+    <None Include="TITUS\TITU90.DBF" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\SFW.BE\SFW.BE.csproj">
+      <Project>{04B9932C-66B8-4672-99F6-AAE4294A3760}</Project>
+      <Name>SFW.BE</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\SFW.BL\SFW.BL.csproj">
+      <Project>{854AAA00-ED4C-4938-B12E-96797EED2B31}</Project>
+      <Name>SFW.BL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Adjuntos\" />
+    <Folder Include="DOCUMENTOS\" />
+    <Folder Include="FOTOS\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\ServiceReferencesEmail\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>51847</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

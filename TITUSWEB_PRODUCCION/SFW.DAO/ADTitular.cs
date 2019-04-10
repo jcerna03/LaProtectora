@@ -250,11 +250,11 @@ namespace SFW.DAO
                         command.Parameters.AddWithValue("var01", titu.cod_cliente);
                         command.Parameters.AddWithValue("var02", titu.cod_titula);
                         command.Parameters.AddWithValue("var03", titu.categoria);
-                        command.Parameters.AddWithValue("var04", DateTime.Now.ToString("dd/MM/yyyy"));
-                        command.Parameters.AddWithValue("var05", DateTime.Now.ToString("dd/MM/yyyy"));
+                        command.Parameters.AddWithValue("var04", "");
+                        command.Parameters.AddWithValue("var05", "");
                         command.Parameters.AddWithValue("var06", titu.fch_baja);
-                        command.Parameters.AddWithValue("var07", titu.dni);
-                        command.Parameters.AddWithValue("var08", titu.plan);
+                        command.Parameters.AddWithValue("var07", "");
+                        command.Parameters.AddWithValue("var08", "");
                         command.Parameters.AddWithValue("var09", "");
                         command.Parameters.AddWithValue("var10", "");
 
@@ -605,7 +605,7 @@ namespace SFW.DAO
             }
         }
 
-        public Int32 ACTIVAR(Titular titu, Titular_Detalle titu_deta, Usuario usu, string fecha, string operacion)
+        public Int32 ACTIVAR(Titular titu, Titular_Detalle titu_deta, Usuario usu, string operacion)
         {
             string cadenaConexion = ConfigurationManager.ConnectionStrings["mysql"].ConnectionString;
             MySqlConnection conexion = null;
@@ -623,8 +623,8 @@ namespace SFW.DAO
                         command.Parameters.AddWithValue("var01", titu.cod_cliente);
                         command.Parameters.AddWithValue("var02", titu.cod_titula);
                         command.Parameters.AddWithValue("var03", titu.categoria);
-                        command.Parameters.AddWithValue("var04", "0");
-                        command.Parameters.AddWithValue("var05", "0");
+                        command.Parameters.AddWithValue("var04", titu.fch_alta);
+                        command.Parameters.AddWithValue("var05", titu.fch_baja);
                         command.Parameters.AddWithValue("var06", "0");
                         command.Parameters.AddWithValue("var07", "0");
                         command.Parameters.AddWithValue("var08", "0");

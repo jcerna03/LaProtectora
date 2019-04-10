@@ -50,7 +50,7 @@ namespace SFW.Web
         DataTable dtEstructuraAfiliadoError = new DataTable
         {
             Columns = { new DataColumn("Afiliado", typeof(string)),
-                        new DataColumn("Errores", typeof(string))                      
+                        new DataColumn("Errores", typeof(string))
             }
 
         };
@@ -96,104 +96,80 @@ namespace SFW.Web
                 return tbl;
             }
         }
+        public void InicializarBotones()
+        {
+            usu = new UsuarioBL().ObtieneUsuario(52, Convert.ToInt32(Session["USUARIO"].ToString()));
+            txtBaja_CalendarExtender.StartDate = DateTime.Now.AddDays(-5);
+            txtFechaBajaModal.Text = Convert.ToString(DateTime.Today);
 
+            lblUsuario.Text = usu.NOMBRE;
+            lblTotal.Text = "";
+
+            lnkReporteAveria.Visible = false;
+            btnImportar.Visible = false;
+            lnkTramaSoat.Visible = false;
+            btnVOIP.Visible = false;
+
+            if (usu.AVERIA == "1")
+            {
+                lnkReporteAveria.Visible = true;
+            }
+            if (usu.ROL == "100")
+            {
+                btnReportes.Visible = true;
+                lblRol.Text = " Administrador(a)";
+            }
+
+            if (usu.ROL == "50")
+            {
+                btnMovimientos.Visible = true;
+                btnReportes.Visible = true;
+                lblRol.Text = " ";
+            }
+            if (ddlTablas.SelectedValue == "15")
+            {
+                btnImportar.Visible = true;
+            }
+            if (ddlTablas.SelectedValue == "37")
+            {
+                lnkTramaSoat.Visible = true;
+            }
+
+            string validacionVoIP = "CALL validaciones_sp('1','" + usu.PERFIL + "','" + usu.ID + "','0');";
+            DataTable dt = dat.mysql(validacionVoIP);
+            if (dt.Rows.Count > 0)
+            {
+                btnVOIP.Visible = Convert.ToBoolean(dt.Rows[0]["Voip"]);
+            }
+
+            string validacionROL = "CALL validaciones_sp('2','" + usu.ROL + "','0','0');";
+            DataTable dt2 = dat.mysql(validacionROL);
+
+            if (dt2.Rows.Count > 0)
+            {
+                btnReportes.Visible = Convert.ToBoolean(dt2.Rows[0]["btnReportes"]);
+                btnNuevo.Visible = Convert.ToBoolean(dt2.Rows[0]["btnNuevo"]);
+                btnMovimientos.Visible = Convert.ToBoolean(dt2.Rows[0]["btnMovimientos"]);
+                lblRol.Text = dt2.Rows[0]["lblRol"].ToString();
+            }
+
+            alertas();
+            Cargarcombos(Session["USUARIO"].ToString());
+
+            Filtro(txtBusqueda.Text, Convert.ToString(ddlTablas.SelectedValue), Session["USUARIO"].ToString());
+
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
-
-            txtBaja_CalendarExtender.StartDate = DateTime.Now.AddDays(-5);
-            if (Session["USUARIO"] == null || Session["afiliado"] == null)
+            if (Session["USUARIO"] == null || Session["afiliado"] == null || Session["DATOS"] == null)
             {
                 Response.Redirect("Sesion.aspx?usu=&pass=");
             }
-
             if (!Page.IsPostBack)
             {
-                lblTotal.Text = "";
-
-
-                alertas();
-
-                usu = new UsuarioBL().ObtieneUsuario(52, Convert.ToInt32(Session["USUARIO"].ToString()));
-
-                if (usu.AVERIA == "1")
-                {
-                    lnkReporteAveria.Visible = true;
-                }
-                else
-                {
-                    lnkReporteAveria.Visible = false;
-                }
-
-                lblTotal.Text = "";
-                Cargarcombos(Session["USUARIO"].ToString());
+                InicializarBotones();
                 ddlMes.SelectedValue = DateTime.Now.Month.ToString();
                 ddlAnio.SelectedValue = DateTime.Now.Year.ToString();
-
-                Filtro(txtBusqueda.Text, Convert.ToString(ddlTablas.SelectedValue), Session["USUARIO"].ToString());
-
-                if (usu.ROL == "100")
-                {
-                    btnReportes.Visible = true;
-                    lblRol.Text = " Administrador(a)";
-                }
-
-                if (usu.ROL == "50")
-                {
-                    btnMovimientos.Visible = true;
-                    btnReportes.Visible = true;
-                    lblRol.Text = " ";
-                }
-
-                if (ddlTablas.SelectedValue == "15")
-                {
-                    btnImportar.Visible = true;
-                }
-                else
-                {
-                    btnImportar.Visible = false;
-                }
-
-                TextBox1.Text = Convert.ToString(DateTime.Today);
-                lblUsuario.Text = usu.NOMBRE;
-                ddlDepartamento_SelectedIndexChanged(sender, e);
-
-                if (usu.PERFIL == "11" || usu.PERFIL == "10" || usu.ID == 450)
-                {
-                    btnVOIP.Visible = true;
-
-                }
-                else
-                {
-                    btnVOIP.Visible = false;
-                }
-
-                if (ddlTablas.SelectedValue == "37")
-                {
-                    lnkTramaSoat.Visible = true;
-                }
-                else
-                {
-                    lnkTramaSoat.Visible = false;
-                }
-
-                string validacionVoIP = "CALL validaciones_sp('1','" + usu.PERFIL + "','" + usu.ID + "','0');";
-                DataTable dttt = dat.mysql(validacionVoIP);
-                if (dttt.Rows.Count > 0)
-                {
-                    btnVOIP.Visible = Convert.ToBoolean(dttt.Rows[0]["Voip"]);
-                }
-
-                string validacionROL = "CALL validaciones_sp('2','" + usu.ROL + "','0','0');";
-                DataTable td1 = dat.mysql(validacionROL);
-
-                if (td1.Rows.Count > 0)
-                {
-                    btnReportes.Visible = Convert.ToBoolean(td1.Rows[0]["btnReportes"]);
-                    btnNuevo.Visible = Convert.ToBoolean(td1.Rows[0]["btnNuevo"]);
-                    btnMovimientos.Visible = Convert.ToBoolean(td1.Rows[0]["btnMovimientos"]);
-                    lblRol.Text = td1.Rows[0]["lblRol"].ToString();
-                }
-
                 if (Session["afiliado"].ToString() != "0")
                 {
                     grupofamiliar(Session["afiliado"].ToString().Substring(2, 6), Session["afiliado"].ToString().Substring(0, 2));
@@ -289,7 +265,7 @@ namespace SFW.Web
             ddlClasificacion.DataValueField = "VALOR";
             ddlClasificacion.DataTextField = "DESCRIP";
             ddlClasificacion.DataBind();
-       
+
 
         }
 
@@ -308,7 +284,6 @@ namespace SFW.Web
             txtObservar.Text = "";
             txtAlta.Text = "";
             txtBaja.Text = "";
-            //txtCodigoTitu.Text = "";
             txtContraseña.Text = "";
             txtSangre.Text = "";
             txtEdad.Text = "";
@@ -335,6 +310,9 @@ namespace SFW.Web
             lblErrorReg.Text = "";
             duplicado.Visible = false;
             lbldupli.Text = "";
+            lblCodigoTitularCarac.Text = "";
+            lblCodigoTitularCorrecto.Text = "";
+            lblCodigoTitularNoHay.Text = "";
         }
 
         protected void CombosCliente(string cliente, string plan)
@@ -357,6 +335,11 @@ namespace SFW.Web
             Ddl_ClasifAviso.DataValueField = "VALOR";
             Ddl_ClasifAviso.DataTextField = "VALOR01";
             Ddl_ClasifAviso.DataBind();
+
+            ddlClasificacion.DataSource = dat.mysql("CALL SP_UpdateTitu(7,'','','','','','','','','','','','','','','')");
+            ddlClasificacion.DataValueField = "VALOR";
+            ddlClasificacion.DataTextField = "DESCRIP";
+            ddlClasificacion.DataBind();
         }
 
         protected void Filtro(string busqueda, string cliente, string usuario)
@@ -377,24 +360,16 @@ namespace SFW.Web
 
         protected void ddlTablas_SelectedIndexChanged(object sender, EventArgs e)
         {
+            btnImportar.Visible = false;
+            lnkTramaSoat.Visible = false;
             if (ddlTablas.SelectedValue == "15")
             {
                 btnImportar.Visible = true;
             }
-            else
-            {
-                btnImportar.Visible = false;
-            }
-
             if (ddlTablas.SelectedValue == "37")
             {
                 lnkTramaSoat.Visible = true;
             }
-            else
-            {
-                lnkTramaSoat.Visible = false;
-            }
-
             CombosCliente(ddlTablas.SelectedValue, "0");
             Filtro(txtBusqueda.Text, Convert.ToString(ddlTablas.SelectedValue), Session["USUARIO"].ToString());
         }
@@ -406,10 +381,6 @@ namespace SFW.Web
 
         protected void btnNuevo_Click(object sender, EventArgs e)
         {
-            Image1.ImageUrl = "~/image/photo.png";
-            lblCodigoTitularCarac.Text = "";
-            lblCodigoTitularCorrecto.Text = "";
-            lblCodigoTitularNoHay.Text = "";
 
             if (ddlTablas.SelectedValue == "00")
             {
@@ -418,15 +389,15 @@ namespace SFW.Web
             }
             else
             {
+
+                Image1.ImageUrl = "~/image/photo.png";
                 borrarmensajes();
                 limpiar();
-                //combosNuevoEditar(); myg pending
                 RecordConsumoTab.Visible = false;
                 AvisosTab.Visible = false;
                 CartasTab.Visible = false;
                 txtNumeroPoli.Text = Convert.ToString(ddlTablas.SelectedValue);
                 txtNombreEmpresa.Text = ddlTablas.SelectedItem.Text.ToString().Substring(3);
-                //txtNumeroPoli.ReadOnly = true;
                 txtCodigoTitu.Text = "";
                 txtCodigoTitu.ReadOnly = false;
                 btnGuardarModificar.Visible = false;
@@ -440,6 +411,7 @@ namespace SFW.Web
                 }
                 ddlCategoria.Attributes.Add("readonly", "readonly");
                 ddlCategoria.CssClass = "form-control input-sm disabled-button";
+                divClasificacion.Attributes.Add("style", "display:initial;");
                 lblAfiliado.Text = "NUEVO TITULAR";
                 btnGuardarRegistrar.Visible = true;
                 divchkSusalud.Visible = true;
@@ -447,8 +419,6 @@ namespace SFW.Web
                 ddlDepartamento.SelectedValue = "15";
                 ddlDepartamento_SelectedIndexChanged(sender, e);
                 lnkBD.Visible = true;
-                //txtDNI.Width = new Unit("70%");
-                //lnkPlan.Visible = false;
 
                 //=======================================================================
 
@@ -467,13 +437,8 @@ namespace SFW.Web
                 switch (txtNumeroPoli.Text)
                 {
                     case "90":
-                    //case "95":
                     case "96":
                     case "98":
-
-                        //lnkBD.Visible = false;
-                        //lnkTraer.Visible = true;
-
                         ocultos2.Visible = true;
                         rol.Visible = true;
                         dpto.Visible = true;
@@ -482,7 +447,6 @@ namespace SFW.Web
                         id_paciente.Visible = false;
                         cod_paciente.Visible = false;
                         lnkBuscarTitular.Visible = true;
-
                         ddlCentro.SelectedIndex = 0;
                         ddlPlan.SelectedIndex = 0;
                         ddlPespecial.SelectedIndex = 0;
@@ -518,8 +482,6 @@ namespace SFW.Web
                         txtCodigoTitu.ReadOnly = false;
                         lnkBuscarTitular.Enabled = true;
                         break;
-                    //case "55":
-                    //case "56":
                     case "57":
                         ocultos2.Visible = true;
                         segundacapa.Visible = true;
@@ -534,7 +496,6 @@ namespace SFW.Web
                         lnkBuscarTitular.Enabled = true;
                         break;
                     case "15":
-                        //carencia.Visible = true;
                         txtCarencia.Text = DateTime.Now.AddMonths(3).ToString("dd/MM/yyyy");
                         campo2.Visible = true;
                         ocultos2.Visible = false;
@@ -630,20 +591,18 @@ namespace SFW.Web
         {
             borrarmensajes();
             extensionFoto = "";
-            int cuentadni = 0;
             string resultadoSusalud = "";
-            int result;
+            string estadoSuSalud = "1"; //NO REGISTRADO
             string operacion = "";
-            usu = new UsuarioBL().ObtieneUsuario(52, Convert.ToInt32(Session["USUARIO"].ToString()));
-            string validacionDNI = "CALL sp_fill('82','" + txtNumeroPoli.Text + "','" + txtCodigoTitu.Text + "','" + txtDNI.Text + "');";
-            DataTable dtficha = dat.mysql(validacionDNI);
-            if (dtficha.Rows.Count > 0)
-            {
-                cuentadni = Convert.ToInt32(dtficha.Rows[0][0]);
-            }
 
-            //if (false)
-            if (cuentadni > 0)
+            string fotoregistro = "";
+            string categoriaReal = "";
+
+
+            usu = new UsuarioBL().ObtieneUsuario(52, Convert.ToInt32(Session["USUARIO"].ToString()));
+            string strDni = "CALL sp_fill('82','" + txtNumeroPoli.Text + "','" + txtCodigoTitu.Text + "','" + txtDNI.Text + "');";
+            DataTable dtficha = dat.mysql(strDni);
+            if (Convert.ToInt32(dtficha.Rows[0][0]) > 0)
             {
                 lblverificacion.Text = "Duplicidad el afiliado ya existe (DNI duplicado en grupo familiar)";
                 lblverificacion1.Text = "Duplicidad el afiliado ya existe (DNI duplicado en grupo familiar)";
@@ -654,35 +613,24 @@ namespace SFW.Web
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "Script", sb.ToString(), false);
                 return;
             }
+            if (txtDNI.Text == "" || txtCodigoTitu.Text == "" || txtApellidop.Text == "" || txtNombres.Text == "" || txtNacimiento.Text == "")
+            {
+                lblverificacion.Text = "Debe ingresar todos los campos obligatorios(*)";
+                lblverificacion1.Text = "Debe ingresar todos los campos obligatorios(*)";
+                StringBuilder sb = new StringBuilder();
+                sb.Append("<script type='text/javascript'>");
+                sb.Append("$('#NUEVOAFILIADO').modal('show');");
+                sb.Append("</script>");
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Script", sb.ToString(), false);
+                return;
+            }
             else
             {
-
                 if ((txtNumeroPoli.Text == "90") || (txtNumeroPoli.Text == "98") || (txtNumeroPoli.Text == "96") || (txtNumeroPoli.Text == "95"))
                 {
-                    if (ddlCategoria.SelectedValue == "00")
-                    {
-                        if (txtDNI.Text == "" || txtCodigoTitu.Text == "" || txtApellidom.Text == ""
-                                                                      || txtApellidop.Text == ""
-                                                                      || txtNombres.Text == ""
-                                                                      || txtNacimiento.Text == "")
-                        {
-                            lblverificacion.Text = "Debe ingresar todos los campos obligatorios(*)";
-                            lblverificacion1.Text = "Debe ingresar todos los campos obligatorios(*)";
-                            StringBuilder sb = new StringBuilder();
-                            sb.Append("<script type='text/javascript'>");
-                            sb.Append("$('#NUEVOAFILIADO').modal('show');");
-                            sb.Append("</script>");
-                            ScriptManager.RegisterStartupScript(this, this.GetType(), "Script", sb.ToString(), false);
-                            return;
-                        }
-                    }
                     if (ddlCategoria.SelectedValue != "00" && ddlCategoria.SelectedValue != "04")
                     {
-                        if (txtDNI.Text == "" || txtCodigoTitu.Text == "" || txtApellidom.Text == ""
-                              || txtApellidop.Text == ""
-                              || txtNombres.Text == ""
-                              || txtNacimiento.Text == ""
-                              || txtCodPaciente.Text == "")
+                        if (txtCodPaciente.Text == "")
                         {
                             lblverificacion.Text = "Debe ingresar todos los campos obligatorios(*)";
                             lblverificacion1.Text = "Debe ingresar todos los campos obligatorios(*)";
@@ -694,15 +642,9 @@ namespace SFW.Web
                             return;
                         }
                     }
-
                     if (ddlCategoria.SelectedValue != "00" && ddlCategoria.SelectedValue == "04")
                     {
-                        if (txtDNI.Text == "" || txtCodigoTitu.Text == "" || txtApellidom.Text == ""
-                              || txtApellidop.Text == ""
-                              || txtNombres.Text == ""
-                              || txtNacimiento.Text == ""
-                              || txtCodPaciente.Text == ""
-                              || txtIdPaciente.Text == "")
+                        if (txtCodPaciente.Text == "" || txtIdPaciente.Text == "")
                         {
                             lblverificacion.Text = "Debe ingresar todos los campos obligatorios(*)";
                             lblverificacion1.Text = "Debe ingresar todos los campos obligatorios(*)";
@@ -713,200 +655,170 @@ namespace SFW.Web
                             ScriptManager.RegisterStartupScript(this, this.GetType(), "Script", sb.ToString(), false);
                             return;
                         }
-
                     }
-
                 }
 
-                if (txtNumeroPoli.Text == "37")
-                {
-                    txtDNI.Text = "0000";
-                    txtCodigoTitu.Text = "0000";
-                }
+                Titular obj = new Titular();
+                Titular_Detalle obj_det = new Titular_Detalle();
 
-                if (txtDNI.Text == "" || txtCodigoTitu.Text == "" || txtApellidom.Text == "" || txtApellidop.Text == "" || txtNombres.Text == "" || txtNacimiento.Text == "")
-                {
-                    lblverificacion.Text = "Debe ingresar todos los campos obligatorios(*)";
-                    lblverificacion1.Text = "Debe ingresar todos los campos obligatorios(*)";
-                    StringBuilder sb = new StringBuilder();
-                    sb.Append("<script type='text/javascript'>");
-                    sb.Append("$('#NUEVOAFILIADO').modal('show');");
-                    sb.Append("</script>");
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "Script", sb.ToString(), false);
-                    return;
-                }
-                else
-                {
+                obj.cod_cliente = txtNumeroPoli.Text;
+                obj.cod_titula = txtCodigoTitu.Text;
+                obj.categoria = ddlCategoria.SelectedValue;
+                obj.centro_costo = ddlCentro.SelectedValue;
+                obj.plan = Convert.ToInt32(ddlPlan.SelectedValue);
+                obj.afiliado = txtApellidop.Text + " " + txtApellidom.Text + "," + txtNombres.Text;
+                obj.parentesco = ddlCategoria.SelectedItem.Text;
+                obj.sexo = ddlSexo.SelectedValue;
+                obj.fch_naci = txtNacimiento.Text;
+                obj.fch_alta = txtAlta.Text;
+                obj.fch_baja = txtBaja.Text;
+                obj.fch_proc = Convert.ToString(DateTime.Today.ToShortDateString());
+                obj.pass = txtDNI.Text;
+                obj.email = txtObservar.Text;
+                obj.tipo_doc = Convert.ToInt32(ddlTipoDocumento.SelectedValue);
+                obj.dni = txtDNI.Text;
+                obj.madre = "0";
+                obj.actividad = "0";
+                obj.ubicacion = "0";
+                obj.estado_titular = 1;
+                obj.capitados = "0";
+                obj.financia = "0";
+                obj.oncologico = ddlOnco.SelectedValue;
+                obj.dx_onco = "0";
+                obj.campo1 = "0";
+                obj.campo2 = txtCampo2.Text;
+                obj.campo3 = "0";
+                obj.fch_caren = txtCarencia.Text;
+                obj_det.cod_cliente = txtNumeroPoli.Text;
+                obj_det.cod_titula = txtCodigoTitu.Text;
+                obj_det.categoria = ddlCategoria.SelectedValue;
+                obj_det.depa_id = ddlDepartamento.SelectedValue;
+                obj_det.prov_id = ddlProvincia.SelectedValue;
+                obj_det.dist_id = ddlDistrito.SelectedValue;
+                obj_det.direccion = txtDireccion.Text;
+                obj_det.email = txtObservar.Text;
+                obj_det.t_fijo = txtTelefono1.Text;
+                obj_det.t_movil = txtTelefono2.Text;
+                obj_det.estado_civil = Convert.ToInt32(ddlEstadoCivil.SelectedValue);
+                obj_det.edad = txtEdad.Text;
+                obj_det.peso = txtPeso.Text;
+                obj_det.estatura = txtEstatura.Text;
+                obj_det.discapacitado = ddlDiscapacit.SelectedValue;
+                obj_det.consume_alcohol = ddlAlcohol.SelectedValue;
+                obj_det.consume_tabaco = ddlDrogas.SelectedValue;
+                obj_det.grupo_sanguineo = txtSangre.Text;
+                obj_det.fch_fincarencia = txtCarencia.Text;
+                obj_det.pad = ddlPad.SelectedValue;
+                obj_det.dpto = txtDpto.Text;
+                obj_det.rol = txtRol.Text;
+                obj_det.prog_especial = ddlPespecial.SelectedValue;
+                obj_det.cod_paciente = txtCodPaciente.Text;
+                obj_det.id_paciente = txtIdPaciente.Text;
+                obj_det.basico = ddlBasico.SelectedValue;
+                obj_det.onco = ddlOnco.SelectedValue;
+                obj_det.segunda_capa = ddlCapa.SelectedValue;
+                obj_det.docum = txtDocumento.Text;
+                obj_det.afi_nombre = txtNombres.Text;
+                obj_det.afi_apepat = txtApellidop.Text;
+                obj_det.afi_apemat = txtApellidom.Text;
+                obj_det.correo1 = txtCorreo1.Text;
+                obj_det.correo2 = txtCorreo2.Text;
+                obj_det.contrato = obj.cod_cliente + obj.cod_titula;
+                obj_det.clasificacion = ddlClasificacion.SelectedValue;
+                obj_det.contratante = "0";
+                obj_det.categoriaSusalud = ddlCategoria.SelectedValue;
+                obj_det.causalBaja = "";
+                obj_det.estado_afiliado = "1";
+                obj_det.estado_afiliacion = "1";
+                obj_det.fallecido = "";
 
-                    if (txtNumeroPoli.Text == "37")
+                if (chkContratante.Checked)
+                {
+                    obj_det.contratante = "1";
+                }
+                // VALIDACION PARA CATEGORIA HIJO(A) A SUSALUD
+                if (obj.categoria == "04")
+                {
+                    if (obj.cod_cliente == "90")
                     {
-                        txtDNI.Text = "";
-                        txtCodigoTitu.Text = "";
-                    }
-
-                    Titular obj = new Titular();
-                    Titular_Detalle obj_det = new Titular_Detalle();
-
-                    obj.cod_cliente = txtNumeroPoli.Text; obj.cod_titula = txtCodigoTitu.Text; obj.categoria = ddlCategoria.SelectedValue; obj.centro_costo = ddlCentro.SelectedValue;
-                    obj.plan = Convert.ToInt32(ddlPlan.SelectedValue); obj.afiliado = txtApellidop.Text + " " + txtApellidom.Text + "," + txtNombres.Text; obj.parentesco = ddlCategoria.SelectedItem.Text; obj.sexo = ddlSexo.SelectedValue;
-                    obj.fch_naci = txtNacimiento.Text; obj.fch_alta = txtAlta.Text; obj.fch_baja = txtBaja.Text; obj.fch_proc = Convert.ToString(DateTime.Today.ToShortDateString()); obj.pass = txtDNI.Text; obj.email = txtObservar.Text;
-                    obj.tipo_doc = Convert.ToInt32(ddlTipoDocumento.SelectedValue); obj.dni = txtDNI.Text; obj.madre = "0"; obj.actividad = "0"; obj.ubicacion = "0"; obj.estado_titular = 1; obj.capitados = "0";
-                    obj.financia = "0"; obj.oncologico = ddlOnco.SelectedValue; obj.dx_onco = "0"; obj.campo1 = "0"; obj.campo2 = txtCampo2.Text; obj.campo3 = "0"; obj.fch_caren = txtCarencia.Text;
-                    obj_det.cod_cliente = txtNumeroPoli.Text; obj_det.cod_titula = txtCodigoTitu.Text; obj_det.categoria = ddlCategoria.SelectedValue;
-                    obj_det.depa_id = ddlDepartamento.SelectedValue; obj_det.prov_id = ddlProvincia.SelectedValue; obj_det.dist_id = ddlDistrito.SelectedValue;
-                    obj_det.direccion = txtDireccion.Text; obj_det.email = txtObservar.Text; obj_det.t_fijo = txtTelefono1.Text; obj_det.t_movil = txtTelefono2.Text; obj_det.estado_civil = Convert.ToInt32(ddlEstadoCivil.SelectedValue);
-                    obj_det.edad = txtEdad.Text; obj_det.peso = txtPeso.Text; obj_det.estatura = txtEstatura.Text; obj_det.discapacitado = ddlDiscapacit.SelectedValue; obj_det.consume_alcohol = ddlAlcohol.SelectedValue;
-                    obj_det.consume_tabaco = ddlDrogas.SelectedValue; obj_det.grupo_sanguineo = txtSangre.Text; obj_det.fch_fincarencia = txtCarencia.Text; obj_det.pad = ddlPad.SelectedValue; obj_det.dpto = txtDpto.Text;
-                    obj_det.rol = txtRol.Text; obj_det.prog_especial = ddlPespecial.SelectedValue; obj_det.cod_paciente = txtCodPaciente.Text; obj_det.id_paciente = txtIdPaciente.Text; obj_det.basico = ddlBasico.SelectedValue; obj_det.onco = ddlOnco.SelectedValue;
-                    obj_det.segunda_capa = ddlCapa.SelectedValue; obj_det.docum = txtDocumento.Text; obj_det.afi_nombre = txtNombres.Text; obj_det.afi_apepat = txtApellidop.Text; obj_det.afi_apemat = txtApellidom.Text;
-                    //update260517
-                    obj_det.correo1 = txtCorreo1.Text; obj_det.correo2 = txtCorreo2.Text;
-                    obj_det.contrato = obj.cod_titula;
-                    obj_det.cod_afiliado = obj.cod_cliente + obj.cod_titula + obj.categoria;
-
-                    obj_det.clasificacion = ddlClasificacion.SelectedValue;
-                    if (chkContratante.Checked)
-                    {
-                        obj_det.contratante = "1";
+                        obj_det.categoriaSusalud = (Convert.ToInt32(txtIdPaciente.Text) + 3).ToString("00");
                     }
                     else
                     {
-                        obj_det.contratante = "0";
-                    }
-
-
-                    if (obj.categoria == "04")
-                    {
-                        if (obj.cod_cliente == "90")
-                        {
-                            obj.categoria = (Convert.ToInt32(txtIdPaciente.Text) + 3).ToString("00");
-                        }
-                        else
-                        {
-                            DataTable dt = dat.mysql("call sp_fecha_bajas ('4','" + obj.cod_cliente + "','" + obj.cod_titula + "','','','','','','','','')");
-                            if (dt.Rows.Count > 0)
-                            {
-                                obj.categoria = (Convert.ToInt32(dt.Rows[0][0]) + 1).ToString("00");
-
-                            }
-                        }
-
-                    }
-
-
-                    if (obj.cod_cliente == "96" && obj.categoria != "00")
-                    {
-                        string strCont = "CALL SP_SUSALUD_REGAFI(12,'" + obj.cod_cliente + "','" + obj.cod_titula
-                                                    + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','');";
-                        DataTable dt = null;
-                        dt = dat.mysql(strCont);
+                        DataTable dt = dat.mysql("call sp_fill_3('1','" + obj.cod_cliente + "','" + obj.cod_titula + "','','','','','','','','')");
                         if (dt.Rows.Count > 0)
                         {
-                            obj_det.contrato = obj.cod_titula + "-" + dt.Rows[0][0].ToString();
-                            obj_det.cod_afiliado = obj.cod_cliente + obj.cod_titula + obj.categoria + "-" + dt.Rows[0][0].ToString();
-
+                            obj_det.categoriaSusalud = (Convert.ToInt32(dt.Rows[0][0]) + 1).ToString("00");
                         }
+                    }
+                }
+                obj_det.cod_afiliado = obj.cod_cliente + obj.cod_titula + obj_det.categoriaSusalud;
+
+                // VALIDACION DE CONTRATO PARA PAMI DEPENDIENTES
+                if (obj.cod_cliente == "96")
+                {
+                    if (obj.categoria == "00")
+                    {
+                        estadoSuSalud = "3";
+                        chkSusalud.Checked = false;
                     }
                     else
                     {
-                        string strCont = "CALL sp_fecha_bajas(3,'" + obj.cod_cliente + "','" + obj.cod_titula + "','" + obj.categoria + "','" + obj.plan + "','','','','','','');";
-                        DataTable dt = null;
-                        dt = dat.mysql(strCont);
-
-                        if (dt.Rows[0][0].ToString() != "0")
+                        obj_det.categoriaSusalud = "00";
+                        DataTable dt = dat.mysql("call sp_fill_3('2','" + obj.cod_cliente + "','" + obj.cod_titula + "','','','','','','','','')");
+                        if (dt.Rows.Count > 0)
                         {
-                            obj_det.cod_afiliado = obj.cod_cliente + obj.cod_titula + obj.categoria + "-" + dt.Rows[0][0].ToString();
+                            obj_det.contrato = obj.cod_cliente + obj.cod_titula + "-" + dt.Rows[0][0].ToString();
+                        }
+                    }
+                }
+                // VALIDACION PARA FOTOS 
+                if (Page.IsPostBack)
+                {
+                    fotoregistro = "";
+                    if (file2.Value != "")
+                    {
+                        extensionFoto = Path.GetExtension(file2.Value).ToString();
+
+                        if (ddlCategoria.SelectedValue == "04")
+                        {
+                            categoriaReal = ddlCategoria.SelectedValue + obj_det.id_paciente;
                         }
                         else
                         {
-                            obj_det.cod_afiliado = obj.cod_cliente + obj.cod_titula + obj.categoria;
+                            categoriaReal = ddlCategoria.SelectedValue;
                         }
 
-                    }
-                    string fotoregistro = "";
-                    string categoriaReal = "";
-                    string estadoSu = "";
-                    if (Page.IsPostBack)
-                    {
-                        if (file2.Value != "")
+                        if ((txtNumeroPoli.Text == "90") || (txtNumeroPoli.Text == "98") || (txtNumeroPoli.Text == "96"))
                         {
-                            extensionFoto = Path.GetExtension(file2.Value).ToString();
-
-                            if (ddlCategoria.SelectedValue == "04")
-                            {
-                                categoriaReal = ddlCategoria.SelectedValue + obj_det.id_paciente;
-                            }
-                            else
-                            {
-                                categoriaReal = ddlCategoria.SelectedValue;
-                            }
-
-                            if ((txtNumeroPoli.Text == "90") || (txtNumeroPoli.Text == "98") || (txtNumeroPoli.Text == "96"))
-                            {
-                                fotoregistro = "90" + "-" + txtCodigoTitu.Text + "-" + categoriaReal + extensionFoto;
-                            }
-                            else
-                            {
-                                fotoregistro = txtNumeroPoli.Text + "-" + txtCodigoTitu.Text + "-" + categoriaReal + extensionFoto;
-                            }
+                            fotoregistro = "90" + "-" + obj.cod_titula + "-" + categoriaReal + extensionFoto;
                         }
                         else
                         {
-                            fotoregistro = "";
+                            fotoregistro = obj.cod_cliente + "-" + obj.cod_titula + "-" + categoriaReal + extensionFoto;
                         }
                     }
 
-                    obj_det.foto = fotoregistro;
+                }
 
-                    hfNombres.Value = txtNombres.Text;
-                    hfApellidoPaterno.Value = txtApellidop.Text;
-                    hfApellidoMaterno.Value = txtApellidom.Text;
+                obj_det.foto = fotoregistro;
+                hfNombres.Value = txtNombres.Text;
+                hfApellidoPaterno.Value = txtApellidop.Text;
+                hfApellidoMaterno.Value = txtApellidom.Text;
 
-                    // validacion del tipo de operacion 
+                // validacion del tipo de operacion para REGISTRAR a SUSALUD
+                DataTable dtope = new DataTable();
+                string qryope = "CALL sp_fill_3('4','" + obj.cod_cliente + "','" + txtDNI.Text + "','','','','','','','','');";
+                dtope = dat.mysql(qryope);
+                operacion = dtope.Rows[0]["OP"].ToString();
 
-                    DataTable dtope = new DataTable();
-                    string qryope = "CALL SP_SUSALUD_REGAFI('13','" + txtNumeroPoli.Text + "','" + txtCodigoTitu.Text + "','','" + txtDNI.Text
-                                                        + "','" + "" + "','" + "" + "','" + ""
-                                                        + "','" + "" + "','" + "" + "','" + ""
-                                                        + "','" + "" + "','" + "" + "','" + "" + "','" + ""
-                                                        + "','" + "" + "','" + "" + "','" + "" + "','" + ""
-                                                        + "','" + "" + "','" + "" + "','" + ""
-                                                        + "','" + "" + "','" + "" + "','" + "" + "','" + "" + "','" + "" + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','');";
-                    dtope = dat.mysql(qryope);
-
-                    if (dtope.Rows[0][0].ToString() == "1")
-                    {
-                        operacion = "01";
-                    }
-                    else
-                    {
-                        operacion = "00";
-                    }
-
-                    // validacion de pami 
-                    if (obj.cod_cliente == "96" && obj.categoria == "00")
-                    {   //Contratante
-                        estadoSu = "3";
-                    }
-                    else
-                    {
-                        if (chkSusalud.Checked == true)
-                        {
-                            estadoSu = "5";
-                            resultadoSusalud = rs.EnvioSUSALUD(operacion, obj, obj_det, "", rblAfiliacion.SelectedValue, rblAfiliacion2.SelectedValue, obj.cod_cliente);
-                        }
-                        else
-                        {
-                            estadoSu = "1";
-                            resultadoSusalud = "";
-                        }
-                    }
-
+                if (chkSusalud.Checked == true)
+                {
+                    resultadoSusalud = rs.EnvioSUSALUD(operacion, obj, obj_det);
                     if (resultadoSusalud.Contains("ERROR"))
                     {
                         lblverificacion.Text = resultadoSusalud;
                         lblverificacion1.Text = resultadoSusalud;
-
                         StringBuilder sb = new StringBuilder();
                         sb.Append("<script type='text/javascript'>");
                         sb.Append("$('#NUEVOAFILIADO').modal('show');");
@@ -914,100 +826,90 @@ namespace SFW.Web
                         ScriptManager.RegisterStartupScript(this, this.GetType(), "Script", sb.ToString(), false);
                         return;
                     }
-
-                    string resultado = new TitularBL().InsertarTitular(obj, obj_det, usu, 1);
-                    result = new TitularBL().RegistrarFechaRenovacionAlta(obj, obj_det);
-                    // actualizar/insertar el nro de contrato
-                    string stroe3 = "CALL SP_SUSALUD_REGAFI(16,'" + obj.cod_cliente + "','" + obj.cod_titula
-                       + "','" + obj.categoria + "','" + obj_det.contrato + "','" + obj.dni + "','" + obj_det.cod_afiliado + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','');";
-                    DataTable dtab3 = dat.mysql(stroe3);
-
-                    //// actualiza estado ln susalud
-                    string stroe2 = "CALL SP_SUSALUD_REGAFI(11,'" + obj.cod_cliente + "','" + obj.cod_titula
-                    + "','" + obj.categoria + "','" + estadoSu + "','" + obj.dni + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','');";
-                    DataTable dtab2 = dat.mysql(stroe2);
+                    estadoSuSalud = "5";
+                }
 
 
-                    string xSQLL = "call sp_fill(79,'" + obj.cod_cliente + "','" + obj.cod_titula + "','" + obj.categoria + "');";
-                    DataTable dtt = dat.mysql(xSQLL);
+                string resultado = new TitularBL().InsertarTitular(obj, obj_det, usu, 1);
+                int result = new TitularBL().RegistrarFechaRenovacionAlta(obj, obj_det);
+                // ACTUALIZA EL COD AFILIADO, CONTRATO Y ESTADO
+                string stroe3 = "CALL sp_fill_3('5','" +
+                    obj.cod_cliente + "','" +
+                    obj.cod_titula + "','" +
+                    obj_det.categoriaSusalud + "','" +
+                    obj.dni + "','" +
+                    obj_det.contrato + "','" +
+                    obj_det.cod_afiliado + "','" +
+                    estadoSuSalud + "','','','');";
+                DataTable dtab3 = dat.mysql(stroe3);
+                // ACTUALIZAR FOTO DE CÓNYUGE
+                if (obj.categoria == "01")
+                {
+                    string codigoTemporal = obj.cod_cliente;
 
-                    if (ddlCategoria.SelectedValue == "01")
+                    if ((obj.cod_cliente == "98") || (obj.cod_cliente == "96"))
                     {
-                        if ((txtNumeroPoli.Text == "90") || (txtNumeroPoli.Text == "98") || (txtNumeroPoli.Text == "96"))
-                        {
-                            string xSQL = "call sp_fill(74,'90','" + txtCodigoTitu.Text + "',0);";
-                            DataTable dt = dat.mysql(xSQL);
-                            if (dt.Rows[0]["foto"].ToString() != "0" && dt.Rows[0]["foto"].ToString().Trim() != "")
-                            {
-                                string archivo = "90-" + txtCodigoTitu.Text + "-01" + dt.Rows[0]["foto"].ToString().Substring(dt.Rows[0]["foto"].ToString().Length - 4, 4);
-                                string elimino = DeleteFile("90-" + txtCodigoTitu.Text + "-01" + dt.Rows[0]["foto"].ToString().Substring(dt.Rows[0]["foto"].ToString().Length - 4, 4), "90");
-
-                            }
-                        }
-                        else
-                        {
-                            string xSQL = "call sp_fill(74,'" + txtNumeroPoli.Text + "','" + txtCodigoTitu.Text + "',0);";
-                            DataTable dt = dat.mysql(xSQL);
-                            if (dt.Rows[0]["foto"].ToString() != "0" && dt.Rows[0]["foto"].ToString().Trim() != "")
-                            {
-                                string archivo = txtNumeroPoli.Text + "-" + txtCodigoTitu.Text + "-01" + dt.Rows[0]["foto"].ToString().Substring(dt.Rows[0]["foto"].ToString().Length - 4, 4);
-                                string elimino = DeleteFile(txtNumeroPoli.Text + "-" + txtCodigoTitu.Text + "-01" + dt.Rows[0]["foto"].ToString().Substring(dt.Rows[0]["foto"].ToString().Length - 4, 4), txtNumeroPoli.Text);
-                            }
-                        }
+                        codigoTemporal = "90";
                     }
-                    //if(true)
-                    if (resultado == "1")
+
+                    string xSQL = "call sp_fill(74,'" + codigoTemporal + "','" + obj.cod_titula + "',0);";
+                    DataTable dt = dat.mysql(xSQL);
+                    if (dt.Rows[0]["foto"].ToString() != "0" && dt.Rows[0]["foto"].ToString().Trim() != "")
                     {
-                        lblverificacion.Text = "Titular registrado satisfactoriamente";
-                        lblverificacion2.Text = "Titular registrado satisfactoriamente";
-                        limpiar();
-                        Filtro(txtBusqueda.Text, txtNumeroPoli.Text, idUsuario);
-
-                        if (txtNumeroPoli.Text == "37")
-                        {
-                            txtNroSiniestro.Text = "";
-                            txtPoliza.Text = "";
-                            txtPlaca.Text = "";
-                            txtComisaria.Text = "";
-                            txtApellidoPaterno.Text = "";
-                            txtApellidoMaterno.Text = "";
-                            txtMonto.Text = "";
-                            txtPersonaLlamaNombre.Text = "";
-                            txtPersonaLlamaTelefono.Text = "";
-                            lblVerificacion22.Text = "";
-                            lblverificacion.Text = "";
-
-                            StringBuilder sb = new StringBuilder();
-                            sb.Append("<script type='text/javascript'>");
-                            sb.Append("$('#CARTASMODAL').modal('show');");
-                            sb.Append("</script>");
-                            ScriptManager.RegisterStartupScript(this, this.GetType(), "Script", sb.ToString(), false);
-                        }
+                        string archivo = codigoTemporal + "-" + obj.cod_titula + "-01" + dt.Rows[0]["foto"].ToString().Substring(dt.Rows[0]["foto"].ToString().Length - 4, 4);
+                        string elimino = DeleteFile(codigoTemporal + "-" + obj.cod_titula + "-01" + dt.Rows[0]["foto"].ToString().Substring(dt.Rows[0]["foto"].ToString().Length - 4, 4), txtNumeroPoli.Text);
                     }
-                    else
+                }
+
+                if (resultado == "1")
+                {
+                    lblverificacion.Text = "Titular registrado satisfactoriamente";
+                    lblverificacion2.Text = "Titular registrado satisfactoriamente";
+                    limpiar();
+                    Filtro(txtBusqueda.Text, obj.cod_cliente, idUsuario);
+
+                    if (obj.cod_cliente == "37")
                     {
-                        Filtro(txtBusqueda.Text, txtNumeroPoli.Text, idUsuario);
+                        limpiarCartasModal();
                         StringBuilder sb = new StringBuilder();
                         sb.Append("<script type='text/javascript'>");
-                        sb.Append("$('#NUEVOAFILIADO').modal('show');");
+                        sb.Append("$('#CARTASMODAL').modal('show');");
                         sb.Append("</script>");
                         ScriptManager.RegisterStartupScript(this, this.GetType(), "Script", sb.ToString(), false);
                     }
-
-
                 }
+                else
+                {
+                    lblverificacion.Text = resultado;
+                    lblverificacion1.Text = resultado;
+                    Filtro(txtBusqueda.Text, obj.cod_cliente, idUsuario);
+                    StringBuilder sb = new StringBuilder();
+                    sb.Append("<script type='text/javascript'>");
+                    sb.Append("$('#NUEVOAFILIADO').modal('show');");
+                    sb.Append("</script>");
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "Script", sb.ToString(), false);
+                }
+
+
+
             }
 
         }
 
-        //protected void listardependientes(string cod_titula, string cliente)
-        //{
-
-        //    GridView1EdicionTitular.DataSource = new TitularBL().ListarGrupoFamiliar(777, cliente, cod_titula);
-        //    GridView1EdicionTitular.DataBind();
-        //    lblContadorEdicionTitular.Text = "El titular seleccionado cuenta con " + Convert.ToString(GridView1EdicionTitular.Rows.Count) + " dependientes.";
-
-        //}
+        public void limpiarCartasModal()
+        {
+            txtNroSiniestro.Text = "";
+            txtPoliza.Text = "";
+            txtPlaca.Text = "";
+            txtComisaria.Text = "";
+            txtApellidoPaterno.Text = "";
+            txtApellidoMaterno.Text = "";
+            txtMonto.Text = "";
+            txtPersonaLlamaNombre.Text = "";
+            txtPersonaLlamaTelefono.Text = "";
+            lblVerificacion22.Text = "";
+            lblverificacion.Text = "";
+        }
 
         protected void grupofamiliar(string cod_titula, string cliente)
         {
@@ -1020,8 +922,11 @@ namespace SFW.Web
             extensionFoto = "";
             borrarmensajes();
             string resultadoSusalud = "";
-            List<Titular> lstTitular = null;
-            List<Titular_Detalle> lstTitularDetalle = null;
+            string estadoSuSalud = ""; //NO REGISTRADO
+            List<Titular> lstTitular = new List<Titular>();
+            List<Titular_Detalle> lstTitularDetalle = new List<Titular_Detalle>();
+            usu = new UsuarioBL().ObtieneUsuario(52, Convert.ToInt32(Session["USUARIO"].ToString()));
+
             // ES CAMBIO DE PLAN
             if (planHidden.Value == "1")
             {
@@ -1033,28 +938,30 @@ namespace SFW.Web
                 {
                     for (int i = 0; i < lstTitular.Count; i++)
                     {
-                        Titular objTitular = lstTitular[i];
-                        Titular_Detalle objTitudeta = lstTitularDetalle[i];
+                        Titular obj = lstTitular[i];
+                        Titular_Detalle obj_deta = lstTitularDetalle[i];
+                        listNuevaBaja.Add(obj.fch_baja);
+                        obj.fch_baja = txtAlta.Text;
+                        obj_deta.causalBaja = "7";
+                        obj_deta.estado_afiliado = "1";
+                        obj_deta.estado_afiliacion = "2";
 
-                        listNuevaBaja.Add(objTitular.fch_baja);
-                        objTitular.fch_baja = DateTime.Now.ToString("dd/MM/yyyy");
-                        int resultado = new TitularBL().RegistrarFechaRenovacionBaja(objTitular);
-
-                        resultadoSusalud = rs.EnvioSUSALUD("21", objTitular, objTitudeta, "", rblAfiliacion.SelectedValue, rblAfiliacion2.SelectedValue, hfClienteGrilla.Value);
-
+                        int resultado = new TitularBL().RegistrarFechaRenovacionBaja(obj);
+                        resultadoSusalud = rs.EnvioSUSALUD("21", obj, obj_deta);
                         if (resultadoSusalud.Contains("ERROR"))
                         {
                             continue;
                         }
+
+
+
                     }
                     for (int i = lstTitular.Count - 1; i >= 0; i--)
                     {
                         Titular obj = lstTitular[i];
-                        // aca deberia ir el if que condiciona la categoria para cambiar el resto de datos.
-                        Titular_Detalle OLD_objTitudeta = lstTitularDetalle[i];
-
-                        List<Titular> OLD_LIST = new TitularBL().ListarTitularesGrupo(53, obj.cod_cliente, obj.cod_titula, obj.categoria);
-                        Titular OLD_objTitu = OLD_LIST.First(delegate(Titular objTI) { return (objTI.cod_cliente.Equals(obj.cod_cliente) && (objTI.cod_titula.Equals(obj.cod_titula) && (objTI.categoria.Equals(obj.categoria)))); });
+                        Titular_Detalle obj_deta = lstTitularDetalle[i];
+                        Titular OLD_obj = lstTitular[i];
+                        Titular_Detalle OLD_obj_deta = lstTitularDetalle[i];
 
                         string strCont = "CALL sp_fecha_bajas(3,'" + obj.cod_cliente + "','" + obj.cod_titula + "','" + obj.categoria + "','" + ddlPlan.SelectedValue.ToString() + "','','','','','','');";
                         DataTable dt = null;
@@ -1062,61 +969,47 @@ namespace SFW.Web
 
                         if (dt.Rows[0][0].ToString() != "0")
                         {
-                            OLD_objTitudeta.cod_afiliado = obj.cod_cliente + obj.cod_titula + obj.categoria + "-" + dt.Rows[0][0].ToString();
+                            obj_deta.cod_afiliado = obj.cod_cliente + obj.cod_titula + obj.categoria + "-" + dt.Rows[0][0].ToString();
                         }
-
-                        string operacion = "";
-                        DataTable dtope = new DataTable();
-                        string qryope = "CALL SP_SUSALUD_REGAFI('13','" + obj.cod_cliente + "','" + obj.cod_titula + "','','" + obj.dni
-                                                            + "','" + "" + "','" + "" + "','" + ""
-                                                            + "','" + "" + "','" + "" + "','" + ""
-                                                            + "','" + "" + "','" + "" + "','" + "" + "','" + ""
-                                                            + "','" + "" + "','" + "" + "','" + "" + "','" + ""
-                                                            + "','" + "" + "','" + "" + "','" + ""
-                                                            + "','" + "" + "','" + "" + "','" + "" + "','" + "" + "','" + "" + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','');";
-                        dtope = dat.mysql(qryope);
-
-
-                        if (dtope.Rows[0][0].ToString() == "1")
+                        
+                        if (obj_deta.cod_afiliado=="")
                         {
-                            operacion = "01";
+                            obj_deta.cod_afiliado = obj.cod_cliente + obj.cod_titula + obj.categoria;
                         }
-                        else
+                        if (obj_deta.contrato == "")
                         {
-                            operacion = "00";
+                            obj_deta.contrato = obj.cod_cliente + obj.cod_titula;
                         }
-
 
                         obj.fch_baja = listNuevaBaja[i];
                         obj.plan = Convert.ToInt32(ddlPlan.SelectedValue);
-                        OLD_objTitudeta.onco = ddlOnco.SelectedValue;
+                        obj_deta.onco = ddlOnco.SelectedValue;
+                        obj_deta.estado_afiliado = "1";
+                        obj_deta.estado_afiliacion = "1";
 
 
-                        resultado = new TitularBL().RegistrarFechaRenovacionAlta(obj, OLD_objTitudeta);
-
-                        resultadoSusalud = rs.EnvioSUSALUD(operacion, obj, OLD_objTitudeta, "", rblAfiliacion.SelectedValue, rblAfiliacion2.SelectedValue, hfClienteGrilla.Value);
-
-
-
-                        //// actualiza estado ln susalud
-                        string stroe2 = "CALL SP_SUSALUD_REGAFI(11,'" + obj.cod_cliente + "','" + obj.cod_titula
-                        + "','" + obj.categoria + "','" + "5" + "','" + obj.dni + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','');";
-                        DataTable dtab2 = dat.mysql(stroe2);
-
+                        resultadoSusalud = rs.EnvioSUSALUD("00", obj, obj_deta);
                         if (resultadoSusalud.Contains("ERROR"))
                         {
                             continue;
                         }
-
-
-                        resultado = new TitularBL().ActualizarTitular(obj, OLD_objTitudeta, usu, 1, OLD_objTitu, OLD_objTitudeta);
+                        estadoSuSalud = "5";
+                        resultado = new TitularBL().RegistrarFechaRenovacionAlta(obj, obj_deta);
+                        resultado = new TitularBL().ActualizarTitular(obj, obj_deta, usu, 1, OLD_obj, OLD_obj_deta);
                         if (resultado == 1)
                         {
-                            string stroe3 = "CALL SP_SUSALUD_REGAFI(16,'" + obj.cod_cliente + "','" + obj.cod_titula
-                      + "','" + obj.categoria + "','" + OLD_objTitudeta.contrato + "','" + obj.dni + "','" + OLD_objTitudeta.cod_afiliado + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','');";
-                            DataTable dtab3 = dat.mysql(stroe3);
+                            //// actualiza estado ln susalud
+                            string stroe2 = "CALL sp_fill_3('5','" +
+                                   obj.cod_cliente + "','" +
+                                   obj.cod_titula + "','" +
+                                   obj.categoria + "','" +
+                                   obj.dni + "','" +
+                                   obj_deta.contrato + "','" +
+                                   obj_deta.cod_afiliado + "','" +
+                                   estadoSuSalud + "','','','');";
+                            DataTable dtab2 = dat.mysql(stroe2);
 
-                            if ((OLD_objTitu.plan == 1 && obj.plan == 2) && (!((OLD_objTitudeta.onco == "C" || OLD_objTitudeta.onco == "P"))) && (obj.cod_cliente == "90" || obj.cod_cliente == "98" || obj.cod_cliente == "96" || obj.cod_cliente == "95"))
+                            if ((OLD_obj.plan == 1 && obj.plan == 2) && (!(obj_deta.onco == "C" || obj_deta.onco == "P")) && (obj.cod_cliente == "90" || obj.cod_cliente == "98" || obj.cod_cliente == "96" || obj.cod_cliente == "95"))
                             {
                                 string xSQL = "call sp_avisos (2,'" + obj.cod_cliente.ToString() + "','" + obj.cod_titula.ToString() + "','" + obj.categoria.ToString() + "','Afiliado podrá utilizar el nuevo tope de cobertura del Plan B a partir del " + DateTime.Now.AddMonths(3).ToString("dd/MM/yyyy") + " ','" + Session["USUARIO"].ToString() + "','')";
                                 DataTable dt2 = dat.mysql(xSQL);
@@ -1154,35 +1047,90 @@ namespace SFW.Web
             }
             else
             {
-                // OBTENER NUEVOS DATOS DE GRUPO FAMILIAR
-                usu = new UsuarioBL().ObtieneUsuario(52, Convert.ToInt32(Session["USUARIO"].ToString()));
-                List<Titular> OLD_LIST = new TitularBL().ListarTitularesGrupo(53, txtNumeroPoli.Text, txtCodigoTitu.Text, categoriaHidden.Value);
-                List<Titular_Detalle> OLD_LIST2 = new TitularDetalleBL().ListarDetallesGrupoFamiliar(54, txtNumeroPoli.Text, txtCodigoTitu.Text, categoriaHidden.Value);
-                Titular OLD_objTitu = OLD_LIST.First(delegate(Titular objTI) { return (objTI.cod_cliente.Equals(txtNumeroPoli.Text) && (objTI.cod_titula.Equals(txtCodigoTitu.Text) && (objTI.categoria.Equals(categoriaHidden.Value)))); });
-                Titular_Detalle OLD_objTitudeta = OLD_LIST2.First(delegate(Titular_Detalle objt) { return (objt.cod_cliente.Equals(txtNumeroPoli.Text) && (objt.cod_titula.Equals(txtCodigoTitu.Text) && (objt.categoria.Equals(categoriaHidden.Value)))); });
-                Titular obj = new Titular();
-                Titular_Detalle obj_det = new Titular_Detalle();
-                obj.cod_cliente = Convert.ToString(txtNumeroPoli.Text); obj.cod_titula = txtCodigoTitu.Text;
-                obj.categoria = categoriaHidden.Value; obj.centro_costo = ddlCentro.SelectedValue;
-                obj.plan = Convert.ToInt32(ddlPlan.SelectedValue); obj.afiliado = txtApellidop.Text + " " + txtApellidom.Text + "," + txtNombres.Text;
-                obj.parentesco = ddlCategoria.SelectedItem.Text; obj.sexo = ddlSexo.SelectedValue;
-                obj.fch_naci = txtNacimiento.Text; obj.fch_alta = txtAlta.Text; obj.fch_baja = txtBaja.Text;
-                obj.fch_proc = Convert.ToString(DateTime.Today); obj.pass = txtContraseña.Text; obj.email = txtObservar.Text;
-                obj.tipo_doc = Convert.ToInt32(ddlTipoDocumento.SelectedValue); obj.dni = txtDNI.Text; obj.madre = "0"; obj.actividad = "0"; obj.ubicacion = "0";
-                obj.estado_titular = 1; obj.capitados = "0";
-                obj.financia = "0"; obj.oncologico = ddlOnco.SelectedValue; obj.dx_onco = "0"; obj.campo1 = "0"; obj.campo2 = txtCampo2.Text; obj.campo3 = "0"; obj.fch_caren = txtCarencia.Text;
-                obj_det.cod_cliente = Convert.ToString(txtNumeroPoli.Text); obj_det.cod_titula = txtCodigoTitu.Text; obj_det.categoria = categoriaHidden.Value;
-                obj_det.depa_id = ddlDepartamento.SelectedValue; obj_det.prov_id = ddlProvincia.SelectedValue; obj_det.dist_id = ddlDistrito.SelectedValue;
-                obj_det.direccion = txtDireccion.Text; obj_det.email = txtObservar.Text; obj_det.t_fijo = txtTelefono1.Text;
-                obj_det.t_movil = txtTelefono2.Text; obj_det.estado_civil = Convert.ToInt32(ddlEstadoCivil.SelectedValue);
-                obj_det.edad = txtEdad.Text; obj_det.peso = txtPeso.Text; obj_det.estatura = txtEstatura.Text; obj_det.discapacitado = ddlDiscapacit.SelectedValue;
-                obj_det.consume_alcohol = ddlAlcohol.SelectedValue; obj_det.consume_tabaco = ddlDrogas.SelectedValue; obj_det.grupo_sanguineo = txtSangre.Text;
-                obj_det.fch_fincarencia = txtCarencia.Text; obj_det.pad = ddlPad.SelectedValue; obj_det.dpto = txtDpto.Text; obj_det.rol = txtRol.Text;
-                obj_det.prog_especial = ddlPespecial.SelectedValue; obj_det.cod_paciente = txtCodPaciente.Text; obj_det.id_paciente = txtIdPaciente.Text; obj_det.basico = ddlBasico.SelectedValue;
-                obj_det.onco = ddlOnco.SelectedValue; obj_det.segunda_capa = ddlCapa.SelectedValue; obj_det.docum = txtDocumento.Text; obj_det.afi_nombre = txtNombres.Text;
-                obj_det.afi_apepat = txtApellidop.Text; obj_det.afi_apemat = txtApellidom.Text; obj_det.correo1 = txtCorreo1.Text; obj_det.correo2 = txtCorreo2.Text;
-                obj_det.contrato = OLD_objTitudeta.contrato;
-                obj_det.cod_afiliado = OLD_objTitudeta.cod_afiliado;
+
+                lstTitular = new TitularBL().ListarTitularesGrupo(53, txtNumeroPoli.Text, txtCodigoTitu.Text, categoriaHidden.Value);
+                lstTitularDetalle = new TitularDetalleBL().ListarDetallesGrupoFamiliar(54, txtNumeroPoli.Text, txtCodigoTitu.Text, categoriaHidden.Value);
+
+                Titular OLD_obj = lstTitular.First(delegate (Titular objTI) { return (objTI.cod_cliente.Equals(txtNumeroPoli.Text) && (objTI.cod_titula.Equals(txtCodigoTitu.Text) && (objTI.categoria.Equals(categoriaHidden.Value)))); });
+                Titular_Detalle OLD_obj_deta = lstTitularDetalle.First(delegate (Titular_Detalle objt) { return (objt.cod_cliente.Equals(txtNumeroPoli.Text) && (objt.cod_titula.Equals(txtCodigoTitu.Text) && (objt.categoria.Equals(categoriaHidden.Value)))); });
+
+                Titular obj = lstTitular.First(delegate (Titular objTI) { return (objTI.cod_cliente.Equals(txtNumeroPoli.Text) && (objTI.cod_titula.Equals(txtCodigoTitu.Text) && (objTI.categoria.Equals(categoriaHidden.Value)))); });
+                Titular_Detalle obj_det = lstTitularDetalle.First(delegate (Titular_Detalle objt) { return (objt.cod_cliente.Equals(txtNumeroPoli.Text) && (objt.cod_titula.Equals(txtCodigoTitu.Text) && (objt.categoria.Equals(categoriaHidden.Value)))); });
+
+
+                obj.cod_cliente = Convert.ToString(txtNumeroPoli.Text);
+                obj.cod_titula = txtCodigoTitu.Text;
+                obj.categoria = categoriaHidden.Value;
+                obj.centro_costo = ddlCentro.SelectedValue;
+                obj.plan = Convert.ToInt32(ddlPlan.SelectedValue);
+                obj.afiliado = txtApellidop.Text + " " + txtApellidom.Text + "," + txtNombres.Text;
+                obj.parentesco = ddlCategoria.SelectedItem.Text;
+                obj.sexo = ddlSexo.SelectedValue;
+                obj.fch_naci = txtNacimiento.Text;
+                obj.fch_alta = txtAlta.Text;
+                obj.fch_baja = txtBaja.Text;
+                obj.fch_proc = Convert.ToString(DateTime.Today);
+                obj.pass = txtContraseña.Text;
+                obj.email = txtObservar.Text;
+                obj.tipo_doc = Convert.ToInt32(ddlTipoDocumento.SelectedValue);
+                obj.dni = txtDNI.Text;
+                obj.madre = "0";
+                obj.actividad = "0";
+                obj.ubicacion = "0";
+                obj.estado_titular = 1;
+                obj.capitados = "0";
+                obj.financia = "0";
+                obj.oncologico = ddlOnco.SelectedValue;
+                obj.dx_onco = "0";
+                obj.campo1 = "0";
+                obj.campo2 = txtCampo2.Text;
+                obj.campo3 = "0";
+                obj.fch_caren = txtCarencia.Text;
+                obj_det.cod_cliente = Convert.ToString(txtNumeroPoli.Text);
+                obj_det.cod_titula = txtCodigoTitu.Text;
+                obj_det.categoria = categoriaHidden.Value;
+                obj_det.depa_id = ddlDepartamento.SelectedValue;
+                obj_det.prov_id = ddlProvincia.SelectedValue;
+                obj_det.dist_id = ddlDistrito.SelectedValue;
+                obj_det.direccion = txtDireccion.Text;
+                obj_det.email = txtObservar.Text;
+                obj_det.t_fijo = txtTelefono1.Text;
+                obj_det.t_movil = txtTelefono2.Text;
+                obj_det.estado_civil = Convert.ToInt32(ddlEstadoCivil.SelectedValue);
+                obj_det.edad = txtEdad.Text;
+                obj_det.peso = txtPeso.Text;
+                obj_det.estatura = txtEstatura.Text;
+                obj_det.discapacitado = ddlDiscapacit.SelectedValue;
+                obj_det.consume_alcohol = ddlAlcohol.SelectedValue;
+                obj_det.consume_tabaco = ddlDrogas.SelectedValue;
+                obj_det.grupo_sanguineo = txtSangre.Text;
+                obj_det.fch_fincarencia = txtCarencia.Text;
+                obj_det.pad = ddlPad.SelectedValue;
+                obj_det.dpto = txtDpto.Text;
+                obj_det.rol = txtRol.Text;
+                obj_det.prog_especial = ddlPespecial.SelectedValue;
+                obj_det.cod_paciente = txtCodPaciente.Text;
+                obj_det.id_paciente = txtIdPaciente.Text;
+                obj_det.basico = ddlBasico.SelectedValue;
+                obj_det.onco = ddlOnco.SelectedValue;
+                obj_det.segunda_capa = ddlCapa.SelectedValue;
+                obj_det.docum = txtDocumento.Text;
+                obj_det.afi_nombre = txtNombres.Text;
+                obj_det.afi_apepat = txtApellidop.Text;
+                obj_det.afi_apemat = txtApellidom.Text;
+                obj_det.correo1 = txtCorreo1.Text;
+                obj_det.correo2 = txtCorreo2.Text;
+                obj_det.clasificacion = ddlClasificacion.SelectedValue;
+                if (chkContratante.Checked)
+                {
+                    obj_det.contratante = "1";
+                }
+                else
+                {
+                    obj_det.contratante = "0";
+                }
+
+
                 string fotoActualizacion = "";
                 if (Page.IsPostBack)
                 {
@@ -1206,15 +1154,15 @@ namespace SFW.Web
                         }
                         else
                         {
-                            fotoActualizacion = OLD_objTitudeta.foto;
+                            fotoActualizacion = obj_det.foto;
                             extensionFoto = fotoActualizacion.Substring(fotoActualizacion.Length - 4, 4);
                         }
                     }
                     else
                     {
-                        if (OLD_objTitudeta.foto != "")
+                        if (obj_det.foto != "")
                         {
-                            fotoActualizacion = OLD_objTitudeta.foto;
+                            fotoActualizacion = obj_det.foto;
                         }
                         else
                         {
@@ -1223,33 +1171,37 @@ namespace SFW.Web
                     }
                 }
                 obj_det.foto = fotoActualizacion;
-                obj_det.clasificacion = ddlClasificacion.SelectedValue;
-                if (chkContratante.Checked)
+                obj_det.estado_afiliado = "1";
+                obj_det.estado_afiliacion = "1";
+                // Si es dependiente de un fallecido
+                if (obj_det.contrato.Substring(obj_det.contrato.Length-1,1)=="F")
                 {
-                    obj_det.contratante = "1";
-                }
-                else
-                {
-                    obj_det.contratante = "0";
+                    obj_det.categoriaSusalud = "00";
                 }
 
-                int resultado = new TitularBL().ActualizarTitular(obj, obj_det, usu, 1, OLD_objTitu, OLD_objTitudeta);
+                resultadoSusalud = rs.EnvioSUSALUD("12", obj, obj_det);
 
-                DataTable dt = dat.mysql("CALL SP_SUSALUD_REGAFI(14,'" + obj.cod_cliente + "','" + obj.cod_titula
-                                              + "','" + obj.categoria + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','');");
-
-                if (dt.Rows[0][0].ToString() == "1")
+                if (resultadoSusalud.Contains("ERROR"))
                 {
-                    resultadoSusalud = rs.EnvioSUSALUD("12", obj, OLD_objTitudeta, "", rblAfiliacion.SelectedValue, rblAfiliacion2.SelectedValue, hfClienteGrilla.Value);
+                    lblverificacion.Text = resultadoSusalud;
+                    lblverificacion1.Text = resultadoSusalud;
+                    StringBuilder sb = new StringBuilder();
+                    sb.Append("<script type='text/javascript'>");
+                    sb.Append("$('#NUEVOAFILIADO').modal('show');");
+                    sb.Append("</script>");
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "Script", sb.ToString(), false);
+                    return;
                 }
 
-                string call = "CALL SP_SUSALUD_REGAFI(7,'" + obj.cod_cliente + "','" + obj.cod_titula + "','" + obj.categoria + "','" + obj.fch_baja + "','" + obj.fch_alta + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','');";
+                int resultado = new TitularBL().ActualizarTitular(obj, obj_det, usu, 1, OLD_obj, OLD_obj_deta);
+
+                string call = "CALL sp_fill_3('15','" + obj.cod_cliente + "','" + obj.cod_titula + "','" + obj.categoria + "','" + obj.fch_baja + "','" + obj.fch_alta + "','','','','','');";
                 DataTable dtab = dat.mysql(call);
 
                 if (resultado == 1)
                 {
 
-                    if ((OLD_objTitu.plan == 1 && obj.plan == 2) && (!((obj_det.onco == "C" || obj_det.onco == "P"))) && (obj.cod_cliente == "90" || obj.cod_cliente == "98" || obj.cod_cliente == "96" || obj.cod_cliente == "95"))
+                    if ((OLD_obj.plan == 1 && obj.plan == 2) && (!((obj_det.onco == "C" || obj_det.onco == "P"))) && (obj.cod_cliente == "90" || obj.cod_cliente == "98" || obj.cod_cliente == "96" || obj.cod_cliente == "95"))
                     {
                         string xSQL = "call sp_avisos (2,'" + obj.cod_cliente.ToString() + "','" + obj.cod_titula.ToString() + "','" + categoriaHidden.Value + "','Afiliado podrá utilizar el nuevo tope de cobertura del Plan B a partir del   " + DateTime.Now.AddMonths(3).ToString("dd/MM/yyyy") + " ','" + Session["USUARIO"].ToString() + "','')";
                         DataTable dt2 = dat.mysql(xSQL);
@@ -1280,58 +1232,104 @@ namespace SFW.Web
 
         protected void lnkFallecido_Click(object sender, EventArgs e)
         {
+            List<Titular> lstTitular = null;
+            List<Titular_Detalle> lstTitu_deta = null;
+            string Operacion = "21", estado_Susalud = "";
+            int resultado;
+            lstTitular = new TitularBL().ListarTitularesGrupo(531, txtNumeroPoli.Text, txtCodigoTitu.Text, categoriaHidden.Value);
+            lstTitu_deta = new TitularDetalleBL().ListarDetallesGrupoFamiliar(541, txtNumeroPoli.Text, txtCodigoTitu.Text, categoriaHidden.Value);
 
-
-            List<Titular> OLD_LIST = null;
-            List<Titular_Detalle> OLD_LIST2 = null;
-
-            OLD_LIST = new TitularBL().ListarTitularesGrupo(531, txtNumeroPoli.Text, txtCodigoTitu.Text, categoriaHidden.Value);
-            OLD_LIST2 = new TitularDetalleBL().ListarDetallesGrupoFamiliar(541, txtNumeroPoli.Text, txtCodigoTitu.Text, categoriaHidden.Value);
-
-            if (OLD_LIST.Count > 0 && OLD_LIST2.Count > 0 && OLD_LIST.Count == OLD_LIST2.Count)
+            if (lstTitular.Count > 0 && lstTitu_deta.Count > 0 && lstTitular.Count == lstTitu_deta.Count)
             {
                 string resultadoSusalud = "";
 
-                for (int i = 0; i < OLD_LIST.Count; i++)
+                for (int i = 0; i < lstTitular.Count; i++)
                 {
-                    Titular OLD_objTitu = OLD_LIST[i];
-                    Titular_Detalle OLD_objTitudeta = OLD_LIST2[i];
-                    OLD_objTitu.fch_baja = txtFechaTitularFallecido.Text;
-                    resultadoSusalud = rs.EnvioSUSALUD("21", OLD_objTitu, OLD_objTitudeta, "", rblAfiliacion.SelectedValue, rblAfiliacion2.SelectedValue, hfClienteGrilla.Value);
+                    Titular obj = lstTitular[i];
+                    Titular_Detalle obj_deta = lstTitu_deta[i];
+                    obj.fch_baja = txtFechaTitularFallecido.Text;
+                    obj_deta.causalBaja = "7";
+                    obj_deta.estado_afiliado = "1";
+                    Operacion = "21";
+                    estado_Susalud = "6";
+                    obj_deta.estado_afiliacion = "2";
+
+                    if (lstTitular.Count == 1)
+                    {
+                        obj_deta.fch_falleci = txtFechaTitularFallecido.Text;
+                        obj_deta.causalBaja = "9";
+                        obj_deta.estado_afiliado = "2";
+                        Operacion = "20";
+                        estado_Susalud = "7";
+                    }
+                    else
+                    {
+                        if (obj_deta.categoria == "00")
+                        {
+                            obj_deta.fch_falleci = txtFechaTitularFallecido.Text;
+                            obj_deta.causalBaja = "9";
+                            obj_deta.estado_afiliado = "2";
+                            Operacion = "20";
+                            estado_Susalud = "7";
+                        }
+                    }
+
+
+                    DataTable dt = dat.mysql("CALL sp_fill_3(10,'" + obj.cod_cliente + "','" + obj.cod_titula + "','" + obj.categoria + "','','','','','','','');");
+
+                    if (dt.Rows[0][0].ToString() == "1")
+                    {
+                        resultadoSusalud = rs.EnvioSUSALUD(Operacion, obj, obj_deta);
+                    }
 
                     if (resultadoSusalud.Contains("ERROR"))
                     {
                         continue;
                     }
+                    string stroe2 = "CALL sp_fill_3('5','" +
+                          obj.cod_cliente + "','" +
+                          obj.cod_titula + "','" +
+                          obj.categoria + "','" +
+                          obj.dni + "','" +
+                          obj_deta.contrato + "','" +
+                          obj_deta.cod_afiliado + "','" +
+                          estado_Susalud + "','','','');";
+                    DataTable dtab2 = dat.mysql(stroe2);
+                    resultado = new TitularBL().BAJACOMPLETA(obj, obj_deta, usu, txtFechaTitularFallecido.Text, "3");
+                    resultado = new TitularBL().RegistrarFechaRenovacionBaja(obj);
                 }
 
-                int cont = 1;
-
-                for (int i = OLD_LIST.Count - 2; i >= 0; i--)
+                for (int i = lstTitular.Count - 2; i >= 0; i--)
                 {
-                    Titular OLD_objTitu = OLD_LIST[i];
-                    Titular_Detalle OLD_objTitudeta = OLD_LIST2[i];
-                    Titular obj = OLD_LIST[i];
+                    Titular obj = lstTitular[i];
+                    Titular_Detalle obj_deta = lstTitu_deta[i];
 
-                    OLD_objTitudeta.contrato = obj.cod_titula + "-" + cont;
-                    string stroe3 = "CALL SP_SUSALUD_REGAFI(16,'" + obj.cod_cliente + "','" + obj.cod_titula
-                                            + "','" + obj.categoria + "','" + OLD_objTitudeta.contrato + "','" + obj.dni + "','" + OLD_objTitudeta.cod_afiliado + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','');";
-                    DataTable dtab3 = dat.mysql(stroe3);
+                    obj_deta.estado_afiliado = "1";
+                    obj_deta.estado_afiliacion = "1";
+                    obj_deta.contrato = obj.cod_titula + "-F";
 
-                    obj.categoria = "00";
-
-                    resultadoSusalud = rs.EnvioSUSALUD("01", obj, OLD_objTitudeta, "", rblAfiliacion.SelectedValue, rblAfiliacion2.SelectedValue, hfClienteGrilla.Value);
-
-                    cont++;
+                    obj_deta.categoriaSusalud = "00";
+                    resultadoSusalud = rs.EnvioSUSALUD("01", obj, obj_deta);
                     if (resultadoSusalud.Contains("ERROR"))
                     {
                         continue;
                     }
-                }
 
-                string stroe2 = "CALL SP_SUSALUD_REGAFI(11,'" + txtNumeroPoli.Text + "','" + txtCodigoTitu.Text
-                                                                                 + "','" + "00" + "','" + "7" + "','" + txtDNI.Text + "','" + txtFechaTitularFallecido.Text + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','');";
-                DataTable dtab2 = dat.mysql(stroe2);
+                    resultado = new TitularBL().RegistrarFechaRenovacionAlta(obj, obj_deta);
+                    string stroe2 = "CALL sp_fill_3('5','" +
+                    obj.cod_cliente + "','" +
+                    obj.cod_titula + "','" +
+                    obj.categoria + "','" +
+                    obj.dni + "','" +
+                    obj_deta.contrato + "','" +
+                    obj_deta.cod_afiliado + "','" +
+                    "5" + "','','','');";
+                    DataTable dtab2 = dat.mysql(stroe2);
+                    resultado = new TitularBL().ACTIVAR(obj, obj_deta, usu, "5");
+
+                }
+                string stroe3 = "CALL sp_fill_3('13','" + txtNumeroPoli.Text + "','" + txtCodigoTitu.Text + "','" + "00" + "','','','','','','','');";
+                DataTable dtab3 = dat.mysql(stroe3);
 
                 if (resultadoSusalud.Contains("ERROR"))
                 {
@@ -1346,10 +1344,9 @@ namespace SFW.Web
                 }
                 else
                 {
-
                     Filtro(txtBusqueda.Text, txtNumeroPoli.Text, idUsuario);
                     grupofamiliar(txtCodigoTitu.Text, txtNumeroPoli.Text);
-                    lblCorrecto.Text = "Cambio de plan satisfactorio";
+                    lblCorrecto.Text = "El titular se dió de baja por Fallecimiento";
                     limpiar();
                     gAnio.Visible = false;
                     gMeses.Visible = false;
@@ -1359,7 +1356,7 @@ namespace SFW.Web
                 }
             }
         }
-
+        /*
         protected void lnkPlan_Click(object sender, EventArgs e)
         {
 
@@ -1383,7 +1380,7 @@ namespace SFW.Web
                     OLD_objTitu.fch_baja = DateTime.Now.ToString("dd/MM/yyyy");
 
                     int resultado = new TitularBL().RegistrarFechaRenovacionBaja(OLD_objTitu);
-                    resultadoSusalud = rs.EnvioSUSALUD("21", OLD_objTitu, OLD_objTitudeta, "", rblAfiliacion.SelectedValue, rblAfiliacion2.SelectedValue, hfClienteGrilla.Value);
+                    resultadoSusalud = rs.EnvioSUSALUD("21", OLD_objTitu, OLD_objTitudeta);
 
                     baja = true;
                     if (resultadoSusalud.Contains("ERROR"))
@@ -1406,7 +1403,7 @@ namespace SFW.Web
                         resultado = new TitularBL().RegistrarFechaRenovacionAlta(obj, OLD_objTitudeta);
                         resultado = new TitularBL().ActualizarTitular(obj, OLD_objTitudeta, usu, 1, OLD_objTitu, OLD_objTitudeta);
 
-                        resultadoSusalud = rs.EnvioSUSALUD("01", obj, OLD_objTitudeta, "", rblAfiliacion.SelectedValue, rblAfiliacion2.SelectedValue, hfClienteGrilla.Value);
+                        resultadoSusalud = rs.EnvioSUSALUD("01", obj, OLD_objTitudeta, obj, OLD_objTitudeta);
                         if (resultadoSusalud.Contains("ERROR"))
                         {
                             continue;
@@ -1439,7 +1436,7 @@ namespace SFW.Web
                 }
             }
         }
-
+        */
         protected void btnDependienteNuevo_Click(object sender, EventArgs e)
         {
             borrarmensajes();
@@ -1457,7 +1454,7 @@ namespace SFW.Web
             txtNombreEmpresa.ReadOnly = true;
             lblAfiliado.Text = "NUEVO DEPENDIENTE";
             ddlCategoria.Attributes.Remove("readonly");
-            ddlClasificacion.Visible = false;
+            divClasificacion.Attributes.Add("style", "display:none;");
             ddlCategoria.CssClass = "form-control input-sm";
             btnBajaModal.Visible = false;
             btnActivarAfiliado.Visible = false;
@@ -1494,7 +1491,7 @@ namespace SFW.Web
 
                     campo2.Visible = false;
                     List<Titular> list = new TitularBL().ListarTitularesGrupo(53, Convert.ToString(gvGrupoFamiliar.Rows[0].Cells[1].Text), gvGrupoFamiliar.Rows[0].Cells[3].Text, "00");
-                    Titular objTitu = list.First(delegate(Titular obj)
+                    Titular objTitu = list.First(delegate (Titular obj)
                     {
                         return (obj.cod_cliente.Equals(Convert.ToString(gvGrupoFamiliar.Rows[0].Cells[1].Text))
                                 && (obj.cod_titula.Equals(gvGrupoFamiliar.Rows[0].Cells[3].Text)
@@ -1503,7 +1500,7 @@ namespace SFW.Web
 
 
                     List<Titular_Detalle> list2 = new TitularDetalleBL().ListarDetallesGrupoFamiliar(54, Convert.ToString(gvGrupoFamiliar.Rows[0].Cells[1].Text), gvGrupoFamiliar.Rows[0].Cells[3].Text, "00");
-                    Titular_Detalle objTitudeta = list2.First(delegate(Titular_Detalle objt)
+                    Titular_Detalle objTitudeta = list2.First(delegate (Titular_Detalle objt)
                     {
                         return (objt.cod_cliente.Equals(Convert.ToString(gvGrupoFamiliar.Rows[0].Cells[1].Text))
                                 && (objt.cod_titula.Equals(gvGrupoFamiliar.Rows[0].Cells[3].Text)
@@ -1675,105 +1672,119 @@ namespace SFW.Web
         protected void btnBaja01_Click(object sender, EventArgs e)
         {
             string resultadoSusalud = "";
-            string OPERACIONBAJ = "";
+            string estadoSuSalud = ""; //NO REGISTRADO
             usu = new UsuarioBL().ObtieneUsuario(52, Convert.ToInt32(Session["USUARIO"].ToString()));
 
-            List<Titular> listbaja = new TitularBL().ListarTitularesGrupo(531, txtNumeroPoli.Text, txtCodigoTitu.Text, categoriaHidden.Value);
-            List<Titular_Detalle> listbaja2 = new TitularDetalleBL().ListarDetallesGrupoFamiliar(541, txtNumeroPoli.Text, txtCodigoTitu.Text, categoriaHidden.Value);
+            List<Titular> lstTitular = new TitularBL().ListarTitularesGrupo(531, txtNumeroPoli.Text, txtCodigoTitu.Text, categoriaHidden.Value);
+            List<Titular_Detalle> lstTitu_deta = new TitularDetalleBL().ListarDetallesGrupoFamiliar(541, txtNumeroPoli.Text, txtCodigoTitu.Text, categoriaHidden.Value);
 
-            if (ddlCausalBaja.SelectedValue == "8") { OPERACIONBAJ = "20"; } else { OPERACIONBAJ = "21"; }
 
             if ((categoriaHidden.Value == "00") && ((txtNumeroPoli.Text == "90") || (txtNumeroPoli.Text == "95") || (txtNumeroPoli.Text == "96") || (txtNumeroPoli.Text == "98")))
             {
-                switch (txtNumeroPoli.Text)
+
+                foreach (ListItem listItem in CheckBoxPetro.Items)
                 {
-                    case "90":
-                    case "95":
-                    case "96":
-                    case "98":
+                    if (listItem.Selected)
+                    {
+                        List<Titular> lstTitular_petro = new TitularBL().ListarTitularesGrupo(531, CheckBoxPetro.SelectedValue, txtCodigoTitu.Text, categoriaHidden.Value);
+                        List<Titular_Detalle> lstTitu_deta_petro = new TitularDetalleBL().ListarDetallesGrupoFamiliar(541, CheckBoxPetro.SelectedValue, txtCodigoTitu.Text, categoriaHidden.Value);
 
-                        foreach (ListItem listItem in CheckBoxList1.Items)
+                        if (lstTitular_petro.Count > 0 && lstTitu_deta_petro.Count > 0 && lstTitular_petro.Count == lstTitu_deta_petro.Count)
                         {
-                            if (listItem.Selected)
+                            for (int i = 0; i < lstTitular_petro.Count; i++)
                             {
-                                List<Titular> listbajapetro = new TitularBL().ListarTitularesGrupo(531, CheckBoxList1.SelectedValue, txtCodigoTitu.Text, categoriaHidden.Value);
-                                List<Titular_Detalle> listbaja2petro = new TitularDetalleBL().ListarDetallesGrupoFamiliar(541, CheckBoxList1.SelectedValue, txtCodigoTitu.Text, categoriaHidden.Value);
+                                Titular obj_petro = lstTitular_petro[i];
+                                Titular_Detalle obj_det_petro = lstTitu_deta_petro[i];
 
-                                if (listbajapetro.Count > 0 && listbaja2petro.Count > 0 && listbajapetro.Count == listbaja2petro.Count)
+                                obj_petro.fch_baja = txtFechaBajaModal.Text;
+                                obj_det_petro.causalBaja = ddlCausalBaja.SelectedValue;
+                                obj_det_petro.estado_afiliado = "1";
+                                if (ddlCausalBaja.SelectedValue == "9")
                                 {
-                                    for (int i = 0; i < listbajapetro.Count; i++)
+                                    if (lstTitular_petro.Count == 1)
                                     {
-                                        Titular objTitu_bajapetro = listbajapetro[i];
-                                        Titular_Detalle objTitudeta_bajapetro = listbaja2petro[i];
-                                        if (objTitu_bajapetro.fch_baja.Trim() == "")
+                                        obj_det_petro.estado_afiliado = "2";
+                                    }
+                                    else
+                                    {
+                                        if (obj_det_petro.categoria == "00")
                                         {
-                                            objTitu_bajapetro.fch_baja = TextBox1.Text;
+                                            obj_det_petro.estado_afiliado = "2";
                                         }
-
-                                        DataTable dt = dat.mysql("CALL SP_SUSALUD_REGAFI(14,'" + objTitu_bajapetro.cod_cliente + "','" + objTitu_bajapetro.cod_titula
-                                                + "','" + objTitu_bajapetro.categoria + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','');");
-
-                                        if (dt.Rows[0][0].ToString() == "1" && DateTime.ParseExact(objTitu_bajapetro.fch_baja, "dd/MM/yyyy", null) <= DateTime.ParseExact(DateTime.Today.ToShortDateString(), "dd/MM/yyyy", null))
-                                        {
-                                            resultadoSusalud = rs.EnvioSUSALUD("21", objTitu_bajapetro, objTitudeta_bajapetro, ddlCausalBaja.SelectedValue, rblAfiliacion.SelectedValue, rblAfiliacion2.SelectedValue, hfClienteGrilla.Value);
-
-                                            string stroe2 = "CALL SP_SUSALUD_REGAFI(11,'" + objTitu_bajapetro.cod_cliente + "','" + objTitu_bajapetro.cod_titula
-                                                     + "','" + objTitu_bajapetro.categoria + "','" + "6" + "','" + objTitu_bajapetro.dni + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','');";
-
-                                            DataTable dtab2 = dat.mysql(stroe2);
-                                        }
-
-                                        resultado = new TitularBL().BAJACOMPLETA(objTitu_bajapetro, objTitudeta_bajapetro, usu, TextBox1.Text, "3");
-
-                                        if (resultadoSusalud.Contains("ERROR"))
-                                        {
-                                            lblCorrecto.Text = resultadoSusalud;
-                                            lblError.Text = "";
-                                            btnCerrar_Click(sender, e);
-                                            return;
-                                        }
-
-                                        if (ddlCausalBaja.SelectedValue == "8")
-                                        {
-                                            string xSQLL = "call sp_fill(80,'" + objTitu_bajapetro.cod_cliente + objTitu_bajapetro.cod_titula + objTitu_bajapetro.categoria + "','" + TextBox1.Text + "','" + ddlCausalBaja.SelectedValue + "');";
-                                            DataTable dtt = dat.mysql(xSQLL);
-                                        }
-                                        else
-                                        {
-                                            string xSQLL = "call sp_fill(80,'" + objTitu_bajapetro.cod_cliente + objTitu_bajapetro.cod_titula + objTitu_bajapetro.categoria + "','','" + ddlCausalBaja.SelectedValue + "');";
-                                            DataTable dtt = dat.mysql(xSQLL);
-                                        }
-
-                                        contador = contador + 1;
                                     }
                                 }
+                                obj_det_petro.estado_afiliacion = "2";
+
+                                DataTable dt = dat.mysql("CALL sp_fill_3(10,'" + obj_petro.cod_cliente + "','" + obj_petro.cod_titula + "','" + obj_petro.categoria + "','','','','','','','');");
+
+                                if (dt.Rows[0][0].ToString() == "1")
+                                {
+                                    resultadoSusalud = rs.EnvioSUSALUD("21", obj_petro, obj_det_petro);
+                                }
+                                if (resultadoSusalud.Contains("ERROR"))
+                                {
+                                    lblCorrecto.Text = resultadoSusalud;
+                                    lblError.Text = "";
+                                    btnCerrar_Click(sender, e);
+                                    return;
+                                }
+                                estadoSuSalud = "6";
+                                string stroe2 = "CALL sp_fill_3('5','" +
+                                                    obj_petro.cod_cliente + "','" +
+                                                    obj_petro.cod_titula + "','" +
+                                                    obj_petro.categoria + "','" +
+                                                    obj_petro.dni + "','" +
+                                                    obj_det_petro.contrato + "','" +
+                                                    obj_det_petro.cod_afiliado + "','" +
+                                                    estadoSuSalud + "','','','');";
+                                DataTable dtab2 = dat.mysql(stroe2);
+
+                                resultado = new TitularBL().RegistrarFechaRenovacionBaja(obj_petro);
+                                resultado = new TitularBL().BAJACOMPLETA(obj_petro, obj_det_petro, usu, txtFechaBajaModal.Text, "3");
                             }
                         }
-                        break;
+                    }
                 }
             }
-            if (listbaja.Count > 0 && listbaja2.Count > 0 && listbaja.Count == listbaja2.Count)
+
+
+
+            if (lstTitular.Count > 0 && lstTitu_deta.Count > 0 && lstTitular.Count == lstTitu_deta.Count)
             {
-                for (int i = 0; i < listbaja.Count; i++)
+                for (int i = 0; i < lstTitular.Count; i++)
                 {
-                    Titular objTitu_baja = listbaja[i];
-                    Titular_Detalle objTitudeta_baja = listbaja2[i];
+                    Titular obj = lstTitular[i];
+                    Titular_Detalle obj_deta = lstTitu_deta[i];
+                    obj.fch_baja = txtFechaBajaModal.Text;
+                    obj_deta.causalBaja = ddlCausalBaja.SelectedValue;
+                    obj_deta.estado_afiliado = "1";
+                    obj_deta.fallecido = "";
 
-                    objTitu_baja.fch_baja = TextBox1.Text;
-
-                    DataTable dt = dat.mysql("CALL SP_SUSALUD_REGAFI(14,'" + objTitu_baja.cod_cliente + "','" + objTitu_baja.cod_titula
-                                                        + "','" + objTitu_baja.categoria + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','');");
-
-                    if (dt.Rows[0][0].ToString() == "1" && DateTime.ParseExact(objTitu_baja.fch_baja, "dd/MM/yyyy", null) <= DateTime.Today)
+                    if (ddlCausalBaja.SelectedValue == "9")
                     {
-                        resultadoSusalud = rs.EnvioSUSALUD(OPERACIONBAJ, objTitu_baja, objTitudeta_baja, ddlCausalBaja.SelectedValue, rblAfiliacion.SelectedValue, rblAfiliacion2.SelectedValue, hfClienteGrilla.Value);
-
-                        string stroe2 = "CALL SP_SUSALUD_REGAFI(11,'" + objTitu_baja.cod_cliente + "','" + objTitu_baja.cod_titula
-                                 + "','" + objTitu_baja.categoria + "','" + "6" + "','" + objTitu_baja.dni + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','');";
-
-                        DataTable dtab2 = dat.mysql(stroe2);
-
+                        if (lstTitular.Count == 1)
+                        {
+                            obj_deta.estado_afiliado = "2";
+                            obj_deta.fallecido = "1";
+                        }
+                        else
+                        {
+                            if (obj_deta.categoria == "00")
+                            {
+                                obj_deta.estado_afiliado = "2";
+                                obj_deta.fallecido = "1";
+                            }
+                        }
                     }
+                    obj_deta.estado_afiliacion = "2";
+
+                    DataTable dt = dat.mysql("CALL sp_fill_3(10,'" + obj.cod_cliente + "','" + obj.cod_titula + "','" + obj.categoria + "','','','','','','','');");
+
+                    if (dt.Rows[0][0].ToString() == "1")
+                    {
+                        resultadoSusalud = rs.EnvioSUSALUD("21", obj, obj_deta);
+                    }
+
                     if (resultadoSusalud.Contains("ERROR"))
                     {
                         lblCorrecto.Text = resultadoSusalud;
@@ -1781,48 +1792,45 @@ namespace SFW.Web
                         btnCerrar_Click(sender, e);
                         return;
                     }
-
-                    resultado = new TitularBL().BAJACOMPLETA(objTitu_baja, objTitudeta_baja, usu, TextBox1.Text, "3");
-
-                    if (ddlCausalBaja.SelectedValue == "8")
-                    {
-                        string xSQLL = "call sp_fill(80,'" + objTitu_baja.cod_cliente + objTitu_baja.cod_titula + objTitu_baja.categoria + "','" + TextBox1.Text + "','" + ddlCausalBaja.SelectedValue + "');";
-                        DataTable dtt = dat.mysql(xSQLL);
-                    }
-                    else
-                    {
-                        string xSQLL = "call sp_fill(80,'" + objTitu_baja.cod_cliente + objTitu_baja.cod_titula + objTitu_baja.categoria + "','','" + ddlCausalBaja.SelectedValue + "');";
-                        DataTable dtt = dat.mysql(xSQLL);
-                    }
+                    estadoSuSalud = "6";
+                    string stroe2 = "CALL sp_fill_3('5','" +
+                                        obj.cod_cliente + "','" +
+                                        obj.cod_titula + "','" +
+                                        obj.categoria + "','" +
+                                        obj.dni + "','" +
+                                        obj_deta.contrato + "','" +
+                                        obj_deta.cod_afiliado + "','" +
+                                        estadoSuSalud + "','','','');";
+                    DataTable dtab2 = dat.mysql(stroe2);
+                    resultado = new TitularBL().RegistrarFechaRenovacionBaja(obj);
+                    resultado = new TitularBL().BAJACOMPLETA(obj, obj_deta, usu, txtFechaBajaModal.Text, "3");
                 }
             }
 
-            //if(true)
             if (resultado == 1)
             {
                 lblCorrecto.Text = "Afiliado dado de Baja";
                 lblError.Text = "";
                 limpiar();
-                Filtro(txtBusqueda.Text, txtNumeroPoli.Text, idUsuario);
-                grupofamiliar(txtCodigoTitu.Text, txtNumeroPoli.Text);
-                btnCerrar_Click(sender, e);
+
             }
             if (resultado == 0)
             {
                 lblError.Text = "Ocurrió un error, no se dió de baja al afiliado, verifique si ingreso una fecha";
                 lblCorrecto.Text = "";
-                Filtro(txtBusqueda.Text, txtNumeroPoli.Text, idUsuario);
-                grupofamiliar(txtCodigoTitu.Text, txtNumeroPoli.Text);
-                btnCerrar_Click(sender, e);
             }
+
+            Filtro(txtBusqueda.Text, txtNumeroPoli.Text, idUsuario);
+            grupofamiliar(txtCodigoTitu.Text, txtNumeroPoli.Text);
+            btnCerrar_Click(sender, e);
 
         }
 
         protected void btnBajaModal_Click(object sender, EventArgs e)
         {
-            TextBox1.Text = "";
+            txtFechaBajaModal.Text = "";
 
-            CheckBoxList1.Visible = true;
+            CheckBoxPetro.Visible = true;
 
             ddlCausalBaja.DataSource = dat.mysql("call sp_fill(78,0,0,0)");
             ddlCausalBaja.DataValueField = "VALOR";
@@ -1842,11 +1850,10 @@ namespace SFW.Web
 
                         string xSQL = "call sp_fill (63,'" + txtCodigoTitu.Text + "','" + categoriaHidden.Value + "',0)";
                         DataTable dt = dat.mysql(xSQL);
-                        CheckBoxList1.DataSource = dt;
-                        CheckBoxList1.DataTextField = "cliente";
-                        CheckBoxList1.DataValueField = "codigo";
-                        CheckBoxList1.DataBind();
-
+                        CheckBoxPetro.DataSource = dt;
+                        CheckBoxPetro.DataTextField = "cliente";
+                        CheckBoxPetro.DataValueField = "codigo";
+                        CheckBoxPetro.DataBind();
                         break;
 
                 }
@@ -1881,7 +1888,6 @@ namespace SFW.Web
             {
                 ListaAvisos.Visible = true;
                 string SSQLX = null;
-                //SSQLX = "call sp_avisos (1,'" + cliente + "','" + titula + "','" + categoria + "',0,0,0)";
                 SSQLX = "CALL sp_avisos2(1, '" + cliente + "','" + titula + "','" + categoria + "','" + txtAfiliado.Text + "','','','','','')";
                 dt = dat.mysql(SSQLX);
 
@@ -1907,10 +1913,6 @@ namespace SFW.Web
         protected void btnNuevoAviso_Click(object sender, EventArgs e)
         {
             lblAvisoDesc.Visible = true;
-            //txtDescripcion.Visible = true;
-            //btnGrabando.Visible = true;
-            //btnCancelarAviso.Visible = true;
-            //btnNuevoAviso.Visible = false;
         }
 
         protected void btnReportes_Click(object sender, EventArgs e)
@@ -1921,11 +1923,6 @@ namespace SFW.Web
 
             if (dt.Rows.Count > 0)
             {
-                //usu = new UsuarioBL().ObtieneUsuario(52, Convert.ToInt32(Session["USUARIO"].ToString()));
-                //string usuario = Convert.ToString(usu.USER);
-                //string pass = Convert.ToString(usu.PASS);
-                ////Response.Redirect("http://190.102.136.157/AppGer/inicio.aspx?usu=" + usuario + "&pass=" + pass + "");
-                //--Response.Redirect(dt.Rows[0]["Ruta"].ToString());
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "key", "window.open('" + dt.Rows[0]["Ruta"].ToString() + "');", true);
             }
             else
@@ -1933,106 +1930,62 @@ namespace SFW.Web
                 return;
             }
 
-
-            //usu = new UsuarioBL().ObtieneUsuario(52, Convert.ToInt32(Session["USUARIO"].ToString()));
-            //string usuario = Convert.ToString(usu.USER);
-            //string pass = Convert.ToString(usu.PASS);
-            ////Response.Redirect("http://190.102.136.157/AppGer/inicio.aspx?usu=" + usuario + "&pass=" + pass + "");
-            //ScriptManager.RegisterStartupScript(this, this.GetType(), "key", "window.open('http://190.102.136.157/AppGer/inicio.aspx?usu=" + usuario + "&pass=" + pass + "&op=78');", true);
         }
 
         protected void btnActivarAfiliado_Click(object sender, EventArgs e)
         {
             int resultado;
-            string operacion = "01";
-            string estadoSu = "";
-            string resultadoSusalud = "";
+            string estadoSuSalud = "", operacion = "", resultadoSusalud = "";
+            DataTable dt = new DataTable();
+
             usu = new UsuarioBL().ObtieneUsuario(52, Convert.ToInt32(Session["USUARIO"].ToString()));
-            List<Titular> listbaja = new TitularBL().ListarTitularesGrupo(53, txtNumeroPoli.Text, txtCodigoTitu.Text, categoriaHidden.Value);
-            Titular objTitu_baja = listbaja.First(delegate(Titular obj) { return (obj.cod_cliente.Equals(txtNumeroPoli.Text) && (obj.cod_titula.Equals(txtCodigoTitu.Text) && (obj.categoria.Equals(categoriaHidden.Value)))); });
+            List<Titular> lstTitular = new TitularBL().ListarTitularesGrupo(53, txtNumeroPoli.Text, txtCodigoTitu.Text, categoriaHidden.Value);
+            Titular obj = lstTitular.First(delegate (Titular Titu) { return (Titu.cod_cliente.Equals(txtNumeroPoli.Text) && (Titu.cod_titula.Equals(txtCodigoTitu.Text) && (Titu.categoria.Equals(categoriaHidden.Value)))); });
 
-            List<Titular_Detalle> listbaja2 = new TitularDetalleBL().ListarDetallesGrupoFamiliar(54, txtNumeroPoli.Text, txtCodigoTitu.Text, categoriaHidden.Value);
-            Titular_Detalle objTitudeta_baja = listbaja2.First(delegate(Titular_Detalle objt) { return (objt.cod_cliente.Equals(txtNumeroPoli.Text) && (objt.cod_titula.Equals(txtCodigoTitu.Text) && (objt.categoria.Equals(categoriaHidden.Value)))); });
+            List<Titular_Detalle> lstTitu_deta = new TitularDetalleBL().ListarDetallesGrupoFamiliar(54, txtNumeroPoli.Text, txtCodigoTitu.Text, categoriaHidden.Value);
+            Titular_Detalle obj_deta = lstTitu_deta.First(delegate (Titular_Detalle objt) { return (objt.cod_cliente.Equals(txtNumeroPoli.Text) && (objt.cod_titula.Equals(txtCodigoTitu.Text) && (objt.categoria.Equals(categoriaHidden.Value)))); });
 
-
-            string strCont = "CALL sp_fecha_bajas(3,'" + objTitu_baja.cod_cliente + "','" + objTitu_baja.cod_titula + "','" + objTitu_baja.categoria + "','" + objTitu_baja.plan + "','','','','','','');";
-            DataTable dt = null;
+            string strCont = "CALL sp_fecha_bajas(3,'" + obj_deta.cod_cliente + "','" + obj_deta.cod_titula + "','" + obj_deta.categoria + "','" + obj.plan + "','','','','','','');";
             dt = dat.mysql(strCont);
 
             if (dt.Rows[0][0].ToString() != "0")
             {
-                objTitudeta_baja.cod_afiliado = objTitudeta_baja.cod_cliente + objTitudeta_baja.cod_titula + objTitudeta_baja.categoria + "-" + dt.Rows[0][0].ToString();
+                obj_deta.cod_afiliado = obj_deta.cod_afiliado + "-" + dt.Rows[0][0].ToString();
             }
-            else
+
+            if (obj.cod_cliente == txtNumeroPoli.Text && obj.cod_titula == txtCodigoTitu.Text && obj.categoria == categoriaHidden.Value)
             {
-                objTitudeta_baja.cod_afiliado = objTitudeta_baja.cod_cliente + objTitudeta_baja.cod_titula + objTitudeta_baja.categoria;
+                obj_deta.afi_nombre = txtNombres.Text;
+                obj_deta.afi_apepat = txtApellidop.Text;
+                obj_deta.afi_apemat = txtApellidom.Text;
             }
-
-
-            if (objTitu_baja.cod_cliente == txtNumeroPoli.Text && objTitu_baja.cod_titula == txtCodigoTitu.Text && objTitu_baja.categoria == categoriaHidden.Value)
-            {
-                objTitudeta_baja.afi_nombre = txtNombres.Text;
-                objTitudeta_baja.afi_apepat = txtApellidop.Text;
-                objTitudeta_baja.afi_apemat = txtApellidom.Text;
-
-                objTitu_baja.fch_naci = txtNacimiento.Text;
-                objTitu_baja.sexo = ddlSexo.SelectedValue;
-                objTitu_baja.fch_caren = txtCarencia.Text;
-            }
-
-
-            objTitu_baja.fch_baja = "";
-            objTitu_baja.estado_titular = 1;
-
-            // validacion del tipo de operacion 
-
+            obj.fch_alta = txtAlta.Text;
+            obj.fch_baja = "";
+            obj.estado_titular = 1;
+            obj_deta.causalBaja = "";
+            obj_deta.estado_afiliado = "1";
+            obj_deta.estado_afiliacion = "1";
+            obj_deta.fallecido = "";
+            // validacion del tipo de operacion para REGISTRAR a SUSALUD
             DataTable dtope = new DataTable();
-            string qryope = "CALL SP_SUSALUD_REGAFI('13','" + objTitu_baja.cod_cliente + "','" + objTitu_baja.cod_titula + "','','" + objTitu_baja.dni
-                                                        + "','" + "" + "','" + "" + "','" + ""
-                                                        + "','" + "" + "','" + "" + "','" + ""
-                                                        + "','" + "" + "','" + "" + "','" + "" + "','" + ""
-                                                        + "','" + "" + "','" + "" + "','" + "" + "','" + ""
-                                                        + "','" + "" + "','" + "" + "','" + ""
-                                                        + "','" + "" + "','" + "" + "','" + "" + "','" + "" + "','" + "" + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','');";
-
+            string qryope = "CALL sp_fill_3('4','" + obj.cod_cliente + "','" + txtDNI.Text + "','','','','','','','','');";
             dtope = dat.mysql(qryope);
+            operacion = dtope.Rows[0]["OP"].ToString();
 
-
-            if (dtope.Rows[0][0].ToString() == "1")
-            {
-                operacion = "01";
-            }
-            else
-            {
-                operacion = "00";
-            }
-
-            estadoSu = "5";
             // validacion de pami 
-            if (objTitu_baja.cod_cliente == "96" && objTitu_baja.categoria == "00")
+            if (obj.cod_cliente == "96" && obj.categoria == "00")
             {   //Contratante
-                estadoSu = "3";
+                estadoSuSalud = "3";
             }
             else
             {
-                DataTable dtv = dat.mysql("CALL SP_SUSALUD_REGAFI(14,'" + objTitu_baja.cod_cliente + "','" + objTitu_baja.cod_titula
-                                              + "','" + objTitu_baja.categoria + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','');");
-
-                if (dtv.Rows[0][0].ToString() == "1")
-                {
-                    resultadoSusalud = rs.EnvioSUSALUD(operacion, objTitu_baja, objTitudeta_baja, "", rblAfiliacion.SelectedValue, rblAfiliacion2.SelectedValue, objTitu_baja.cod_cliente);
-                }
-                else
-                {
-                    estadoSu = "1";
-                }
+                resultadoSusalud = rs.EnvioSUSALUD(operacion, obj, obj_deta);
             }
 
             if (resultadoSusalud.Contains("ERROR"))
             {
                 lblverificacion.Text = resultadoSusalud;
                 lblverificacion1.Text = resultadoSusalud;
-
                 StringBuilder sb = new StringBuilder();
                 sb.Append("<script type='text/javascript'>");
                 sb.Append("$('#NUEVOAFILIADO').modal('show');");
@@ -2040,44 +1993,31 @@ namespace SFW.Web
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "Script", sb.ToString(), false);
                 return;
             }
-
-            DataTable dtact = dat.mysql("CALL SP_SUSALUD_REGAFI('18','" + objTitu_baja.cod_cliente + "','" + objTitu_baja.cod_titula + "','" + objTitu_baja.categoria + "','" + objTitudeta_baja.afi_apepat + "','" + objTitudeta_baja.afi_apemat + "','" + objTitudeta_baja.afi_nombre + "','" + objTitu_baja.fch_naci + "','" + objTitu_baja.sexo + "','" + objTitu_baja.fch_caren + "','" + "','" + "" + "','" + "" + "','" + "" + "','" + ""
-                                                        + "','" + "" + "','" + "" + "','" + "" + "','" + ""
-                                                        + "','" + "" + "','" + "" + "','" + ""
-                                                        + "','" + "" + "','" + "" + "','" + "" + "','" + "" + "','" + "" + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','');");
-
-
-
-
-            resultado = new TitularBL().RegistrarFechaRenovacionAlta(objTitu_baja, objTitudeta_baja);
-
-            string stroe2 = "CALL SP_SUSALUD_REGAFI(11,'" + objTitu_baja.cod_cliente + "','" + objTitu_baja.cod_titula
-                                                         + "','" + objTitu_baja.categoria + "','" + "5" + "','" + objTitu_baja.dni + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','');";
-            if (estadoSu != "1")
-            {
-                DataTable dtab2 = dat.mysql(stroe2);
-            }
-
-            string stroe3 = "CALL SP_SUSALUD_REGAFI(16,'" + objTitu_baja.cod_cliente + "','" + objTitu_baja.cod_titula
-                                                              + "','" + objTitu_baja.categoria + "','" + objTitudeta_baja.contrato + "','" + objTitu_baja.dni + "','" + objTitudeta_baja.cod_afiliado + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','');";
-            DataTable dtab3 = dat.mysql(stroe3);
-            resultado = new TitularBL().ACTIVAR(objTitu_baja, objTitudeta_baja, usu, TextBox1.Text, "5");
+            resultado = new TitularBL().RegistrarFechaRenovacionAlta(obj, obj_deta);
+            estadoSuSalud = "5";
+            string stroe2 = "CALL sp_fill_3('5','" +
+                obj.cod_cliente + "','" +
+                obj.cod_titula + "','" +
+                obj_deta.categoriaSusalud + "','" +
+                obj.dni + "','" +
+                obj_deta.contrato + "','" +
+                obj_deta.cod_afiliado + "','" +
+                estadoSuSalud + "','','','');";
+            DataTable dtab3 = dat.mysql(stroe2);
+            resultado = new TitularBL().ACTIVAR(obj, obj_deta, usu, "5");
 
             if (resultado == 1)
             {
                 lblCorrecto.Text = "Afiliado activado";
                 limpiar();
-                Filtro(txtBusqueda.Text, txtNumeroPoli.Text, idUsuario);
-                grupofamiliar(txtCodigoTitu.Text, txtNumeroPoli.Text);
-                btnCerrar_Click(sender, e);
             }
             else
             {
                 lblError.Text = "Error de activación";
-                Filtro(txtBusqueda.Text, txtNumeroPoli.Text, idUsuario);
-                grupofamiliar(txtCodigoTitu.Text, txtNumeroPoli.Text);
-                btnCerrar_Click(sender, e);
             }
+            Filtro(txtBusqueda.Text, txtNumeroPoli.Text, idUsuario);
+            grupofamiliar(txtCodigoTitu.Text, txtNumeroPoli.Text);
+            btnCerrar_Click(sender, e);
         }
 
         protected void lnkCerrarSesion_Click(object sender, EventArgs e)
@@ -2115,14 +2055,11 @@ namespace SFW.Web
 
         protected void lnkAlertas_Click(object sender, EventArgs e)
         {
-            //usu = new UsuarioBL().ObtieneUsuario(52, Convert.ToInt32(Session["USUARIO"].ToString()));
-            //Response.Redirect("http://app.laprotectora.com.pe/AppGer/inicio.aspx?usu=" + usu.USER.ToString() + "&pass=" + usu.PASS.ToString() + "&op=78");
             string SSQL = "call sp_fill(79,'" + Convert.ToInt32(Session["USUARIO"].ToString()) + "','78','0')";
             DataTable dt = dat.mysql(SSQL);
 
             if (dt.Rows.Count > 0)
             {
-                //--Response.Redirect(dt.Rows[0]["Ruta"].ToString());
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "key", "window.open('" + dt.Rows[0]["Ruta"].ToString() + "');", true);
             }
             else
@@ -2160,12 +2097,6 @@ namespace SFW.Web
                 {
                     dt2 = Util.GenerarDataTable(rGuardar + flpImp.FileName);
                 }
-
-                //'Dim xLoadTAb As String = "LOAD DATA LOCAL INFILE '" & Session("xdFILE") & "' " &
-                //'                                    "INTO TABLE solben_bd.T_FINANCIA " &
-                //'                                    "FIELDS TERMINATED BY ',' " &
-                //'                                    "LINES TERMINATED BY '\n'; "
-
                 foreach (DataRow row in dt2.Rows)
                 {
                     try
@@ -2227,7 +2158,6 @@ namespace SFW.Web
 
         protected void ddlTipoOrdenAtencion_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //cartas(txtNumeroPoli.Text, txtApellidop.Text + " " + txtApellidom.Text + ", " + txtNombres.Text);
         }
 
         protected void FullPostBack(object sender, EventArgs e)
@@ -2238,66 +2168,10 @@ namespace SFW.Web
             string solben_id = gvImpresionCartasDetalle.DataKeys[row.RowIndex].Values["solben_id"].ToString();
             string atencion_id = gvImpresionCartasDetalle.DataKeys[row.RowIndex].Values["atencion_id"].ToString();
             string cod_cliente = gvImpresionCartasDetalle.DataKeys[row.RowIndex].Values["cod_cliente"].ToString();
-            string js = "";
 
             ScriptManager.RegisterStartupScript(this, this.GetType(), "key", "window.open('http://www.solben.net/loginTitus.php?u=" + Session["USUARIO_USU"] + "&p=" + Session["PASS"] + "&p2=2&t=" + atencion_id + "&n=" + solben_id + "');", true);
-
-            //switch (atencion_id)
-            //{
-            //    case "1":
-            //        ScriptManager.RegisterStartupScript(this, this.GetType(), "key", "window.open('http://www.solben.net/solben/impreso_m.php?nro=" + solben_id + "');", true);
-            //        //js = "window.open('http://www.solben.net/solben/impreso_m.php?nro=" + solben_id + "', '_blank');";
-            //        //ClientScript.RegisterStartupScript(this.GetType(), "Open Signature.aspx", js, true);
-            //        break;
-            //    case "2":
-            //        ScriptManager.RegisterStartupScript(this, this.GetType(), "key", "window.open('http://www.solben.net/solben/impreso_d.php?nro=" + solben_id + "');", true);
-            //        //js = "window.open('http://www.solben.net/solben/impreso_d.php?nro='" + solben_id + "'', '_blank');";
-            //        //ClientScript.RegisterStartupScript(this.GetType(), "Open Signature.aspx", js, true);
-            //        break;
-            //    case "4":
-            //    case "6":
-            //        if ((cod_cliente == "90") || (cod_cliente == "96") || (cod_cliente == "98"))
-            //        {
-            //            ScriptManager.RegisterStartupScript(this, this.GetType(), "key", "window.open('http://www.solben.net/solben/garantias/orden_atencion_p.php?nro=" + solben_id + "');", true);
-            //            //js = "window.open('http://www.solben.net/solben/garantias/orden_atencion_p.php?nro='" + solben_id + "'', '_blank');";
-            //            //ClientScript.RegisterStartupScript(this.GetType(), "Open Signature.aspx", js, true);
-            //        }
-            //        else
-            //        {
-            //            ScriptManager.RegisterStartupScript(this, this.GetType(), "key", "window.open('http://www.solben.net/solben/garantias/orden_atencion.php?nro=" + solben_id + "');", true);
-            //            //js = "window.open('http://www.solben.net/solben/garantias/orden_atencion.php?nro='" + solben_id + "'', '_blank');";
-            //            //ClientScript.RegisterStartupScript(this.GetType(), "Open Signature.aspx", js, true);
-            //        }
-            //        break;
-            //    case "5":
-            //    case "3":
-            //        if ((cod_cliente == "90") || (cod_cliente == "96") || (cod_cliente == "98") || (cod_cliente == "95"))
-            //        {
-            //            ScriptManager.RegisterStartupScript(this, this.GetType(), "key", "window.open('http://www.solben.net/solben/garantias/orden_atencion_p.php?nro=" + solben_id + "');", true);
-            //            //js = "window.open('http://www.solben.net/solben/garantias/orden_atencion_p.php?nro='" + solben_id + "'', '_blank');";
-            //            //ClientScript.RegisterStartupScript(this.GetType(), "Open Signature.aspx", js, true);
-            //        }
-            //        else
-            //        {
-            //            ScriptManager.RegisterStartupScript(this, this.GetType(), "key", "window.open('http://www.solben.net/solben/garantias/carta_garantia.php?nro=" + solben_id + "');", true);
-            //            //js = "window.open('http://www.solben.net/solben/garantias/carta_garantia.php?nro='" + solben_id + "'', '_blank');";
-            //            //ClientScript.RegisterStartupScript(this.GetType(), "Open Signature.aspx", js, true);
-            //        }
-            //        break;
-            //    default:
-            //        break;
-            //}
-
-            ////<a href='listado_ampliaciones.php?nro=".$r2['solben_id']."' target='_blank'>
-            ////string fruitName = ((sender as LinkButton).NamingContainer as GridViewRow).Cells[0].Text;
-            ////string message = "alert('Full PostBack: You clicked " + fruitName + "');";
-            ////ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", message, true);
         }
 
-        //protected void LinkAlertas_Load(object sender, EventArgs e)
-        //{
-        //    LinkAlertas.NavigateUrl = "http://190.102.136.157/AppGer/inicio.aspx?usu=" + usu.USER + "&pass=" + usu.PASS + "&op=78";
-        //}
 
         void subeFotos(string cli, string titu, string cate)
         {
@@ -2342,24 +2216,6 @@ namespace SFW.Web
 
         protected void lnkFoto_Click(object sender, EventArgs e)
         {
-            //if (txtCodigoTitu.Text != "")
-            //{
-            //    subeFotos(txtNumeroPoli.Text, txtCodigoTitu.Text, ddlCategoria.SelectedValue);
-
-            //    string SSQLX = "call sp_fill (72,'" + txtNumeroPoli.Text + "','" + txtCodigoTitu.Text + "','" + ddlCategoria.SelectedValue + "')";
-            //    DataTable dt = dat.mysql(SSQLX);
-
-            //    if (dt.Rows.Count > 0)
-            //    {
-            //        Image1.ImageUrl = dt.Rows[0][0].ToString();
-            //    }
-
-            //}
-            //else
-            //{
-            //    lblError.Text = "Debe ingresar primero un Codigo de Titular.";
-            //}
-
 
         }
 
@@ -2439,53 +2295,16 @@ namespace SFW.Web
         protected void lnkFichaPersonal_Click(object sender, EventArgs e)
         {
             ScriptManager.RegisterStartupScript(this, this.GetType(), "key", "window.open('Ficha2.aspx?cc=" + txtNumeroPoli.Text + "&ct=" + txtCodigoTitu.Text + "&c=" + categoriaHidden.Value + "');", true);
-            //ScriptManager.RegisterStartupScript(this, this.GetType(), "key", "window.open('FichaPersonal.aspx?cc=" + txtNumeroPoli.Text + "&ct=" + txtCodigoTitu.Text + "&c=" + categoriaHidden.Value + "');", true);
             return;
-            //Response.Redirect("FichaPersonal.aspx?cc=" + txtNumeroPoli.Text + "&ct=" + txtCodigoTitu.Text + "&c=" + comparacion + "");
         }
 
-        //protected void btnGrabando_Click(object sender, EventArgs e)
-        //{
-        //    try 
-        //        {
-        //            usu = new UsuarioBL().ObtieneUsuario(52, Convert.ToInt32(Session["USUARIO"].ToString()));
-        //        string xSQL = "call sp_avisos (2,'" + txtNumeroPoli.Text + "','" + txtCodigoTitu.Text + "','" + categoriaHidden.Value + "','" + txtDescripcion.Text + "','" + usu.ID + "','')";
-        //        DataTable dt = dat.mysql(xSQL);
 
-        //        lblAvisoDesc.Visible = false;
-        //        txtDescripcion.Visible = false;
-        //        btnGrabando.Visible = false;
-        //        btnCancelarAviso.Visible = false;
-        //        btnNuevoAviso.Visible = true;
-
-        //        avisos(txtNumeroPoli.Text, txtCodigoTitu.Text, categoriaHidden.Value);
-
-        //        lblAvisos.Text = "Aviso Guardado";
-
-        //        }
-        //        catch (Exception ex)
-        //        {
-
-        //           lblAvisos.Text = ex.Message.ToString();
-        //        }
-        //}
-
-        //protected void btnEditar_Click(object sender, EventArgs e)
-        //{
-        //    string SSQL1 = "call sp_avisos (3,'" + idAviso.Value + "','"+ txtDescripcion.Text +"','','','','')";
-        //    DataTable dt1 = dat.mysql(SSQL1);
-
-        //    avisos(txtNumeroPoli.Text, txtCodigoTitu.Text, categoriaHidden.Value);
-
-        //}
 
         protected void lnkBajaTitus_Click(object sender, EventArgs e)
         {
             if (ddlTablas.SelectedValue.ToString() == "57")
             {
                 exportar57();
-                //exportardbf();
-
             }
             else
             {
@@ -2635,7 +2454,7 @@ namespace SFW.Web
                 concubina.Visible = false;
 
             }
-            else if (ddlCategoria.SelectedValue == "01" && (txtNumeroPoli.Text=="90" || txtNumeroPoli.Text=="96" ||txtNumeroPoli.Text=="98"))
+            else if (ddlCategoria.SelectedValue == "01" && (txtNumeroPoli.Text == "90" || txtNumeroPoli.Text == "96" || txtNumeroPoli.Text == "98"))
             {
                 concubina.Visible = true;
                 chkConcubina.Checked = false;
@@ -3498,10 +3317,6 @@ namespace SFW.Web
         protected void btnCancelarAviso_Click(object sender, EventArgs e)
         {
             lblAvisoDesc.Visible = false;
-            //txtDescripcion.Visible = false;
-            //btnGrabando.Visible = false;
-            //btnCancelarAviso.Visible = false;
-            //btnNuevoAviso.Visible = true;
         }
 
         protected void lnkImpreOrden_Click(object sender, EventArgs e)
@@ -3562,11 +3377,6 @@ namespace SFW.Web
                     dt2 = Util.GenerarDataTable(rGuardar + flpImp.FileName);
                 }
 
-                //'Dim xLoadTAb As String = "LOAD DATA LOCAL INFILE '" & Session("xdFILE") & "' " &
-                //'                                    "INTO TABLE solben_bd.T_FINANCIA " &
-                //'                                    "FIELDS TERMINATED BY ',' " &
-                //'                                    "LINES TERMINATED BY '\n'; "
-
                 foreach (DataRow row in dt2.Rows)
                 {
                     try
@@ -3575,9 +3385,6 @@ namespace SFW.Web
                                           "VALUES ('" + row["valor1"].ToString() + "','" + row["valor2"] + "','" + row["valor3"] + "','" + row["valor4"] + "','" + row["valor5"] + "','','" + row["valor6"] + "','" + row["valor7"] + "','" + row["valor8"] + "','" + row["valor9"] + "','" + DateTime.Now + "','" + row["valor10"] + "')";
                         dat.mysql(xLoadTAb);
 
-
-                        //VALUES('".trim($datos[0])."','".trim($datos[1])."','".trim($datos[2])."','".trim($datos[3])."','".trim($datos[4])."','','".$datos[5]."','".$datos[6]."','".$datos[7]."','".$datos[8]."',now(),'".$usuario['id']."')
-                        //INSERT INTO ACTUALIZACIONES(valor1,valor2,valor3,valor4,valor5,valor6,valor7,valor8,valor9,valor10,valor11,valor12) 
                     }
                     catch (Exception ex)
                     {
@@ -3639,7 +3446,7 @@ namespace SFW.Web
                 divFallecido.Attributes.Add("style", "display:none;");
                 return;
             }
-            if (categoria == "00" && dt.Rows[0][0].ToString() == "1")
+            if (categoria == "00")
             {
                 lnkFallecido.Visible = true;
                 divFallecido.Attributes.Add("style", "float: left; display: inline-flex;");
@@ -3651,54 +3458,6 @@ namespace SFW.Web
                 lnkFallecido.Visible = false;
             }
         }
-
-
-
-
-
-        //void ValidarBotonPlan(string cliente, string categoria, int estado, string cod_titula)
-        //{
-
-        //    DataTable dt = dat.mysql("CALL SP_SUSALUD_REGAFI(14,'" + cliente + "','" + cod_titula
-        //                                             + "','" + categoria + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','');");
-
-        //    DataTable dt2 = dat.mysql("CALL SP_SUSALUD_REGAFI(15,'" + cliente + "','" + cod_titula
-        //                                             + "','" + categoria + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','');");
-        //    if (dt.Rows[0][0].ToString() == "1" && dt2.Rows[0][0].ToString() == "1")
-        //    {
-
-        //        if (estado == 0)
-        //        {
-        //            divlnkPlan.Attributes.Add("style", "display:none;");
-        //            lnkPlan.Visible = false;
-        //            return;
-        //        }
-        //        if (cliente == "15" || cliente == "90")
-        //        {
-        //            if (categoria == "00")
-        //            {
-        //                divlnkPlan.Attributes.Add("style", "display:block;");
-        //                lnkPlan.Visible = true;
-        //            }
-        //            else
-        //            {
-        //                divlnkPlan.Attributes.Add("style", "display:none;");
-        //                lnkPlan.Visible = false;
-        //            }
-        //        }
-        //        else
-        //        {
-        //            divlnkPlan.Attributes.Add("style", "display:none;");
-        //            lnkPlan.Visible = false;
-        //        }
-        //    }
-        //    else
-        //    {
-        //        divlnkPlan.Attributes.Add("style", "display:none;");
-        //        lnkPlan.Visible = false;
-        //    }
-
-        //}
 
         void CargarAfiliado(string usuario, string clientegrilla, string codigogrilla, string comparacion, string categoriagrilla, object sender, GridViewCommandEventArgs e)
         {
@@ -3716,26 +3475,25 @@ namespace SFW.Web
             }
 
             List<Titular> list = new TitularBL().ListarTitularesGrupo(53, clientegrilla, codigogrilla, categoriagrilla);
-            Titular objTitu = list.First(delegate(Titular obj) { return (obj.cod_cliente.Equals(clientegrilla) && (obj.cod_titula.Equals(codigogrilla) && (obj.categoria.Equals(categoriagrilla)))); });
+            Titular objTitu = list.First(delegate (Titular obj) { return (obj.cod_cliente.Equals(clientegrilla) && (obj.cod_titula.Equals(codigogrilla) && (obj.categoria.Equals(categoriagrilla)))); });
 
 
             List<Titular_Detalle> list2 = new TitularDetalleBL().ListarDetallesGrupoFamiliar(54, clientegrilla, codigogrilla, categoriagrilla);
-            Titular_Detalle objTitudeta = list2.First(delegate(Titular_Detalle objt) { return (objt.cod_cliente.Equals(clientegrilla) && (objt.cod_titula.Equals(codigogrilla) && (objt.categoria.Equals(categoriagrilla)))); });
+            Titular_Detalle objTitudeta = list2.First(delegate (Titular_Detalle objt) { return (objt.cod_cliente.Equals(clientegrilla) && (objt.cod_titula.Equals(codigogrilla) && (objt.categoria.Equals(categoriagrilla)))); });
 
 
             List<TituList> list3 = new TitularBL().Busqueda(77, clientegrilla, codigogrilla, categoriagrilla);
-            TituList objTitulist = list3.First(delegate(TituList objtl) { return (objtl.cod_cliente.Equals(clientegrilla)) && (objtl.cod_titula.Equals(codigogrilla) && (objtl.categoria.Equals(categoriagrilla))); });
+            TituList objTitulist = list3.First(delegate (TituList objtl) { return (objtl.cod_cliente.Equals(clientegrilla)) && (objtl.cod_titula.Equals(codigogrilla) && (objtl.categoria.Equals(categoriagrilla))); });
 
             try
             {
                 if (objTitu != null || objTitudeta != null)
                 {
                     ValidarBotonFallecido(clientegrilla, codigogrilla, categoriagrilla, objTitu.estado_titular);
-                    //ValidarBotonPlan(clientegrilla, categoriagrilla, objTitu.estado_titular, codigogrilla);
                     //---CUANDO ES TITULAR---
                     if (categoriagrilla == "00")
                     {
-                        //listardependientes(codigogrilla, clientegrilla);
+                        divClasificacion.Attributes.Add("style", "display:initial;");
                         lblAfiliado.Text = "EDITAR TITULAR";
                         ddlCategoria.DataSource = new ComboBL().ListaCombos(47);
                         ddlCategoria.DataValueField = "valor";
@@ -3744,6 +3502,7 @@ namespace SFW.Web
                     }
                     else
                     {
+                        divClasificacion.Attributes.Add("style", "display:none;");
                         lblAfiliado.Text = "EDITAR DEPENDIENTE";
                     }
 
@@ -3755,8 +3514,8 @@ namespace SFW.Web
                     txtNombreEmpresa.Attributes.Add("readonly", "readonly");
                     txtCodigoTitu.ReadOnly = true;
 
-                   
-                    
+
+
                     ddlCategoria.Attributes.Add("readonly", "readonly");
                     chkConcubina.Enabled = false;
                     ddlCategoria.CssClass = "form-control input-sm disabled-button";
@@ -3835,7 +3594,7 @@ namespace SFW.Web
 
                         if (dtActivaAfiliado.Rows.Count > 0)
                         {
-                            if (dtActivaAfiliado.Rows[0]["ACTIVA_AFI"].ToString() == "1" && objTitu.cod_cliente != "57")
+                            if (dtActivaAfiliado.Rows[0]["ACTIVA_AFI"].ToString() == "1")
                             {
                                 btnActivarAfiliado.Attributes.Remove("disabled");
                                 btnActivarAfiliado.Visible = true;
@@ -3872,30 +3631,17 @@ namespace SFW.Web
                         Image1.ImageUrl = dt.Rows[0][0].ToString();
                     }
 
-                    //string path_ruta = "http://www.solben.net/solben/foto/" + clientegrilla + "/" + clientegrilla + "-" + codigogrilla + "-" + categoriagrilla + ".jpg";
-
-                    //if (RemoteFileExists(path_ruta) == true)
-                    //{
-                    //    Image1.ImageUrl = "http://www.solben.net/solben/foto/" + clientegrilla + "/" + clientegrilla + "-" + codigogrilla + "-" + categoriagrilla + ".jpg";
-                    //}
-                    //else
-                    //{
-                    //    Image1.ImageUrl = "~/image/photo.png";
-                    //}
-
                     if (clientegrilla == "15")
                     {
                         campo2.Visible = true;
                     }
-
-                    //if ((clientegrilla == "55") || (clientegrilla == "56"))
                     if ((clientegrilla == "57"))
                     {
                         if ((objTitudeta.segunda_capa == "N") && (objTitudeta.basico == "N") && (objTitudeta.onco == "N") && (objTitu.estado_titular == 0) && (objTitu.fch_baja == ""))
                         {
                             btnGuardarModificar.Attributes.Remove("disabled");
                         }
-                        divContratante.Visible = true;  
+                        divContratante.Visible = true;
                         ocultos2.Visible = true;
                         segundacapa.Visible = true;
                         basico.Visible = true;
@@ -3935,13 +3681,11 @@ namespace SFW.Web
                         {
                             cod_paciente.Visible = false;
                             id_paciente.Visible = false;
-                            //pad.Visible = true;
                         }
                         else if (Convert.ToInt32(categoriagrilla) >= 04 && Convert.ToInt32(categoriagrilla) <= 20)
                         {
                             cod_paciente.Visible = true;
                             id_paciente.Visible = true;
-                            //pad.Visible = true;
                         }
                         else if (Convert.ToInt32(categoriagrilla) == 01)
                         {
@@ -3951,8 +3695,6 @@ namespace SFW.Web
                         else
                         {
                             cod_paciente.Visible = true;
-                            // id_paciente.Visible = true;
-                            //pad.Visible = true;
                         }
                         dpto.Visible = true;
                         rol.Visible = true;
@@ -3960,7 +3702,6 @@ namespace SFW.Web
                         pad.Visible = true;
                         programa.Visible = true;
 
-                        //ddlCategoria_SelectedIndexChanged(sender, e);
 
                     }
 
@@ -3971,15 +3712,12 @@ namespace SFW.Web
                     informes123.Visible = false;
                     NuevoAviso.Visible = false;
                     BuscaAviso.Visible = true;
-                    //loadDetail(clientegrilla, objTitudeta.afi_apepat + " " + objTitudeta.afi_apemat + ", " + objTitudeta.afi_nombre);
-                    //loadIC(clientegrilla, objTitu.cod_titula, Convert.ToString(objTitu.categoria));
-                    //loadIM(clientegrilla, objTitu.cod_titula, Convert.ToString(objTitu.categoria));
                     avisos(clientegrilla, objTitu.cod_titula, Convert.ToString(objTitu.categoria));
                     movimientos(clientegrilla, objTitu.cod_titula.ToString(), Convert.ToString(objTitu.categoria), ddlMes.SelectedValue.ToString(), ddlAnio.SelectedValue.ToString(), usu.ID.ToString());
 
                     txtNombreEmpresa.Text = hfNombreEmpresa.Value.ToString().Substring(3);
                     txtCodigoTitu.Text = objTitu.cod_titula;
-                    //ddlCategoria.SelectedValue = Convert.ToString(objTitu.categoria);
+
                     categoriaHidden.Value = categoriagrilla;
                     ddlCategoria.SelectedValue = comparacion;
                     ddlCentro.SelectedValue = Convert.ToString(objTitu.centro_costo);
@@ -3992,13 +3730,10 @@ namespace SFW.Web
                     txtBaja.Text = Convert.ToString(objTitu.fch_baja);
                     txtDNI.Text = Convert.ToString(objTitu.dni);
 
-                   
+
                     if (Page.IsPostBack)
                     {
-                        //txtContraseña.Text = Convert.ToString(objTitu.pass);
                         txtContraseña.Attributes.Add("Value", Convert.ToString(objTitu.pass));
-                        //txtContraseña.Attributes.Add("Text", Convert.ToString(objTitu.pass));
-
                     }
 
                     //AQUI VIENE EL DETALLE DEL AFILIADO
@@ -4029,11 +3764,11 @@ namespace SFW.Web
                     txtRol.Text = Convert.ToString(objTitudeta.rol);
                     txtCodPaciente.Text = Convert.ToString(objTitudeta.cod_paciente);
                     ddlClasificacion.SelectedValue = Convert.ToString(objTitudeta.clasificacion);
-                    if (txtCodPaciente.Text=="1")
+                    if (txtCodPaciente.Text == "1")
                     {
                         chkConcubina.Checked = false;
                     }
-                    if (txtCodPaciente.Text=="20")
+                    if (txtCodPaciente.Text == "20")
                     {
                         chkConcubina.Checked = true;
                     }
@@ -4269,8 +4004,6 @@ namespace SFW.Web
 
                 if (e.CommandName == "Editar")
                 {
-                    //combosNuevoEditar(); myg pending
-
                     hfNombreEmpresa.Value = "";
                     RecordConsumoTab.Visible = true;
                     AvisosTab.Visible = true;
@@ -4285,21 +4018,22 @@ namespace SFW.Web
                     grupofamiliar(cod_titula, cliente);
 
                     List<Titular> lista_Titu = new TitularBL().ListarTitularesGrupo(53, cliente, cod_titula, "00");
-                    Titular titu = lista_Titu.First(delegate(Titular obj) { return (obj.cod_cliente.Equals(cliente) && (obj.cod_titula.Equals(cod_titula) && (obj.categoria.Equals("00")))); });
-
+                    Titular titu = lista_Titu.First(delegate (Titular obj) { return (obj.cod_cliente.Equals(cliente) && (obj.cod_titula.Equals(cod_titula) && (obj.categoria.Equals("00")))); });
+                    usu = new UsuarioBL().ObtieneUsuario(52, Convert.ToInt32(Session["USUARIO"].ToString()));
                     if ((titu.categoria == "00") && (titu.estado_titular == 0))
                     {
                         btnDependienteNuevo.Attributes.Add("disabled", "disabled");
                     }
                     else
                     {
-                        btnDependienteNuevo.Attributes.Remove("disabled");
-                    }
-
-                    usu = new UsuarioBL().ObtieneUsuario(52, Convert.ToInt32(Session["USUARIO"].ToString()));
-                    if (usu.ROL == "50")
-                    {
-                        btnDependienteNuevo.Attributes.Add("disabled", "disabled");
+                        if (usu.ROL == "50")
+                        {
+                            btnDependienteNuevo.Attributes.Add("disabled", "disabled");
+                        }
+                        else
+                        {
+                            btnDependienteNuevo.Attributes.Remove("disabled");
+                        }
                     }
 
                     StringBuilder sb = new StringBuilder();
@@ -4852,7 +4586,15 @@ namespace SFW.Web
             }
 
             string SSQLX = null;
-            SSQLX = "CALL sp_avisos2(7, '" + txtNumeroPoli.Text + "','" + txtCodigoTitu.Text + "','" + categoriaHidden.Value + "','" + txtAvisoDescrip.Text.ToString() + "','" + Session["USUARIO"] + "','" + Ddl_ClasifAviso.SelectedValue.ToString() + "','" + txtdesde.Text + "','" + txthasta.Text + "','" + limite + "')";
+            SSQLX = "CALL sp_avisos2(7, '" + txtNumeroPoli.Text + "','" +
+                txtCodigoTitu.Text + "','" +
+                categoriaHidden.Value + "','" +
+                txtAvisoDescrip.Text.ToString() + "','" +
+                Session["USUARIO"] + "','" +
+                Ddl_ClasifAviso.SelectedValue.ToString() + "','" +
+                txtdesde.Text + "','" +
+                txthasta.Text + "','" +
+                limite + "')";
             DataTable dt = dat.mysql(SSQLX);
 
             avisos(txtNumeroPoli.Text, txtCodigoTitu.Text, categoriaHidden.Value);
@@ -5073,22 +4815,10 @@ namespace SFW.Web
                     DataTable dt4 = dat.mysql(SSQL4);
 
                     //CREACION DE VEHICULO SINIESTRADO
-                    //SSQL5 = "SP_VER_9 30,'','28730','" + txtPlaca.Text + "','clase','marca','modelo','añofab','motor','chasis','asientos','pasajeros','1','110','" + 
-                    //                                     dt2.Rows[0][0].ToString() + "','" + 
-                    //                                     txtNombreConductor.Text +' '+ txtApellidoPaterno.Text +' '+ txtApellidoMaterno.Text + "','TALLER','PRESUPUESTO','INICIO TALLER','FIN TALLER',1";
                     SSQL5 = "SP_VER_9 30,'','28730','" + txtPlaca.Text + "','','','','','','','','','1','110','" +
                                                          dt2.Rows[0][0].ToString() + "','" +
                                                          txtNombreConductor.Text + " " + txtApellidoPaterno.Text + " " + txtApellidoMaterno.Text + "','','','','',1";
                     DataTable dt5 = dat.TSegSQL(SSQL5);
-
-                    //ASIGNACION DE VEHICULO CON SINIESTRO
-                    //SSQL6 = "sp_mante 16,'" + dt2.Rows[0][0].ToString() + "','28730','" +
-                    //                        txtNombreConductor.Text + ' ' + txtApellidoPaterno.Text + ' ' + txtApellidoMaterno.Text + "','TALLER ASIGNADO','MONTO PRESUPUESTO','FECINGTALLER','FECHASALIDATALLER','FECHAINSPECCION','MONTORESPCIVIL','MONTODAÑO','LUGAR SINIESTRO','DESCRIPSINIES','1','" + dt5.Rows[0][0].ToString() + "',RC,PERTOT,DANOCU,'CONTACTOTALLER',TODORIESGO,'MONTOTODORIESGO'";
-                    //no se usa porque sale error de foranea
-                    //SSQL6 = "sp_mante 16,'" + dt2.Rows[0][0].ToString() + "','28730','" +
-                    //                       txtNombreConductor.Text + " " + txtApellidoPaterno.Text + " " + txtApellidoMaterno.Text + "','','','','','','','','','','1','" + dt5.Rows[0][2].ToString() + "',0,0,0,'',1,'0'";
-
-                    //DataTable dt6 = dat.TSegSQL(SSQL6);
 
                     datospersona = "call sp_fill_2(15,'" + hfNombres.Value + "','" + hfApellidoPaterno.Value + "','" + hfApellidoMaterno.Value + "')";
                     dt55 = dat.mysql(datospersona);

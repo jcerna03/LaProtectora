@@ -257,15 +257,24 @@ namespace SFW.Web
             txtRespuestaGeneral.Text = dtab.Rows[0]["RESPUESTA"].ToString();
             hfEstado.Value = dtab.Rows[0]["ESTADO"].ToString();
 
-            if (hfEmisor.Value == "407")
+            if (dtab.Rows[0]["ID_ASEG"].ToString() == "9999999999")
             {
-                txtOtros.Text = dtab.Rows[0]["NOMBRE_CONT"].ToString();
-                if (dtab.Rows[0]["CLIENTE"].ToString() != "99")
+                if (dtab.Rows[0]["CLIENTE_ID"].ToString() != "99")
                 {
-                    ddlOtrosCliente.SelectedValue = dtab.Rows[0]["CLIENTE"].ToString();
+                    ddlOtrosCliente.SelectedValue = dtab.Rows[0]["CLIENTE_ID"].ToString();
                 }
+                txtOtros.Text = dtab.Rows[0]["NOMBRE_CONT"].ToString();
                 txtTelefonoContactoOtros.Text = dtab.Rows[0]["TELEFONO_CONT"].ToString();
                 txtCorreoContactoOtros.Text = dtab.Rows[0]["CORREO_CONT"].ToString();
+            }
+
+            if (hfEmisor.Value == "407")
+            {
+                txtOtrosEmisor.Text = dtab.Rows[0]["NOMBRE_CONT"].ToString();
+                txtTelefonoContactoOtrosEmisor.Text = dtab.Rows[0]["TELEFONO_CONT"].ToString();
+                txtCorreoContactoOtrosEmisor.Text = dtab.Rows[0]["CORREO_CONT"].ToString();
+
+
             }
             if (hfEmisor.Value == "406")
             {
@@ -481,12 +490,15 @@ namespace SFW.Web
 
                 if (idAsegurado != "")
                 {
-                    string xSQL = "CALL SP_MANTE_GESTION(1,'" + hfOrigen.Value + "','" + hfEmisor.Value + "','" + hfIdEmisor.Value + "','" + lblEmisor.Text + "'," +
+                    string xSQL = "CALL SP_MANTE_GESTION(6,'" + hfOrigen.Value + "','" + hfEmisor.Value + "','" + hfIdEmisor.Value + "','" + lblEmisor.Text + "'," +
                     "'" + hfTipoAsegurado.Value + "','" + idAsegurado + "','" + lblAsegurado.Text + "','" + hfGestion.Value + "'," +
                     "'" + hfSubGestion.Value + "','" + respuestaGeneral + "','','" + hfEstado.Value + "'," +
                     "'" + DateTime.Now.ToString("yyyy-MM-dd") + "','" + Session["USUARIO"] + "','" + nombrecontacto + "','" + telefonocontacto + "','" +
-                    correocontacto + "','" + hfidEmpresa.Value + "','" + hfidUnidad_Negocio.Value + "','" + hfidPoliza.Value + "','" + '-' + "','" + hfNroPoliza.Value + "','" + hfUnidad_Negocio.Value + "','','" + hfDniEmisor.Value + "','" + hfDniAsegurado.Value + "','" + hfIdUsuarioDeriva.Value + "','','','')";
+                    correocontacto + "','" + hfidEmpresa.Value + "','" + hfidUnidad_Negocio.Value + "','" + hfidPoliza.Value + "','" + '-' + "','" + hfNroPoliza.Value + "','" + 
+                    hfUnidad_Negocio.Value + "','','" + hfDniEmisor.Value + "','" + hfDniAsegurado.Value + "','" + hfIdUsuarioDeriva.Value + "','','" + hfCod_Cliente.Value + "','')";
                     DataTable dt = dat.mysql(xSQL);
+
+
                     string idvoid = dt.Rows[0][0].ToString();
                     if (idvoid != "0")
                     {
@@ -586,7 +598,7 @@ namespace SFW.Web
                                     "'" + hfSubGestion.Value + "','" + txtRespuestaGeneral.Text + "','','" + hfEstado.Value + "'," +
                                     "'" + DateTime.Now.ToString("yyyy-MM-dd") + "','" + Session["USUARIO"] + "','" + nombrecontacto + "','" + telefonocontacto + "','" + correocontacto + "','" +
                                     hfidEmpresa.Value + "','" +
-                                    hfidUnidad_Negocio.Value + "','" + hfidPoliza.Value + "','','" + hfNroPoliza.Value + "','" + hfUnidad_Negocio.Value + "','" + hfDniEmisor.Value + "','" + hfDniAsegurado.Value + "','" + hfIdUsuarioDeriva.Value + "','','','')";
+                                    hfidUnidad_Negocio.Value + "','" + hfidPoliza.Value + "','','" + hfNroPoliza.Value + "','" + hfUnidad_Negocio.Value + "','" + hfDniEmisor.Value + "','" + hfDniAsegurado.Value + "','" + hfIdUsuarioDeriva.Value + "','" + hfCod_Cliente.Value + "','','')";
                     dat.mysql(xSQL);
                     lblalerta.Text = "REGISTRO ACTUALIZADO.";
                     correcto.Visible = true;
@@ -650,11 +662,11 @@ namespace SFW.Web
             //EJECUTIVO
             if (hfDerivadoEjecutivo.Value == "1")
             {
-                xSQL = "CALL SP_GESTION_VOIP(5,'" + txtEjecutivo01.Text + "','" + Session["USUARIO"].ToString() + "','" + hfLibro.Value + "','" + hfOrdenSubGestion.Value + "','" + hfCliente.Value + "');";
+                xSQL = "CALL SP_GESTION_VOIP(5,'" + txtEjecutivo.Text + "','" + Session["USUARIO"].ToString() + "','" + hfLibro.Value + "','" + hfOrdenSubGestion.Value + "','" + hfCliente.Value + "');";
             }
             else
             {
-                xSQL = "CALL SP_GESTION_VOIP(5,'" + txtEjecutivo01.Text + "','','','','" + hfCliente.Value + "');";
+                xSQL = "CALL SP_GESTION_VOIP(5,'" + txtEjecutivo.Text + "','','','','" + hfCliente.Value + "');";
             }
             dtab = dat.mysql(xSQL);
             gvEjecutivo.DataSource = dtab;
@@ -708,6 +720,8 @@ namespace SFW.Web
                     {
                         lblFechaNacimiento.Text = "No hay fecha de nacimiento registrada, favor de ingresarlo.";
                     }
+
+                    ddlTablas.SelectedValue = "00";
 
                     txtContactoNombre.Text = nombreAfiliado;
                     txtContactoNombreModal.Text = nombreAfiliado;
@@ -889,7 +903,7 @@ namespace SFW.Web
                 hfEmisorDescripModal.Value = this.gvEmisor.DataKeys[currentRowIndex]["DESCRIP"].ToString();
                 hfOrdenEmisor.Value = this.gvEmisor.DataKeys[currentRowIndex]["ORDEN"].ToString();
                 EMISOR();
-                divddlOtrosCliente.Attributes.Add("style","display:none;");
+                //divddlOtrosCliente.Attributes.Add("style","display:none;");
                 ddlOtrosCliente.Visible = false;
                 hfTipoModalAfiliado.Value = "emisor";
 
@@ -935,7 +949,8 @@ namespace SFW.Web
                 }
                 else if (hfOrdenEmisor.Value == "5" || hfOrdenEmisor.Value == "8" || hfOrdenEmisor.Value == "11")
                 {
-                    limpiarOtros();
+                    frmdatosAdicionalesEmisor.Visible = true;
+                    frmdatosAdicionales.Visible = false;
                     StringBuilder sb = new StringBuilder();
                     sb.Append("<script type='text/javascript'>");
                     sb.Append("$('#Otros').modal('show');");
@@ -945,11 +960,7 @@ namespace SFW.Web
             }
         }
 
-        public void limpiarOtros()
-        {
-            frmdatosAdicionalesAsegurado.Visible = false;
-            frmdatosAdicionales.Visible = true;
-        }
+
 
         public void limpiarFamiliar()
         {
@@ -985,7 +996,7 @@ namespace SFW.Web
                 hfAsegurado.Value = Asegurado;
                 hfTipoAsegurado.Value = Convert.ToString(this.gvAsegurado.DataKeys[currentRowIndex]["DESCRIP"]);
                 hfTipoModalAfiliado.Value = "asegurado";
-                divddlOtrosCliente.Attributes.Add("style", "display:inline-block;");
+                //divddlOtrosCliente.Attributes.Add("style", "display:inline-block;");
                 ddlOtrosCliente.Visible = true;
                 ASEGURADO();
                 if (hfTipoAsegurado.Value == "ASEGURADO")
@@ -999,7 +1010,8 @@ namespace SFW.Web
                 }
                 else if (hfTipoAsegurado.Value == "OTROS")
                 {
-                    limpiarOtros();
+                    frmdatosAdicionalesEmisor.Visible = false;
+                    frmdatosAdicionales.Visible = true;
                     StringBuilder sb = new StringBuilder();
                     sb.Append("<script type='text/javascript'>");
                     sb.Append("$('#Otros').modal('show');");
@@ -1686,25 +1698,20 @@ namespace SFW.Web
             {
                 divlblEmisor.Attributes.Add("style", "display:inline;");
                 hfIdEmisor.Value = "9999999999";
-                lblEmisor.Text = txtOtros.Text.Replace("\r\n", " ");
+                lblEmisor.Text = txtOtrosEmisor.Text.Replace("\r\n", " ");
                 hfDniEmisor.Value = txtDniContactoOtros.Text;
-                txtContactoNombre.Text = txtOtros.Text;
-                txtContactoNombreModal.Text = txtOtros.Text;
+                txtContactoNombre.Text = txtOtrosEmisor.Text;
+                txtContactoNombreModal.Text = txtOtrosEmisor.Text;
 
-                txtContactoTelefono.Text = txtTelefonoContactoOtros.Text;
-                txtContactoCorreo.Text = txtCorreoContactoOtros.Text;
-                txtContactoDni.Text = txtDniContactoOtros.Text;
+                txtContactoTelefono.Text = txtTelefonoContactoOtrosEmisor.Text;
+                txtContactoCorreo.Text = txtCorreoContactoOtrosEmisor.Text;
+                txtContactoDni.Text = txtDniContactoOtrosEmisor.Text;
                 hfDatosAdicionales.Value = "2";
             }
             else if (hfTipoModalAfiliado.Value == "asegurado")
             {
                 divlblAsegurado.Attributes.Add("style", "display:inline;");
-                hfIdAsegurado.Value = "9999999999";
-                if (ddlOtrosCliente.SelectedValue != "00")
-                {
-                   hfIdAsegurado.Value = ddlOtrosCliente.SelectedValue.ToString()+"99999999"; 
-                }
-                
+                hfIdAsegurado.Value = "9999999999";               
                 hfCod_Cliente.Value = ddlOtrosCliente.SelectedValue;
                 lblAsegurado.Text = txtOtros.Text.Replace("\r\n", " ");
                 hfDniAsegurado.Value = txtDniContactoOtros.Text;
@@ -1830,6 +1837,11 @@ namespace SFW.Web
                 hfIdEmisor.Value = IdEjecutivo;
                 hfNombreEmisor.Value = NombreEjecutivo;
                 lblEmisor.Text = NombreEjecutivo;
+                StringBuilder sb = new StringBuilder();
+                sb.Append("<script type='text/javascript'>");
+                sb.Append("$('#Ejecutivo').modal('hide');");
+                sb.Append("</script>");
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Script", sb.ToString(), false);
             }
 
         }

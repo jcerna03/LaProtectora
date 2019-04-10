@@ -8,6 +8,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
     <LastUsedBuildConfiguration>Release</LastUsedBuildConfiguration>
     <LastUsedPlatform>Any CPU</LastUsedPlatform>
     <TimeStampOfAssociatedLegacyPublishXmlFile>2018-01-24T10:55:25.8314893-05:00</TimeStampOfAssociatedLegacyPublishXmlFile>
+    <_PublishTargetUrl>C:\Publicados\TitusWeb-Voip</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="App_Browsers/BrowserFile1.browser">
@@ -23,7 +24,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>12/04/2013 14:25:38</publishTime>
     </File>
     <File Include="bin/amqmdnet.dll">
-      <publishTime>06/27/2013 01:00:00</publishTime>
+      <publishTime>02/26/2016 00:00:00</publishTime>
     </File>
     <File Include="bin/DiffieHellman.dll">
       <publishTime>06/24/2007 21:03:00</publishTime>
@@ -46,20 +47,32 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
     <File Include="bin/jr-afiliacion-susalud-04102016.dll">
       <publishTime>10/04/2016 11:44:56</publishTime>
     </File>
+    <File Include="bin/MySql.Data.dll">
+      <publishTime>12/18/2013 00:13:40</publishTime>
+    </File>
+    <File Include="bin/MySql.Data.Entity.dll">
+      <publishTime>12/18/2013 00:13:44</publishTime>
+    </File>
+    <File Include="bin/MySql.Data.Entity.EF6.dll">
+      <publishTime>12/18/2013 00:13:50</publishTime>
+    </File>
+    <File Include="bin/MySql.Web.dll">
+      <publishTime>12/18/2013 00:13:42</publishTime>
+    </File>
     <File Include="bin/Org.Mentalis.Security.dll">
       <publishTime>06/24/2007 21:03:02</publishTime>
     </File>
     <File Include="bin/SFW.BE.dll">
-      <publishTime>01/31/2019 09:35:35</publishTime>
+      <publishTime>03/08/2019 10:47:01</publishTime>
     </File>
     <File Include="bin/SFW.BL.dll">
-      <publishTime>01/31/2019 09:35:37</publishTime>
+      <publishTime>03/08/2019 10:47:02</publishTime>
     </File>
     <File Include="bin/SFW.DAO.dll">
-      <publishTime>01/31/2019 09:35:36</publishTime>
+      <publishTime>03/08/2019 10:47:02</publishTime>
     </File>
     <File Include="bin/SFW.Web.dll">
-      <publishTime>01/31/2019 09:44:30</publishTime>
+      <publishTime>03/08/2019 10:47:02</publishTime>
     </File>
     <File Include="bin/Tamir.SharpSSH.dll">
       <publishTime>06/24/2007 21:14:04</publishTime>
@@ -209,7 +222,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>06/23/2017 11:23:14</publishTime>
     </File>
     <File Include="NuevaGestion.aspx">
-      <publishTime>01/30/2019 15:25:36</publishTime>
+      <publishTime>03/08/2019 10:40:29</publishTime>
     </File>
     <File Include="packages.config">
       <publishTime>01/12/2018 11:09:06</publishTime>
@@ -281,13 +294,13 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>01/12/2018 13:51:56</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>01/31/2019 09:44:31</publishTime>
+      <publishTime>03/08/2019 10:47:03</publishTime>
     </File>
     <File Include="wfAlertas.aspx">
       <publishTime>02/16/2016 15:35:45</publishTime>
     </File>
     <File Include="wfMantenimiento.aspx">
-      <publishTime>11/14/2018 17:39:22</publishTime>
+      <publishTime>03/05/2019 10:17:53</publishTime>
     </File>
     <File Include="xml/1114e6aa-c689-4874-a271-847503eccb6d.xml">
       <publishTime>03/01/2018 18:06:44</publishTime>

@@ -25,3 +25,13 @@ C:\Users\User\Desktop\VOIP PRODUCCION\TITUSWEB_PRODUCCION\SFW.BL\bin\Release\SFW
 C:\Users\User\Desktop\VOIP PRODUCCION\TITUSWEB_PRODUCCION\SFW.BL\obj\Release\SFW.BL.csprojResolveAssemblyReference.cache
 C:\Users\User\Desktop\VOIP PRODUCCION\TITUSWEB_PRODUCCION\SFW.BL\obj\Release\SFW.BL.dll
 C:\Users\User\Desktop\VOIP PRODUCCION\TITUSWEB_PRODUCCION\SFW.BL\obj\Release\SFW.BL.pdb
+C:\Users\jcerna\Desktop\VOIP PRODUCCION\TITUSWEB_PRODUCCION\SFW.BL\bin\Release\SFW.BL.dll
+C:\Users\jcerna\Desktop\VOIP PRODUCCION\TITUSWEB_PRODUCCION\SFW.BL\bin\Release\SFW.BL.pdb
+C:\Users\jcerna\Desktop\VOIP PRODUCCION\TITUSWEB_PRODUCCION\SFW.BL\bin\Release\SFW.BE.dll
+C:\Users\jcerna\Desktop\VOIP PRODUCCION\TITUSWEB_PRODUCCION\SFW.BL\bin\Release\SFW.DAO.dll
+C:\Users\jcerna\Desktop\VOIP PRODUCCION\TITUSWEB_PRODUCCION\SFW.BL\bin\Release\MySql.Data.dll
+C:\Users\jcerna\Desktop\VOIP PRODUCCION\TITUSWEB_PRODUCCION\SFW.BL\bin\Release\SFW.BE.pdb
+C:\Users\jcerna\Desktop\VOIP PRODUCCION\TITUSWEB_PRODUCCION\SFW.BL\bin\Release\SFW.DAO.pdb
+C:\Users\jcerna\Desktop\VOIP PRODUCCION\TITUSWEB_PRODUCCION\SFW.BL\obj\Release\SFW.BL.csprojResolveAssemblyReference.cache
+C:\Users\jcerna\Desktop\VOIP PRODUCCION\TITUSWEB_PRODUCCION\SFW.BL\obj\Release\SFW.BL.dll
+C:\Users\jcerna\Desktop\VOIP PRODUCCION\TITUSWEB_PRODUCCION\SFW.BL\obj\Release\SFW.BL.pdb

@@ -214,3 +214,13 @@ C:\Users\User\Desktop\VOIP PRODUCCION\TITUSWEB_PRODUCCION\SFW.BL\bin\Debug\SFW.D
 C:\Users\User\Desktop\VOIP PRODUCCION\TITUSWEB_PRODUCCION\SFW.BL\obj\Debug\SFW.BL.csprojResolveAssemblyReference.cache
 C:\Users\User\Desktop\VOIP PRODUCCION\TITUSWEB_PRODUCCION\SFW.BL\obj\Debug\SFW.BL.dll
 C:\Users\User\Desktop\VOIP PRODUCCION\TITUSWEB_PRODUCCION\SFW.BL\obj\Debug\SFW.BL.pdb
+C:\Users\jcerna\Desktop\VOIP PRODUCCION\TITUSWEB_PRODUCCION\SFW.BL\bin\Debug\SFW.BL.dll
+C:\Users\jcerna\Desktop\VOIP PRODUCCION\TITUSWEB_PRODUCCION\SFW.BL\bin\Debug\SFW.BL.pdb
+C:\Users\jcerna\Desktop\VOIP PRODUCCION\TITUSWEB_PRODUCCION\SFW.BL\bin\Debug\SFW.BE.dll
+C:\Users\jcerna\Desktop\VOIP PRODUCCION\TITUSWEB_PRODUCCION\SFW.BL\bin\Debug\SFW.DAO.dll
+C:\Users\jcerna\Desktop\VOIP PRODUCCION\TITUSWEB_PRODUCCION\SFW.BL\bin\Debug\MySql.Data.dll
+C:\Users\jcerna\Desktop\VOIP PRODUCCION\TITUSWEB_PRODUCCION\SFW.BL\bin\Debug\SFW.BE.pdb
+C:\Users\jcerna\Desktop\VOIP PRODUCCION\TITUSWEB_PRODUCCION\SFW.BL\bin\Debug\SFW.DAO.pdb
+C:\Users\jcerna\Desktop\VOIP PRODUCCION\TITUSWEB_PRODUCCION\SFW.BL\obj\Debug\SFW.BL.csprojResolveAssemblyReference.cache
+C:\Users\jcerna\Desktop\VOIP PRODUCCION\TITUSWEB_PRODUCCION\SFW.BL\obj\Debug\SFW.BL.dll
+C:\Users\jcerna\Desktop\VOIP PRODUCCION\TITUSWEB_PRODUCCION\SFW.BL\obj\Debug\SFW.BL.pdb

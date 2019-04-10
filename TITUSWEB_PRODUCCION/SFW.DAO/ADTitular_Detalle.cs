@@ -261,6 +261,8 @@ namespace SFW.DAO
                     titudeta.cod_cliente = Convert.ToString(reader["cod_cliente"]);
                     titudeta.cod_titula = Convert.ToString(reader["cod_titula"]);
                     titudeta.categoria = Convert.ToString(reader["categoria"]);
+                    titudeta.categoriaSusalud = Convert.ToString(reader["categoria"]);
+
                     titudeta.depa_id = Convert.ToString(reader["depa_id"]);
                     titudeta.prov_id = Convert.ToString(reader["prov_id"]);
                     titudeta.dist_id = Convert.ToString(reader["dist_id"]);
@@ -295,9 +297,8 @@ namespace SFW.DAO
                     titudeta.correo2 = Convert.ToString(reader["correo2"]);
                     titudeta.contrato = Convert.ToString(reader["contrato"]);
                     titudeta.cod_afiliado = Convert.ToString(reader["cod_afiliado"]);
+                    titudeta.fallecido = Convert.ToString(reader["fallecido"]);
                     titudeta.clasificacion = Convert.ToString(reader["clasif"]);
-
-                    
                     titudeta.contratante = Convert.ToString(reader["contratante"]);
 
 

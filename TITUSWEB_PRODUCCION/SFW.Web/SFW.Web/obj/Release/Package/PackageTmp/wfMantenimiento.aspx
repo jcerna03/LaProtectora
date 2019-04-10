@@ -14,15 +14,6 @@
     <link type="text/css" href="Content/bootstrap.css" rel="stylesheet" media="all" />
     <link type="text/css" href="font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" />
     <link type="text/css" href="Content/MYG.css" rel="stylesheet" media="all" />
-    <!--[if IE 8]>
-        <script type="text/javascript" src="Scripts/jquery-1.11.3.min.js"></script>
-    <![endif]-->
-    <!--[if IE 9]>
-        <script type="text/javascript" src="Scripts/jquery-2.1.1.min.js"></script>
-    <![endif]-->
-    <!--[if IE 10]>
-        <script type="text/javascript" src="Scripts/jquery-2.1.1.min.js"></script>
-    <![endif]-->
     <script type="text/javascript" src="Scripts/jquery-1.11.3.min.js"></script>
     <script type="text/javascript" src="Scripts/bootstrap.js"></script>
     <link href="Content/jasny-bootstrap.css" rel="stylesheet" type="text/css" />
@@ -68,7 +59,6 @@
             <asp:HiddenField ID="hfApellidoMaterno" runat="server" />
             <asp:HiddenField ID="hfDNI" runat="server" />
             <asp:HiddenField ID="hfPlan" runat="server" />
-
 
             <div class="col-lg-12">
                 <div class="panel panel-blue sombra02">
@@ -204,7 +194,7 @@
         </div>
         <div id="NUEVOAFILIADO" class="modal modal-wide fade bs-example-modal-lg" tabindex="-1"
             role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true"
-            data-keyboard="false">
+            data-keyboard="false" data-backdrop="static">
             <div class="modal-dialog modal-wide modal-lg">
                 <div class="modal-content panel panel-popup">
                     <div class="panel-heading color-blue text-white">
@@ -329,19 +319,17 @@
                                                                             <asp:Label ID="lblCodigoTitularCorrecto" runat="server" class="input-sm text-success"></asp:Label>
                                                                             <asp:Label ID="lblCodigoTitularNoHay" runat="server" class="input-sm text-danger"></asp:Label>
                                                                         </div>
-                                                                         <div class="form-group-sm" id="concubina" style="float: right;" runat="server" visible="false">
+                                                                        <div class="form-group-sm" id="concubina" style="float: right;" runat="server" visible="false">
                                                                             <label class="control-label input-sm text-blue">
                                                                                 Concubina :</label>
                                                                             <asp:CheckBox ID="chkConcubina" Checked="false" runat="server" class="input-sm" OnCheckedChanged="chkConcubina_CheckedChanged"
-                                                                                 AutoPostBack="true">
-                                                                            </asp:CheckBox>
+                                                                                AutoPostBack="true"></asp:CheckBox>
                                                                         </div>
                                                                         <div class="form-group-sm" id="divContratante" style="float: right;" runat="server" visible="false">
                                                                             <label class="control-label input-sm text-blue">
                                                                                 Contratante :</label>
                                                                             <asp:CheckBox ID="chkContratante" Checked="false" runat="server" class="input-sm"
-                                                                                 AutoPostBack="true">
-                                                                            </asp:CheckBox>
+                                                                                AutoPostBack="true"></asp:CheckBox>
                                                                         </div>
 
                                                                         <div class="form-group-sm ">
@@ -353,18 +341,14 @@
                                                                             <asp:HiddenField ID="categoriaHidden" runat="server" />
                                                                         </div>
 
-                                                                        <div class="form-group-sm ">
+                                                                        <div class="form-group-sm" runat="server" id="divClasificacion">
                                                                             <label class="control-label input-sm text-blue">
                                                                                 Clasificación (*):</label>
                                                                             <asp:DropDownList ID="ddlClasificacion" runat="server" class="form-control input-sm"
-                                                                                 AutoPostBack="true">
+                                                                                AutoPostBack="true">
                                                                             </asp:DropDownList>
-                                                                           
+
                                                                         </div>
-
-
-
-
                                                                         <div class="form-group-sm">
                                                                             <label class="control-label input-sm text-blue">
                                                                                 Plan:</label>
@@ -411,10 +395,6 @@
                                                                                     </asp:LinkButton>
                                                                                 </label>
                                                                             </div>
-                                                                            <%--
-                                                            <input type="text" name="prevent_autofill" id="Text1" value="" style="display:none;" />
-                                                            <input type="password" name="password_fake" id="password1" value="" style="display:none;" />
-                                                            <asp:TextBox ID="txtContraseña" runat="server" class="form-control input-sm" TextMode="Password"></asp:TextBox>--%>
                                                                         </div>
                                                                         <div class="form-group-sm" runat="server" id="documentoSIMA" visible="false">
                                                                             <label class="control-label input-sm text-warning">
@@ -597,7 +577,7 @@
                                                                     </asp:CalendarExtender>
                                                                     <%--   </div>--%>
 
-                                                                    <div runat="server" id="divAvisoCambioPlan">
+                                                                    <div runat="server" id="divAvisoCambioPlan" style="display:none;">
                                                                         <span class="label label-danger">La fecha se actualizará para el nuevo plan </span>
 
                                                                     </div>
@@ -622,12 +602,12 @@
                                                                     </asp:CalendarExtender>
                                                                 </div>
 
-                                                                  <div class="form-group-sm" runat="server" id="divchkSusalud" visible="false">
-                                                                    <label  class="control-label input-sm text-blue">
+                                                                <div class="form-group-sm" runat="server" id="divchkSusalud" visible="false">
+                                                                    <label class="control-label input-sm text-blue">
                                                                         Reportar a SUSALUD:</label>
 
-                                                                      <asp:CheckBox ID="chkSusalud" Checked="true" runat="server" class="input-sm" />
-                                                                   
+                                                                    <asp:CheckBox ID="chkSusalud" Checked="true" runat="server" class="input-sm" />
+
                                                                 </div>
 
 
@@ -1450,19 +1430,13 @@
                         </div>
                     </div>
                     <div class="panel-footer color-blue text-white text-center">
-
-                      
-                            <%--<label class="text-white">Susalud : </label>
-                                <asp:LinkButton ID="lnkPlan" runat="server" class="btn btn-default btn-sm" OnClick="lnkPlan_Click">
-                            <i class="fa fa-refresh fa-fw text-danger"></i>&nbsp;Cambiar de Plan</asp:LinkButton>--%>
-                            <div runat="server" id="divFallecido"  style="float: left; display: inline-flex;">
-                                <asp:LinkButton ID="lnkFallecido" runat="server" class="btn btn-default btn-sm"
-                                    OnClick="lnkFallecido_Click" ValidationGroup="vgFallece"> <i class="fa fa-calendar-o fa-1x text-blue"></i>&nbsp;Validación Fallecido Susalud</asp:LinkButton>
-                                <div class="form-group-sm">
-                                    <asp:TextBox ID="txtFechaTitularFallecido" placeholder="Fecha de Fallecimiento" ClientIDMode="Static" runat="server" name="txtFechaTitularFallecido" class="form-control input-sm"></asp:TextBox>
-                                    <asp:CalendarExtender ID="CalendarExtender1" runat="server" Enabled="True" PopupPosition="TopRight"
-                                        TargetControlID="txtFechaTitularFallecido" Format="dd/MM/yyyy">
-                                    </asp:CalendarExtender>
+                        <div runat="server" id="divFallecido" style="float: left; display: inline-flex;">
+                            <asp:LinkButton ID="lnkFallecido" runat="server" class="btn btn-default btn-sm" OnClick="lnkFallecido_Click" ValidationGroup="vgFallece"> <i class="fa fa-calendar-o fa-1x text-blue"></i>&nbsp;Validación Fallecido Susalud</asp:LinkButton>
+                            <div class="form-group-sm">
+                                <asp:TextBox ID="txtFechaTitularFallecido" placeholder="Fecha de Fallecimiento" ClientIDMode="Static" runat="server" name="txtFechaTitularFallecido" class="form-control input-sm"></asp:TextBox>
+                                <asp:CalendarExtender ID="CalendarExtender1" runat="server" Enabled="True" PopupPosition="TopRight"
+                                    TargetControlID="txtFechaTitularFallecido" Format="dd/MM/yyyy">
+                                </asp:CalendarExtender>
                             </div>
 
                         </div>
@@ -1470,29 +1444,20 @@
                             ControlToValidate="txtFechaTitularFallecido" Display="Dynamic" ValidationGroup="vgFallece"
                             Text="Ingrese fecha de fallecimiento.*" ValidateEmptyText="true" SetFocusOnError="true" CssClass="pull-left" />
 
-                        <asp:LinkButton ID="lnkHistorial" runat="server" class="btn btn-default btn-sm"
-                            OnClick="lnkHistorial_Click"> <i class="fa fa-calendar-o fa-1x text-blue"></i></asp:LinkButton>
-                        <asp:LinkButton ID="lnkImpreOrden" runat="server" class="btn btn-default btn-sm"
-                            OnClick="lnkImpreOrden_Click"> <i class="fa fa-print fa-1x text-blue"></i>&nbsp;Generación de Órdenes de Atención </asp:LinkButton>
-                        <asp:LinkButton ID="lnkFichaPersonal" runat="server" class="btn btn-default btn-sm"
-                            OnClick="lnkFichaPersonal_Click"> <i class="fa fa-print fa-1x text-blue"></i>&nbsp;Imprimir Ficha </asp:LinkButton>
-                        <asp:LinkButton ID="btnActivarAfiliado" runat="server" class="btn btn-default btn-sm"
-                            Visible="false" OnClick="btnActivarAfiliado_Click"> <i class="fa fa-plus-circle fa-1x text-blue"></i>&nbsp;Activar Dependiente </asp:LinkButton>
-                        <asp:LinkButton ID="btnBajaModal" runat="server" class="btn btn-default btn-sm" OnClick="btnBajaModal_Click"
-                            Visible="false"> <i class="fa fa-plus-circle fa-1x text-warning"></i>&nbsp;Dar de Baja </asp:LinkButton>
-                        <asp:LinkButton ID="btnHistorialEdicionTitular" runat="server" class="btn btn-default btn-sm"
-                            Visible="False"> <i class="fa fa-history fa-1x text-info"></i>&nbsp;Historial </asp:LinkButton>
-                        <asp:LinkButton ID="btnGuardarModificar" runat="server" class="btn btn-default btn-sm"
-                            OnClientClick="return nuevoPlan();"
-                            OnClick="btnGuardarModificar_Click" Visible="false"> <i class="fa fa-save fa-1x text-blue"></i>&nbsp;Guardar Cambios </asp:LinkButton>
-                        <asp:LinkButton ID="btnGuardarRegistrar" runat="server" class="btn btn-default btn-sm"
-                            OnClick="btnGuardarRegistrar_Click" Visible="false"> <i class="fa fa-edit fa-1x text-blue"></i>&nbsp;Registrar Afiliado </asp:LinkButton>
+                        <asp:LinkButton ID="lnkHistorial" runat="server" class="btn btn-default btn-sm" OnClick="lnkHistorial_Click"> <i class="fa fa-calendar-o fa-1x text-blue"></i></asp:LinkButton>
+                        <asp:LinkButton ID="lnkImpreOrden" runat="server" class="btn btn-default btn-sm" OnClick="lnkImpreOrden_Click"> <i class="fa fa-print fa-1x text-blue"></i>&nbsp;Generación de Órdenes de Atención </asp:LinkButton>
+                        <asp:LinkButton ID="lnkFichaPersonal" runat="server" class="btn btn-default btn-sm" OnClick="lnkFichaPersonal_Click"> <i class="fa fa-print fa-1x text-blue"></i>&nbsp;Imprimir Ficha </asp:LinkButton>
+                        <asp:LinkButton ID="btnActivarAfiliado" runat="server" class="btn btn-default btn-sm" Visible="false" OnClick="btnActivarAfiliado_Click"> <i class="fa fa-plus-circle fa-1x text-blue"></i>&nbsp;Activar Dependiente </asp:LinkButton>
+                        <asp:LinkButton ID="btnBajaModal" runat="server" class="btn btn-default btn-sm" OnClick="btnBajaModal_Click" Visible="false"> <i class="fa fa-plus-circle fa-1x text-warning"></i>&nbsp;Dar de Baja </asp:LinkButton>
+                        <asp:LinkButton ID="btnHistorialEdicionTitular" runat="server" class="btn btn-default btn-sm" Visible="False"> <i class="fa fa-history fa-1x text-info"></i>&nbsp;Historial </asp:LinkButton>
+                        <asp:LinkButton ID="btnGuardarModificar" runat="server" class="btn btn-default btn-sm" OnClientClick="return nuevoPlan();" OnClick="btnGuardarModificar_Click" Visible="false"> <i class="fa fa-save fa-1x text-blue"></i>&nbsp;Guardar Cambios </asp:LinkButton>
+                        <asp:LinkButton ID="btnGuardarRegistrar" runat="server" class="btn btn-default btn-sm" OnClick="btnGuardarRegistrar_Click" Visible="false"> <i class="fa fa-edit fa-1x text-blue"></i>&nbsp;Registrar Afiliado </asp:LinkButton>
                         <asp:LinkButton ID="btnCerrar" runat="server" class="btn btn-default btn-sm" OnClick="btnCerrar_Click"> <i class="fa fa-sign-out fa-1x text-blue"></i>&nbsp;Cerrar </asp:LinkButton>
-                   </div>
-                    
-                     </div>
+                    </div>
+
                 </div>
-          
+            </div>
+
         </div>
         <div id="BAJA" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog"
             aria-labelledby="mySmallModalLabel" aria-hidden="true">
@@ -1512,12 +1477,12 @@
                                             <label class="text-blue input-sm">
                                                 Ingrese fecha de baja:
                                             </label>
-                                            <asp:TextBox ID="TextBox1" runat="server" class="form-control input-sm"></asp:TextBox>
-                                            <asp:CalendarExtender ID="TextBox1_CalendarExtender" runat="server" Enabled="True"
-                                                TargetControlID="TextBox1" Format="dd/MM/yyyy">
+                                            <asp:TextBox ID="txtFechaBajaModal" runat="server" class="form-control input-sm"></asp:TextBox>
+                                            <asp:CalendarExtender ID="txtFechaBajaModal_CalendarExtender" runat="server" Enabled="True"
+                                                TargetControlID="txtFechaBajaModal" Format="dd/MM/yyyy">
                                             </asp:CalendarExtender>
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ForeColor="Red"
-                                                ControlToValidate="TextBox1" Display="Dynamic" ValidationGroup="vgBaja"
+                                                ControlToValidate="txtFechaBajaModal" Display="Dynamic" ValidationGroup="vgBaja"
                                                 Text="Campo obligatorio.*" ValidateEmptyText="true" SetFocusOnError="true" />
                                         </div>
                                         <div class="col-lg-4">
@@ -1526,9 +1491,7 @@
                                             </label>
                                             <asp:DropDownList ID="ddlCausalBaja" runat="server" class="form-control input-sm">
                                             </asp:DropDownList>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ForeColor="Red"
-                                                ControlToValidate="ddlCausalBaja" Display="Dynamic" InitialValue="" ValidationGroup="vgBaja"
-                                                Text="Campo obligatorio.*" ValidateEmptyText="true" SetFocusOnError="true" />
+
                                         </div>
                                         <div class="col-lg-4">
                                             <asp:LinkButton ID="btnBaja01" runat="server" class="btn btn-default btn-sm" ValidationGroup="vgBaja" OnClick="btnBaja01_Click">
@@ -1543,7 +1506,7 @@
                                                 Seleccione los clientes en los que desea dar de baja al afiliado:
                                             </label>
                                         </legend>
-                                        <asp:CheckBoxList ID="CheckBoxList1" runat="server" RepeatDirection="Vertical" class="input-sm text-blue">
+                                        <asp:CheckBoxList ID="CheckBoxPetro" runat="server" RepeatDirection="Vertical" class="input-sm text-blue">
                                         </asp:CheckBoxList>
                                     </div>
                                 </div>
@@ -1553,7 +1516,6 @@
                                     OnClick="btnSali_Click">
                                     <i class="fa fa-sign-out fa-1x text-blue"></i> Cerrar
                                 </asp:LinkButton>
-                                <%--data-dismiss="modal" aria-hidden="true" --%>
                             </div>
                         </ContentTemplate>
                         <Triggers>
@@ -2116,21 +2078,20 @@
             }
         });
         function nuevoPlan() {
-            var resul; 
-           
+            var resul;
+
             if ($('#planHidden').val() == "1") {
                 resul = confirm('¿Esta seguro que desea guardar configuración actual? Recuerda ingresar la fecha ingreso del nuevo plan. Además, de seleccionar la modalidad de onco, se realizará el cambio sin carencia.');
-         
+
             }
             else {
                 resul = confirm('¿Esta seguro que desea guardar configuración actual?');
             }
 
-            if (resul)
-            {
+            if (resul) {
                 $("#btnGuardarModificar").attr("disabled", "disabled");
             }
-            return resul; 
+            return resul;
         }
 
     </script>

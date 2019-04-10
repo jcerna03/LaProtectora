@@ -166,3 +166,14 @@ C:\Users\User\Desktop\VOIP PRODUCCION\TITUSWEB_PRODUCCION\SFW.DAO\bin\Debug\SFW.
 C:\Users\User\Desktop\VOIP PRODUCCION\TITUSWEB_PRODUCCION\SFW.DAO\obj\Debug\SFW.DAO.csprojResolveAssemblyReference.cache
 C:\Users\User\Desktop\VOIP PRODUCCION\TITUSWEB_PRODUCCION\SFW.DAO\obj\Debug\SFW.DAO.dll
 C:\Users\User\Desktop\VOIP PRODUCCION\TITUSWEB_PRODUCCION\SFW.DAO\obj\Debug\SFW.DAO.pdb
+C:\Users\jcerna\Desktop\VOIP PRODUCCION\TITUSWEB_PRODUCCION\SFW.DAO\bin\Debug\SFW.DAO.dll
+C:\Users\jcerna\Desktop\VOIP PRODUCCION\TITUSWEB_PRODUCCION\SFW.DAO\bin\Debug\SFW.DAO.pdb
+C:\Users\jcerna\Desktop\VOIP PRODUCCION\TITUSWEB_PRODUCCION\SFW.DAO\bin\Debug\MySql.Data.dll
+C:\Users\jcerna\Desktop\VOIP PRODUCCION\TITUSWEB_PRODUCCION\SFW.DAO\bin\Debug\MySql.Data.Entity.dll
+C:\Users\jcerna\Desktop\VOIP PRODUCCION\TITUSWEB_PRODUCCION\SFW.DAO\bin\Debug\MySql.Data.Entity.EF6.dll
+C:\Users\jcerna\Desktop\VOIP PRODUCCION\TITUSWEB_PRODUCCION\SFW.DAO\bin\Debug\MySql.Web.dll
+C:\Users\jcerna\Desktop\VOIP PRODUCCION\TITUSWEB_PRODUCCION\SFW.DAO\bin\Debug\SFW.BE.dll
+C:\Users\jcerna\Desktop\VOIP PRODUCCION\TITUSWEB_PRODUCCION\SFW.DAO\bin\Debug\SFW.BE.pdb
+C:\Users\jcerna\Desktop\VOIP PRODUCCION\TITUSWEB_PRODUCCION\SFW.DAO\obj\Debug\SFW.DAO.csprojResolveAssemblyReference.cache
+C:\Users\jcerna\Desktop\VOIP PRODUCCION\TITUSWEB_PRODUCCION\SFW.DAO\obj\Debug\SFW.DAO.dll
+C:\Users\jcerna\Desktop\VOIP PRODUCCION\TITUSWEB_PRODUCCION\SFW.DAO\obj\Debug\SFW.DAO.pdb

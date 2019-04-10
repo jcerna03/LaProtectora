@@ -607,6 +607,15 @@ namespace SFW.Web {
         protected global::System.Web.UI.WebControls.HiddenField categoriaHidden;
         
         /// <summary>
+        /// Control divClasificacion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divClasificacion;
+        
+        /// <summary>
         /// Control ddlClasificacion.
         /// </summary>
         /// <remarks>
@@ -2236,22 +2245,22 @@ namespace SFW.Web {
         protected global::System.Web.UI.UpdatePanel UpdatePanel5;
         
         /// <summary>
-        /// Control TextBox1.
+        /// Control txtFechaBajaModal.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox txtFechaBajaModal;
         
         /// <summary>
-        /// Control TextBox1_CalendarExtender.
+        /// Control txtFechaBajaModal_CalendarExtender.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::AjaxControlToolkit.CalendarExtender TextBox1_CalendarExtender;
+        protected global::AjaxControlToolkit.CalendarExtender txtFechaBajaModal_CalendarExtender;
         
         /// <summary>
         /// Control RequiredFieldValidator1.
@@ -2272,15 +2281,6 @@ namespace SFW.Web {
         protected global::System.Web.UI.WebControls.DropDownList ddlCausalBaja;
         
         /// <summary>
-        /// Control RequiredFieldValidator7.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator7;
-        
-        /// <summary>
         /// Control btnBaja01.
         /// </summary>
         /// <remarks>
@@ -2299,13 +2299,13 @@ namespace SFW.Web {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl bajapetro;
         
         /// <summary>
-        /// Control CheckBoxList1.
+        /// Control CheckBoxPetro.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBoxList CheckBoxList1;
+        protected global::System.Web.UI.WebControls.CheckBoxList CheckBoxPetro;
         
         /// <summary>
         /// Control btnSali.

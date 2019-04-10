@@ -20,56 +20,36 @@ namespace SFW.Web
         RegafiUpdate997ServiceImpl impl2 = new RegafiUpdate997ServiceImpl();
         String x12n = "";
         MQQueueManager mqQMgr;             //* MQQueueManager instance
-        string channelName, qmgrName, connectionName;
+        string qmgrName;
         MQQueue mqQueue;                      //* MQQueue instance
         string queueName;                     //* Name of queue to use
         MQMessage mqMsg;                       //* MQMessage instance
         MQPutMessageOptions mqPutMsgOpts;     //* MQPutMessageOptions instance   
         MQGetMessageOptions mqGetMsgOpts;      //* MQGetMessageOptions instance
         string strCorrelativo;
-        public string EnvioSUSALUD(string op, Titular titu, Titular_Detalle titu_Deta, string causal, string validacion, string operacion2, string Iafas)
+        public string EnvioSUSALUD(string op, Titular titu, Titular_Detalle titu_Deta)
         {
-            DataTable dtv = dat.mysql("CALL SP_SUSALUD_REGAFI('17','" + Iafas + "','" + ""
-                                                        + "','" + "" + "','" + "" + "','" + ""
-                                                        + "','" + "" + "','" + "" + "','" + ""
-                                                        + "','" + "" + "','" + "" + "','" + "" + "','" + ""
-                                                        + "','" + "" + "','" + "" + "','" + "" + "','" + ""
-                                                        + "','" + "" + "','" + "" + "','" + ""
-                                                        + "','" + "" + "','" + "" + "','" + "" + "','" +
-                                                        "" + "','" + "" + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','');");
+            DataTable dtv = dat.mysql("CALL sp_fill_3('6','" + titu.cod_cliente + "','','','','','','','','','');");
             if (dtv.Rows[0][0].ToString() == "0")
             {
                 return "";
             }
 
-            string call1 = "CALL SP_SUSALUD_REGAFI('10','" + Iafas + "','" + ""
-                                                        + "','" + "" + "','" + "" + "','" + ""
-                                                        + "','" + "" + "','" + "" + "','" + ""
-                                                        + "','" + "" + "','" + "" + "','" + "" + "','" + ""
-                                                        + "','" + "" + "','" + "" + "','" + "" + "','" + ""
-                                                        + "','" + "" + "','" + "" + "','" + ""
-                                                        + "','" + "" + "','" + "" + "','" + "" + "','" + "" + "','" + "" + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','');";
-            DataTable dtab2 = dat.mysql(call1);
-
-            string var_Hostname = dtab2.Rows[0]["valor"].ToString();
-            string var_Puerto = dtab2.Rows[0]["val01"].ToString();
-            string var_Name = dtab2.Rows[0]["val02"].ToString();
-            string var_Canal = dtab2.Rows[0]["descrip"].ToString();
-            string var_NameIN = dtab2.Rows[0]["val04"].ToString();
-            string var_NameOUT = dtab2.Rows[0]["val05"].ToString();
-
+            DataTable dtParametros = dat.mysql("CALL sp_fill_3('7','" + titu.cod_cliente + "','','','','','','','','','');");
+            string var_Hostname = dtParametros.Rows[0]["valor"].ToString();
+            string var_Puerto = dtParametros.Rows[0]["val01"].ToString();
+            string var_Name = dtParametros.Rows[0]["val02"].ToString();
+            string var_Canal = dtParametros.Rows[0]["descrip"].ToString();
+            string var_NameIN = dtParametros.Rows[0]["val04"].ToString();
+            string var_NameOUT = dtParametros.Rows[0]["val05"].ToString();
             //CONEXION DE LA COLA
             string ConexionColaResult = ConexionIBM(var_Hostname, var_Puerto, var_Name, var_Canal);
-
             if (ConexionColaResult.Substring(0, 1) == "0")
             {
                 return "ERROR: " + ConexionColaResult + " MQ CONEXION";
             }
-
             //GENERACION DE X12
-
-            string x12Generado = GenerateX12XmlFromBean(op, titu, titu_Deta, causal, validacion, operacion2);
-
+            string x12Generado = GenerateX12XmlFromBean(op, titu, titu_Deta);
             if (x12Generado.Contains("Validator"))
             {
                 string errorPrincipal = getBetween(x12Generado, "<< Validator Código >>[", "]");
@@ -94,15 +74,11 @@ namespace SFW.Web
             }
 
             //PUT MESSAGE MQ
-
             string putMensajeResult = "";
-
             //System.Threading.Thread.Sleep(3000);
-
             //GET MESSAGE MQ
             contador = 0;
             string getMnesajeResult = "";
-
             while ((getMnesajeResult == "0ERROR: create of MQQueueManager ended with {0}MQRC_NO_MSG_AVAILABLEMQ GET MENSAJE" || getMnesajeResult == ""))
             {
                 putMensajeResult = PutMensaje(codificador(x12Generado), var_NameIN);
@@ -110,12 +86,9 @@ namespace SFW.Web
                 {
                     return "ERROR: " + putMensajeResult + " MQ PUT MENSAJE";
                 }
-
                 getMnesajeResult = GetMensaje(var_NameOUT);
                 contador++;
             }
-
-
             if (putMensajeResult.Substring(0, 1) == "0")
             {
                 return "ERROR: " + putMensajeResult + " MQ PUT MENSAJE";
@@ -128,22 +101,32 @@ namespace SFW.Web
             {
                 if (getMnesajeResult.Contains("*AK5*0000") || getMnesajeResult.Contains("*AK5*0002"))
                 {
-
-                    string stroe = "CALL SP_SUSALUD_REGAFI(3,'" + titu.cod_cliente + "','" + titu.cod_titula  // VAR01 VAR02
-                                                                + "','" + titu.categoria + "','" + op + "','" + titu_Deta.afi_apepat // VAR03 VAR04 VAR05
-                                                                + "','" + titu_Deta.afi_nombre + "','" + titu_Deta.afi_apemat + "','" + titu.tipo_doc // VAR06 VAR07 VAR08
-                                                                + "','" + titu.dni + "','" + titu.fch_naci + "','" + titu.sexo + "','" + titu.fch_alta // VAR09 VAR10 VAR11 VAR12 
-                                                                + "','" + titu.fch_baja + "','" + titu.tipo_doc + "','" + titu.dni + "','" + titu.fch_naci // VAR13 VAR14 VAR15 VAR16
-                                                                + "','" + titu_Deta.afi_apepat + "','" + titu_Deta.afi_nombre + "','" + titu_Deta.afi_apemat // VAR17 VAR18 VAR19 
-                                                                + "','" + titu.estado_titular + "','" + titu.plan + "','" + causal + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','');"; // VAR01 VAR02
+                    string stroe = "CALL SP_SUSALUD('2','" +
+                    titu.cod_cliente + "','" + //var01
+                    titu.cod_titula + "','" + //var02
+                    titu_Deta.categoriaSusalud + "','" + //var03
+                    op + "','" + //var04
+                    titu_Deta.afi_apepat + "','" + //var05
+                    titu_Deta.afi_nombre + "','" + //var06
+                    titu_Deta.afi_apemat + "','" + //var07
+                    titu.tipo_doc + "','" + //var08
+                    titu.dni + "','" + //var09
+                    titu_Deta.estado_afiliado + "','" + //var10
+                    titu.tipo_doc + "','" + //var11
+                    titu.dni + "','" + //var12
+                    titu.fch_naci + "','" + //var13
+                    titu.sexo + "','" + //var14
+                    titu_Deta.fallecido + "','" + //var15
+                    titu_Deta.cod_afiliado + "','" + //var16
+                    titu_Deta.contrato + "','" + //var17
+                    titu_Deta.estado_afiliacion + "','" + //var18
+                    titu_Deta.causalBaja + "','" + //var19
+                    titu.plan + "','" + //var20
+                    titu.fch_alta + "','" + //var21
+                    titu.fch_baja + "','" + //var22
+                    strCorrelativo + "','" +//var23
+                    "','','','','','','');";
                     DataTable dtab1 = dat.mysql(stroe);
-
-
-
-
-                    string call = "CALL SP_SUSALUD_REGAFI('51','" + strCorrelativo + "','" + "Se realizó la operación correctamente." + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','');";
-                    DataTable dtab = dat.mysql(call);
-
 
                     return getMnesajeResult;
                 }
@@ -152,22 +135,35 @@ namespace SFW.Web
                     string errorprincipal = getBetween(getMnesajeResult, "*   ~AK4*", "*");
                     string errorsecundario = getBetween(getMnesajeResult, "*   ~AK4*" + errorprincipal + "*", "  *PER*");
 
-
                     if (errorprincipal == "200 " && errorsecundario == "29" && contador > 1)
                     {
 
-                        string stroe = "CALL SP_SUSALUD_REGAFI(3,'" + titu.cod_cliente + "','" + titu.cod_titula  // VAR01 VAR02
-                                                                + "','" + titu.categoria + "','" + op + "','" + titu_Deta.afi_apepat // VAR03 VAR04 VAR05
-                                                                + "','" + titu_Deta.afi_nombre + "','" + titu_Deta.afi_apemat + "','" + titu.tipo_doc // VAR06 VAR07 VAR08
-                                                                + "','" + titu.dni + "','" + titu.fch_naci + "','" + titu.sexo + "','" + titu.fch_alta // VAR09 VAR10 VAR11 VAR12 
-                                                                + "','" + titu.fch_baja + "','" + titu.tipo_doc + "','" + titu.dni + "','" + titu.fch_naci // VAR13 VAR14 VAR15 VAR16
-                                                                + "','" + titu_Deta.afi_apepat + "','" + titu_Deta.afi_nombre + "','" + titu_Deta.afi_apemat // VAR17 VAR18 VAR19 
-                                                                + "','" + titu.estado_titular + "','" + titu.plan + "','" + causal + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','');"; // VAR01 VAR02
+                        string stroe = "CALL SP_SUSALUD('2','" +
+                            titu.cod_cliente + "','" + //var01
+                            titu.cod_titula + "','" + //var02
+                            titu_Deta.categoriaSusalud + "','" + //var03
+                            op + "','" + //var04
+                            titu_Deta.afi_apepat + "','" + //var05
+                            titu_Deta.afi_nombre + "','" + //var06
+                            titu_Deta.afi_apemat + "','" + //var07
+                            titu.tipo_doc + "','" + //var08
+                            titu.dni + "','" + //var09
+                            titu_Deta.estado_afiliado + "','" + //var10
+                            titu.tipo_doc + "','" + //var11
+                            titu.dni + "','" + //var12
+                            titu.fch_naci + "','" + //var13
+                            titu.sexo + "','" + //var14
+                            titu_Deta.fallecido + "','" + //var15
+                            titu_Deta.cod_afiliado + "','" + //var16
+                            titu_Deta.contrato + "','" + //var17
+                            titu_Deta.estado_afiliacion + "','" + //var18
+                            titu_Deta.causalBaja + "','" + //var19
+                            titu.plan + "','" + //var20
+                            titu.fch_alta + "','" + //var21
+                            titu.fch_baja + "','" + //var22
+                            strCorrelativo + "','" +//var23
+                            "','','','','','','');";
                         DataTable dtab1 = dat.mysql(stroe);
-
-                        string call = "CALL SP_SUSALUD_REGAFI('51','" + strCorrelativo + "','" + "Se realizó la operación correctamente." + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','');";
-                        DataTable dtab = dat.mysql(call);
-
 
                         return getMnesajeResult;
 
@@ -178,11 +174,8 @@ namespace SFW.Web
 
                         string call = "call sp_fill(76,'" + errorprincipal.Trim() + "','" + errorsecundario.Trim() + "','');";
                         DataTable dtab = dat.mysql(call);
-
-
-                        string call2 = "CALL SP_SUSALUD_REGAFI('51','" + strCorrelativo + "','" + "ERROR: " + dtab.Rows[0][0].ToString() + " RESPUESTA SUSALUD" + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','');";
-                        DataTable dtab3 = dat.mysql(call2);
-
+                        string call2 = "CALL sp_fill_3('9','" + strCorrelativo + "','" + "ERROR: " + dtab.Rows[0][0].ToString() + " RESPUESTA SUSALUD" + "','','','','','','','','');";
+                        DataTable dtab2 = dat.mysql(call2);
                         return "ERROR: " + dtab.Rows[0][0].ToString() + " RESPUESTA SUSALUD";
                     }
 
@@ -190,7 +183,7 @@ namespace SFW.Web
             }
             return x12Generado;
         }
-        public string GenerateX12XmlFromBean(string operacion, Titular titu, Titular_Detalle titu_deta, string causalBaja, string validacion, string operacion2)
+        public string GenerateX12XmlFromBean(string operacion, Titular titu, Titular_Detalle titu_deta)
         {
             string nombre1 = "";
             string paterno = "";
@@ -210,46 +203,33 @@ namespace SFW.Web
             paterno = iso.GetString(isoBytespaterno);
             materno = iso.GetString(isoBytesmaterno);
 
-            string opSQL = "";
-
-            switch (operacion)
-            {
-                case "20":
-                case "21":
-                    opSQL = "2";
-                    break;
-                case "00":
-                case "01":
-                    opSQL = "1";
-                    break;
-                case "12":
-                    opSQL = "4";
-                    break;
-                default:
-                    break;
-            }
 
             string x12resultado = "";
-            string categoria = "";
-            if (titu.cod_cliente == "96")
-            {
-                categoria = "00";
 
-            }
-            else
-            {
-                categoria = titu.categoria;
-            }
-
-
-            string call = "CALL SP_SUSALUD_REGAFI('" + opSQL + "','" + titu.cod_cliente + "','" + titu.cod_titula
-                                                 + "','" + categoria + "','" + operacion + "','" + paterno
-                                                 + "','" + nombre1 + "','" + materno + "','" + titu.tipo_doc
-                                                 + "','" + titu.dni + "','" + titu.fch_naci + "','" + titu.sexo + "','" + titu.fch_alta
-                                                 + "','" + titu.fch_baja + "','" + titu.tipo_doc + "','" + titu.dni + "','" + titu.fch_naci
-                                                 + "','" + paterno + "','" + nombre1 + "','" + materno
-                                                 + "','" + titu.estado_titular + "','" + titu.plan + "','" + causalBaja + "','" + validacion + "','" + operacion2
-                                                 + "','" + titu_deta.contrato + "','" + titu_deta.cod_afiliado + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','');";
+            string call = "CALL SP_SUSALUD('" + "1" + "','" +
+                titu.cod_cliente + "','" + //var01
+                titu.cod_titula + "','" + //var02
+                titu_deta.categoriaSusalud + "','" + //var03
+                operacion + "','" + //var04
+                paterno + "','" + //var05
+                nombre1 + "','" + //var06
+                materno + "','" + //var07
+                titu.tipo_doc + "','" + //var08
+                titu.dni + "','" + //var09
+                titu_deta.estado_afiliado + "','" + //var10
+                titu.tipo_doc + "','" + //var11
+                titu.dni + "','" + //var12
+                titu.fch_naci + "','" + //var13
+                titu.sexo + "','" + //var14
+                titu_deta.fch_falleci + "','" + //var15
+                titu_deta.cod_afiliado + "','" + //var16
+                titu_deta.contrato + "','" + //var17
+                titu_deta.estado_afiliacion + "','" + //var18
+                titu_deta.causalBaja + "','" + //var19
+                titu.plan + "','" + //var20
+                titu.fch_alta + "','" + //var21
+                titu.fch_baja + "','" + //var22
+                "','','','','','','','');";
             DataTable dtab = dat.mysql(call);
             string x12_1x1 = "";
             string x12_1x1_xml = "";
@@ -341,11 +321,9 @@ namespace SFW.Web
                 afiliacion.setCoTiCobertura(row["70_Cod_Per_Cober"].ToString());
                 afiliacion.setIdAfiliacionNombre(row["71_Ident_Nom_Contrat"].ToString());
                 listaAfiliaciones.add(0, afiliacion);
-
                 entidad.setIn271ResSctrDetalle(listaAfiliaciones);
 
                 string x12 = impl.beanToX12N(entidad);
-
 
                 if (x12.Contains("Validator"))
                 {
@@ -376,33 +354,21 @@ namespace SFW.Web
                     x12_1x1 += x12;
                     fila++;
                 }
-
             }
-
             return x12resultado;
         }
         public string ConexionIBM(string hostname, string puerto, string name, string canal)
         {
             string colaResultado = "";
-            #region credenciales antiguas
-            /*  MQEnvironment.Channel = Convert.ToString("CHLSVRCONN999TO990");//this.txt_canal.Text
-            MQEnvironment.Hostname = Convert.ToString("170.79.38.222");//this.txt_ip.Text anterior 181.177.233.76
-            MQEnvironment.Port = Convert.ToInt32("21434");//this.txt_puerto.Text anterior 1441
-            //'  MQEnvironment.UserId = Trim(tuser.Text) 'no se utilizara
-            //'MQEnvironment.Password = "" 'no se utilizara
-            qmgrName = "QM.999.999.01.AF"; //Me.txt_queuemanager.Text  '03/02/2016: agregado nombre del qmanager QM.999.997.AF*/
-            #endregion
-
-            MQEnvironment.Hostname = hostname; //"app23.susalud.gob.pe"
-            MQEnvironment.Port = Convert.ToInt32(puerto); //"21434"
-            qmgrName = name; //"QM.999.999.01.AF"
-
-            MQEnvironment.Channel = Convert.ToString(canal);//"CH.CLIENTE.MINCETUR"
+            MQEnvironment.Hostname = hostname;
+            MQEnvironment.Port = Convert.ToInt32(puerto);
+            qmgrName = name;
+            MQEnvironment.Channel = Convert.ToString(canal);
             try
             {
                 if (!MQEnvironment.properties.Contains(MQC.TRANSPORT_PROPERTY))
                 {
-                    MQEnvironment.properties.Add(MQC.TRANSPORT_PROPERTY, MQC.TRANSPORT_MQSERIES_CLIENT);   //'03/02/2016: para conectarse desde un cliente
+                    MQEnvironment.properties.Add(MQC.TRANSPORT_PROPERTY, MQC.TRANSPORT_MQSERIES_CLIENT);
                 }
 
                 mqQMgr = new MQQueueManager(qmgrName);
@@ -418,8 +384,8 @@ namespace SFW.Web
             }
 
             return colaResultado;
-
         }
+
         public string LeerException(Exception ex)
         {
             string msg = ex.Message;
@@ -453,11 +419,9 @@ namespace SFW.Web
             objXm.txNombre = "271_REGAFI_UPDATE";
             objXm.txPeticion = XmlX12N;
             XmlSerializer xa = new XmlSerializer(objXm.GetType());
-            //string appPath = Application.StartupPath; @"F:\WebSites\sistemas_laprotectora_pe\FoxBen_Dev\xml\"; //
             string appPath = HttpContext.Current.Server.MapPath("~/xml/");
             string dbPath = "\\xml\\";
             string fullpath = appPath + dbPath;
-            //Label1.Text = appPath;"c:\\temp\\" + Guid.NewGuid().ToString() + ".xml"
             FileStream file = new FileStream(appPath + Guid.NewGuid().ToString() + ".xml", FileMode.Create, FileAccess.ReadWrite);
             TextWriter tw = new StreamWriter(strm, UTF8Encoding.UTF8);
             xa.Serialize(strm, objXm);
@@ -473,11 +437,8 @@ namespace SFW.Web
 
             try
             {
-
                 //OPEN QUEUE
-                //queueName = Convert.ToString("QL.990.AF.005.IN");
                 queueName = NameIn;
-
                 //mqQueue = mqQMgr.AccessQueue(queueName, MQC.MQOO_OUTPUT Or MQC.MQOO_INPUT_SHARED Or MQC.MQOO_INQUIRE)
                 mqQueue = mqQMgr.AccessQueue(queueName, MQC.MQOO_OUTPUT); //el parámetro  openoptions debe tener los mismos permisos de la cola(queueName), en este caso solo tiene permiso de PUT
                 //PREPAR EL MENSAJE A ENVIAR
@@ -491,32 +452,7 @@ namespace SFW.Web
                 mqPutMsgOpts = new MQPutMessageOptions();
                 //DEJANDO EL MENSAJE
                 mqQueue.Put(mqMsg, mqPutMsgOpts);
-
-
-
-
-                // GET MESSAGE ID
-                //string call2 = "CALL SP_SUSALUD_REGAFI('10','" + iafas + "','" + ""
-                //                                    + "','" + "" + "','" + "" + "','" + ""
-                //                                    + "','" + "" + "','" + "" + "','" + ""
-                //                                    + "','" + "" + "','" + "" + "','" + "" + "','" + ""
-                //                                    + "','" + "" + "','" + "" + "','" + "" + "','" + ""
-                //                                    + "','" + "" + "','" + "" + "','" + ""
-                //                                    + "','" + "" + "','" + "" + "','" + "" + "','" + "" + "','" + "" + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','');";
-                //DataTable dtab2 = dat.mysql(call);
-                //string queueNameget = Convert.ToString(dtab2.Rows[0]["val05"].ToString());
-                //Byte[] msgbytes;
-                //MQQueue mqQueueGET;
-                //mqQueueGET = mqQMgr.AccessQueue(queueNameget, MQC.MQOO_INPUT_SHARED | MQC.MQOO_BROWSE);
-                //mqGetMsgOpts = new MQGetMessageOptions();
-                //mqQueueGET.Get(mqMsg, mqGetMsgOpts);
-                //msgbytes = mqMsg.ReadBytes(mqMsg.MessageLength);
-                //string getStr = System.Text.Encoding.UTF8.GetString(msgbytes);
-                //string idMensaje = System.BitConverter.ToString(mqMsg.MessageId);
-
-
                 MessageResult = "1Exito - MQ PUT MENSAJE";
-
                 //borrando texto
                 XmlX12N = "";
             }
@@ -524,8 +460,6 @@ namespace SFW.Web
             {
                 MessageResult = "0Error: " + ex.Message + "MQ PUT MENSAJE";
             }
-            //txtX12Generado.Text = "";
-            //txtarea_putmensaje.Text = "";
             return MessageResult;
         }
         int contador;
@@ -547,12 +481,8 @@ namespace SFW.Web
                 msgbytes = mqMsg.ReadBytes(mqMsg.MessageLength);
                 string getStr = System.Text.Encoding.UTF8.GetString(msgbytes);
                 string idMensaje = System.BitConverter.ToString(mqMsg.MessageId);
-
-
-
                 getMensajeResult = "1ID: " + idMensaje + "MENSAJE: " + getStr;
-
-                string call = "CALL SP_SUSALUD_REGAFI('5','" + strCorrelativo + "','" + getMensajeResult + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','');";
+                string call = "CALL sp_fill_3('8','" + strCorrelativo + "','" + getMensajeResult + "','','','','','','','','');";
                 DataTable dtab = dat.mysql(call);
             }
             catch (Exception ex)

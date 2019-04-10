@@ -19,8 +19,7 @@
     <script type="text/javascript" src="Scripts/bootstrap.min.js"></script>
     <script src="Scripts/FileInput/fileinput.min.js" type="text/javascript"></script>
     <style>
-        .resaltar
-        {
+        .resaltar {
             background: #10750e;
             border-radius: 7px;
         }
@@ -297,7 +296,7 @@
                                     <div class="form-group-sm">
                                         <label class="control-label input-sm text-blue">
                                             (*)Tipo Sub-Gestion:</label>
-                                            <asp:Label ID="lblsubgestion" runat="server" class="input-sm text-uppercase"></asp:Label>
+                                        <asp:Label ID="lblsubgestion" runat="server" class="input-sm text-uppercase"></asp:Label>
                                         <div runat="server" id="divBuscarReclamo" style="display: none;">
                                             <asp:Panel runat="server" DefaultButton="lnkBuscarReclamo">
                                                 <asp:TextBox ID="txtBuscarReclamo" CssClass="form-control input-sm" runat="server"></asp:TextBox>
@@ -695,10 +694,10 @@
                                                         Correo:</label>
                                                     <asp:TextBox ID="txtEmailCliente" runat="server" class="form-control"></asp:TextBox>
                                                     <asp:RequiredFieldValidator ID="rfvEmailCliente" runat="server" ForeColor="Red"
-                                                    ControlToValidate="txtEmailCliente" Display="Dynamic" ValidationGroup="vgDerivarCorreo"
-                                                    Text="Ingrese Correo.*" ValidateEmptyText="true" SetFocusOnError="true" Enabled="false" />
+                                                        ControlToValidate="txtEmailCliente" Display="Dynamic" ValidationGroup="vgDerivarCorreo"
+                                                        Text="Ingrese Correo.*" ValidateEmptyText="true" SetFocusOnError="true" Enabled="false" />
 
-                                                     </div>
+                                                </div>
                                                 <div class="form-group-sm">
                                                     <label class="control-label input-sm text-blue">
                                                         Asunto:</label>
@@ -1670,27 +1669,63 @@
                         <ContentTemplate>
                             <div class="panel-body">
                                 <div class="col-md-10 col-lg-offset-1">
-                                    <div runat="server" id="frmdatosAdicionalesAsegurado">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="text-blue input-sm">
-                                                    Dni</label>
-                                                <asp:TextBox ID="txtDniOtrosAsegurado" runat="server" CssClass="form-control input-sm"></asp:TextBox>
+                                    <div runat="server" id="frmdatosAdicionalesEmisor">
+
+
+                                        <div class="form-group">
+                                            <div class="form-inline">
+                                                <div class="form-group">
+                                                    <label class="text-blue input-sm">
+                                                        Nombres y Apellidos</label>
+                                                    <asp:TextBox ID="txtOtrosEmisor" runat="server" style="width:100%;" CssClass="form-control input-sm"></asp:TextBox>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="text-blue input-sm">
-                                                    Nombres y Apellidos</label>
-                                                <asp:TextBox ID="txOtrosAsegurado" runat="server" CssClass="form-control input-sm"></asp:TextBox>
+
+
+
+                                        <hr />
+                                        <div class="form-group">
+                                            <div class="form-inline">
+                                                <div class="form-group">
+                                                    <label class="text-blue input-sm">
+                                                        Teléfono</label>
+                                                    <asp:TextBox ID="txtTelefonoContactoOtrosEmisor" runat="server" CssClass="form-control input-sm"
+                                                        placeholder="Teléfono" Width="100%"></asp:TextBox>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="text-blue input-sm">
+                                                        Correo</label>
+                                                    <asp:TextBox ID="txtCorreoContactoOtrosEmisor" runat="server" CssClass="form-control input-sm"
+                                                        placeholder="Correo" Width="100%"></asp:TextBox>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="text-blue input-sm">
+                                                        Dni</label>
+                                                    <asp:TextBox ID="txtDniContactoOtrosEmisor" runat="server" CssClass="form-control input-sm"
+                                                        placeholder="Dni" Width="100%"></asp:TextBox>
+                                                </div>
                                             </div>
                                         </div>
+
                                     </div>
+
+
+
                                     <div runat="server" id="frmdatosAdicionales">
                                         <div class="form-group">
-                                            <label class="text-blue input-sm">
-                                                Nombres y Apellidos</label>
-                                            <asp:TextBox ID="txtOtros" runat="server" CssClass="form-control input-sm" placeholder="Nombres y Apellidos"></asp:TextBox>
+                                            <div class="form-inline">
+                                                <div class="form-group">
+                                                    <label class="text-blue input-sm">
+                                                        Nombres y Apellidos</label>
+                                                    <asp:TextBox ID="txtOtros" runat="server" CssClass="form-control input-sm" placeholder="Nombres y Apellidos"></asp:TextBox>
+                                                </div>
+                                                <div class="form-group" id="divddlOtrosCliente" runat="server">
+                                                    <label class="text-blue input-sm">
+                                                        Cliente</label>
+                                                    <asp:DropDownList ID="ddlOtrosCliente" runat="server" CssClass="form-control input-sm"></asp:DropDownList>
+                                                </div>
+                                            </div>
                                         </div>
                                         <hr />
                                         <div class="form-group">

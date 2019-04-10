@@ -89,11 +89,14 @@ namespace SFW.BE
 
         public string causalBaja { get; set; }
 
+        public string fallecido { get; set; }
+
         public string estado_afiliado { get; set; }
 
         public string estado_afiliacion { get; set; }
 
         public string fch_falleci { get; set; }
+
 
 
 

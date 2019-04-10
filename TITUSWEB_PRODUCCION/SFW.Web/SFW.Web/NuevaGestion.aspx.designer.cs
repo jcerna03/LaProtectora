@@ -2416,31 +2416,49 @@ namespace SFW.Web {
         protected global::System.Web.UI.UpdatePanel UpdatePanel5;
         
         /// <summary>
-        /// Control frmdatosAdicionalesAsegurado.
+        /// Control frmdatosAdicionalesEmisor.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl frmdatosAdicionalesAsegurado;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl frmdatosAdicionalesEmisor;
         
         /// <summary>
-        /// Control txtDniOtrosAsegurado.
+        /// Control txtOtrosEmisor.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDniOtrosAsegurado;
+        protected global::System.Web.UI.WebControls.TextBox txtOtrosEmisor;
         
         /// <summary>
-        /// Control txOtrosAsegurado.
+        /// Control txtTelefonoContactoOtrosEmisor.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txOtrosAsegurado;
+        protected global::System.Web.UI.WebControls.TextBox txtTelefonoContactoOtrosEmisor;
+        
+        /// <summary>
+        /// Control txtCorreoContactoOtrosEmisor.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCorreoContactoOtrosEmisor;
+        
+        /// <summary>
+        /// Control txtDniContactoOtrosEmisor.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDniContactoOtrosEmisor;
         
         /// <summary>
         /// Control frmdatosAdicionales.

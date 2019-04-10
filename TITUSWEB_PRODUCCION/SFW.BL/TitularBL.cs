@@ -13,10 +13,6 @@ namespace SFW.BL
 
         public string InsertarTitular(Titular titu,Titular_Detalle titu_deta,Usuario usu, int ope)
         {
-            if (Convert.ToInt32(titu.categoria) >= 4 && Convert.ToInt32(titu.categoria) <= 21 )
-            {
-                titu.categoria = "04";
-            }
             return titular.InsertarTitular(titu, titu_deta,usu, ope);
         }
 
@@ -69,9 +65,9 @@ namespace SFW.BL
             return titular.BAJACOMPLETA(titu,titu_deta,usu,fecha,operacion);
         }
 
-        public Int32 ACTIVAR(Titular titu, Titular_Detalle titu_deta, Usuario usu, string fecha, string operacion)
+        public Int32 ACTIVAR(Titular titu, Titular_Detalle titu_deta, Usuario usu, string operacion)
         {
-            return titular.ACTIVAR(titu, titu_deta, usu, fecha, operacion);
+            return titular.ACTIVAR(titu, titu_deta, usu, operacion);
         }
     }
 }

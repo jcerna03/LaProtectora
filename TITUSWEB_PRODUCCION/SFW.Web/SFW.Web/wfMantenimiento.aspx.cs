@@ -960,8 +960,8 @@ namespace SFW.Web
                     {
                         Titular obj = lstTitular[i];
                         Titular_Detalle obj_deta = lstTitularDetalle[i];
-                        Titular OLD_obj = lstTitular[i];
-                        Titular_Detalle OLD_obj_deta = lstTitularDetalle[i];
+                        Titular OLD_obj = obj;
+                        Titular_Detalle OLD_obj_deta = obj_deta;
 
                         string strCont = "CALL sp_fecha_bajas(3,'" + obj.cod_cliente + "','" + obj.cod_titula + "','" + obj.categoria + "','" + ddlPlan.SelectedValue.ToString() + "','','','','','','');";
                         DataTable dt = null;
@@ -971,8 +971,8 @@ namespace SFW.Web
                         {
                             obj_deta.cod_afiliado = obj.cod_cliente + obj.cod_titula + obj.categoria + "-" + dt.Rows[0][0].ToString();
                         }
-                        
-                        if (obj_deta.cod_afiliado=="")
+
+                        if (obj_deta.cod_afiliado == "")
                         {
                             obj_deta.cod_afiliado = obj.cod_cliente + obj.cod_titula + obj.categoria;
                         }
@@ -988,7 +988,12 @@ namespace SFW.Web
                         obj_deta.estado_afiliacion = "1";
 
 
-                        resultadoSusalud = rs.EnvioSUSALUD("00", obj, obj_deta);
+                        DataTable dtv = dat.mysql("CALL sp_fill_3(10,'" + obj.cod_cliente + "','" + obj.cod_titula + "','" + obj.categoria + "','','','','','','','');");
+                        if (dtv.Rows[0][0].ToString() == "1")
+                        {
+                            resultadoSusalud = rs.EnvioSUSALUD("00", obj, obj_deta);
+                        }
+
                         if (resultadoSusalud.Contains("ERROR"))
                         {
                             continue;
@@ -1054,8 +1059,8 @@ namespace SFW.Web
                 Titular OLD_obj = lstTitular.First(delegate (Titular objTI) { return (objTI.cod_cliente.Equals(txtNumeroPoli.Text) && (objTI.cod_titula.Equals(txtCodigoTitu.Text) && (objTI.categoria.Equals(categoriaHidden.Value)))); });
                 Titular_Detalle OLD_obj_deta = lstTitularDetalle.First(delegate (Titular_Detalle objt) { return (objt.cod_cliente.Equals(txtNumeroPoli.Text) && (objt.cod_titula.Equals(txtCodigoTitu.Text) && (objt.categoria.Equals(categoriaHidden.Value)))); });
 
-                Titular obj = lstTitular.First(delegate (Titular objTI) { return (objTI.cod_cliente.Equals(txtNumeroPoli.Text) && (objTI.cod_titula.Equals(txtCodigoTitu.Text) && (objTI.categoria.Equals(categoriaHidden.Value)))); });
-                Titular_Detalle obj_det = lstTitularDetalle.First(delegate (Titular_Detalle objt) { return (objt.cod_cliente.Equals(txtNumeroPoli.Text) && (objt.cod_titula.Equals(txtCodigoTitu.Text) && (objt.categoria.Equals(categoriaHidden.Value)))); });
+                Titular obj = OLD_obj;
+                Titular_Detalle obj_det = OLD_obj_deta;
 
 
                 obj.cod_cliente = Convert.ToString(txtNumeroPoli.Text);
@@ -1174,12 +1179,16 @@ namespace SFW.Web
                 obj_det.estado_afiliado = "1";
                 obj_det.estado_afiliacion = "1";
                 // Si es dependiente de un fallecido
-                if (obj_det.contrato.Substring(obj_det.contrato.Length-1,1)=="F")
+                if (obj_det.contrato.Length > 0)
                 {
-                    obj_det.categoriaSusalud = "00";
+                    if (obj_det.contrato.Substring(obj_det.contrato.Length - 1, 1) == "F")
+                    {
+                        obj_det.categoriaSusalud = "00";
+                    }
                 }
+               
 
-                resultadoSusalud = rs.EnvioSUSALUD("12", obj, obj_det);
+                resultadoSusalud = rs.EnvioSUSALUD("10", obj, obj_det);
 
                 if (resultadoSusalud.Contains("ERROR"))
                 {
@@ -1672,7 +1681,7 @@ namespace SFW.Web
         protected void btnBaja01_Click(object sender, EventArgs e)
         {
             string resultadoSusalud = "";
-            string estadoSuSalud = ""; //NO REGISTRADO
+            string estadoSuSalud = "6"; //NO REGISTRADO
             usu = new UsuarioBL().ObtieneUsuario(52, Convert.ToInt32(Session["USUARIO"].ToString()));
 
             List<Titular> lstTitular = new TitularBL().ListarTitularesGrupo(531, txtNumeroPoli.Text, txtCodigoTitu.Text, categoriaHidden.Value);
@@ -1703,17 +1712,31 @@ namespace SFW.Web
                                 {
                                     if (lstTitular_petro.Count == 1)
                                     {
+                                        obj_det_petro.fch_falleci = txtFechaBajaModal.Text;
                                         obj_det_petro.estado_afiliado = "2";
+                                        obj_det_petro.fallecido = "1";
+                                        estadoSuSalud = "7";
+
                                     }
                                     else
                                     {
                                         if (obj_det_petro.categoria == "00")
                                         {
+                                            obj_det_petro.fch_falleci = txtFechaBajaModal.Text;
                                             obj_det_petro.estado_afiliado = "2";
+                                            obj_det_petro.fallecido = "1";
+                                            estadoSuSalud = "7";
                                         }
                                     }
                                 }
                                 obj_det_petro.estado_afiliacion = "2";
+
+                                DataTable dtcont = dat.mysql("CALL sp_fill_3(14,'" + obj_petro.cod_cliente + "','" + obj_petro.cod_titula + "','','','','','','','','');");
+                                if (dtcont.Rows[0][0].ToString() == "1")
+                                {
+                                    obj_det_petro.categoriaSusalud = "00";
+
+                                }
 
                                 DataTable dt = dat.mysql("CALL sp_fill_3(10,'" + obj_petro.cod_cliente + "','" + obj_petro.cod_titula + "','" + obj_petro.categoria + "','','','','','','','');");
 
@@ -1728,7 +1751,6 @@ namespace SFW.Web
                                     btnCerrar_Click(sender, e);
                                     return;
                                 }
-                                estadoSuSalud = "6";
                                 string stroe2 = "CALL sp_fill_3('5','" +
                                                     obj_petro.cod_cliente + "','" +
                                                     obj_petro.cod_titula + "','" +
@@ -1738,7 +1760,11 @@ namespace SFW.Web
                                                     obj_det_petro.cod_afiliado + "','" +
                                                     estadoSuSalud + "','','','');";
                                 DataTable dtab2 = dat.mysql(stroe2);
-
+                                if (obj_det_petro.fallecido == "1")
+                                {
+                                    string stroe3 = "CALL sp_fill_3('13','" + obj_petro.cod_cliente + "','" + obj_petro.cod_titula + "','" + obj_petro.categoria + "','','','','','','','');";
+                                    DataTable dtab3 = dat.mysql(stroe3);
+                                }
                                 resultado = new TitularBL().RegistrarFechaRenovacionBaja(obj_petro);
                                 resultado = new TitularBL().BAJACOMPLETA(obj_petro, obj_det_petro, usu, txtFechaBajaModal.Text, "3");
                             }
@@ -1764,19 +1790,31 @@ namespace SFW.Web
                     {
                         if (lstTitular.Count == 1)
                         {
+                            obj_deta.fch_falleci = txtFechaBajaModal.Text;
                             obj_deta.estado_afiliado = "2";
                             obj_deta.fallecido = "1";
+                            estadoSuSalud = "7";
                         }
                         else
                         {
                             if (obj_deta.categoria == "00")
                             {
+                                obj_deta.fch_falleci = txtFechaBajaModal.Text;
                                 obj_deta.estado_afiliado = "2";
                                 obj_deta.fallecido = "1";
+                                estadoSuSalud = "7";
                             }
                         }
                     }
                     obj_deta.estado_afiliacion = "2";
+
+                    // Es dependiente de un titular fallecido
+                    DataTable dtcont = dat.mysql("CALL sp_fill_3(14,'" + obj.cod_cliente + "','" + obj.cod_titula + "','','','','','','','','');");
+                    if (dtcont.Rows[0][0].ToString() == "1")
+                    {
+                        obj_deta.categoriaSusalud = "00";
+
+                    }
 
                     DataTable dt = dat.mysql("CALL sp_fill_3(10,'" + obj.cod_cliente + "','" + obj.cod_titula + "','" + obj.categoria + "','','','','','','','');");
 
@@ -1792,7 +1830,6 @@ namespace SFW.Web
                         btnCerrar_Click(sender, e);
                         return;
                     }
-                    estadoSuSalud = "6";
                     string stroe2 = "CALL sp_fill_3('5','" +
                                         obj.cod_cliente + "','" +
                                         obj.cod_titula + "','" +
@@ -1802,6 +1839,11 @@ namespace SFW.Web
                                         obj_deta.cod_afiliado + "','" +
                                         estadoSuSalud + "','','','');";
                     DataTable dtab2 = dat.mysql(stroe2);
+                    if (obj_deta.fallecido == "1")
+                    {
+                        string stroe3 = "CALL sp_fill_3('13','" + obj.cod_cliente + "','" + obj.cod_titula + "','" + obj.categoria + "','','','','','','','');";
+                        DataTable dtab3 = dat.mysql(stroe3);
+                    }
                     resultado = new TitularBL().RegistrarFechaRenovacionBaja(obj);
                     resultado = new TitularBL().BAJACOMPLETA(obj, obj_deta, usu, txtFechaBajaModal.Text, "3");
                 }
@@ -1950,7 +1992,16 @@ namespace SFW.Web
 
             if (dt.Rows[0][0].ToString() != "0")
             {
-                obj_deta.cod_afiliado = obj_deta.cod_afiliado + "-" + dt.Rows[0][0].ToString();
+                obj_deta.cod_afiliado = obj.cod_cliente + obj.cod_titula + obj.categoria + "-" + dt.Rows[0][0].ToString();
+            }
+
+            if (obj_deta.cod_afiliado == "")
+            {
+                obj_deta.cod_afiliado = obj.cod_cliente + obj.cod_titula + obj.categoria;
+            }
+            if (obj_deta.contrato == "")
+            {
+                obj_deta.contrato = obj.cod_cliente + obj.cod_titula;
             }
 
             if (obj.cod_cliente == txtNumeroPoli.Text && obj.cod_titula == txtCodigoTitu.Text && obj.categoria == categoriaHidden.Value)
@@ -3596,8 +3647,17 @@ namespace SFW.Web
                         {
                             if (dtActivaAfiliado.Rows[0]["ACTIVA_AFI"].ToString() == "1")
                             {
-                                btnActivarAfiliado.Attributes.Remove("disabled");
-                                btnActivarAfiliado.Visible = true;
+                                if (objTitudeta.fallecido == "1")
+                                {
+                                    btnActivarAfiliado.Attributes.Add("disabled", "disabled");
+                                    btnActivarAfiliado.Visible = false;
+                                }
+                                else
+                                {
+                                    btnActivarAfiliado.Attributes.Remove("disabled");
+                                    btnActivarAfiliado.Visible = true;
+                                }
+
                             }
                             else
                             {

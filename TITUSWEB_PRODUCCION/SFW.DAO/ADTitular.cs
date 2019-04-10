@@ -296,7 +296,7 @@ namespace SFW.DAO
                         command.Parameters.AddWithValue("op", 2);
                         command.Parameters.AddWithValue("var01", titu.cod_cliente);
                         command.Parameters.AddWithValue("var02", titu.cod_titula);
-                        command.Parameters.AddWithValue("var03", titu.categoria);
+                        command.Parameters.AddWithValue("var03", titudeta.categoriaSusalud);
                         command.Parameters.AddWithValue("var04", DateTime.Now.ToString("dd/MM/yyyy"));
                         command.Parameters.AddWithValue("var05", titu.fch_alta);
                         command.Parameters.AddWithValue("var06", titu.fch_baja);

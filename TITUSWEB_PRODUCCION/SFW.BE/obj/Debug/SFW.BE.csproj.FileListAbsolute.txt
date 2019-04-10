@@ -106,3 +106,4 @@ C:\Users\jcerna\Desktop\VOIP PRODUCCION\TITUSWEB_PRODUCCION\SFW.BE\bin\Debug\SFW
 C:\Users\jcerna\Desktop\VOIP PRODUCCION\TITUSWEB_PRODUCCION\SFW.BE\bin\Debug\SFW.BE.pdb
 C:\Users\jcerna\Desktop\VOIP PRODUCCION\TITUSWEB_PRODUCCION\SFW.BE\obj\Debug\SFW.BE.dll
 C:\Users\jcerna\Desktop\VOIP PRODUCCION\TITUSWEB_PRODUCCION\SFW.BE\obj\Debug\SFW.BE.pdb
+C:\Users\jcerna\Desktop\VOIP PRODUCCION\TITUSWEB_PRODUCCION\SFW.BE\obj\Debug\SFW.BE.csprojResolveAssemblyReference.cache

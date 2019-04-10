@@ -124,8 +124,9 @@ namespace SFW.Web
                     titu.plan + "','" + //var20
                     titu.fch_alta + "','" + //var21
                     titu.fch_baja + "','" + //var22
-                    strCorrelativo + "','" +//var23
-                    "','','','','','','');";
+                    "PER"+ "','" + //var23
+                    strCorrelativo + "','" +//var24
+                    "','','','','','');";
                     DataTable dtab1 = dat.mysql(stroe);
 
                     return getMnesajeResult;
@@ -161,8 +162,9 @@ namespace SFW.Web
                             titu.plan + "','" + //var20
                             titu.fch_alta + "','" + //var21
                             titu.fch_baja + "','" + //var22
-                            strCorrelativo + "','" +//var23
-                            "','','','','','','');";
+                            "PER" + "','" + //var23
+                            strCorrelativo + "','" +//var24
+                            "','','','','','');";
                         DataTable dtab1 = dat.mysql(stroe);
 
                         return getMnesajeResult;

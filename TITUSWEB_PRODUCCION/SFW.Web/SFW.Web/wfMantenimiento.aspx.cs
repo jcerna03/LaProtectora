@@ -1059,8 +1059,8 @@ namespace SFW.Web
                 Titular OLD_obj = lstTitular.First(delegate (Titular objTI) { return (objTI.cod_cliente.Equals(txtNumeroPoli.Text) && (objTI.cod_titula.Equals(txtCodigoTitu.Text) && (objTI.categoria.Equals(categoriaHidden.Value)))); });
                 Titular_Detalle OLD_obj_deta = lstTitularDetalle.First(delegate (Titular_Detalle objt) { return (objt.cod_cliente.Equals(txtNumeroPoli.Text) && (objt.cod_titula.Equals(txtCodigoTitu.Text) && (objt.categoria.Equals(categoriaHidden.Value)))); });
 
-                Titular obj = OLD_obj;
-                Titular_Detalle obj_det = OLD_obj_deta;
+                Titular obj = lstTitular.First(delegate (Titular objTI) { return (objTI.cod_cliente.Equals(txtNumeroPoli.Text) && (objTI.cod_titula.Equals(txtCodigoTitu.Text) && (objTI.categoria.Equals(categoriaHidden.Value)))); });
+                Titular_Detalle obj_det = lstTitularDetalle.First(delegate (Titular_Detalle objt) { return (objt.cod_cliente.Equals(txtNumeroPoli.Text) && (objt.cod_titula.Equals(txtCodigoTitu.Text) && (objt.categoria.Equals(categoriaHidden.Value)))); });
 
 
                 obj.cod_cliente = Convert.ToString(txtNumeroPoli.Text);

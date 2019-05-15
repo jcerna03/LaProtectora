@@ -737,7 +737,7 @@ namespace SFW.Web
                     #region LP
                     if ((idAfiliado == cod_titula) && (hfidEmpresa.Value == "88"))//LA PROTECTORA
                     {
-                        hfCod_Cliente.Value = idAfiliado;
+                        hfCod_Cliente.Value = "99";
                         hfCod_Titula.Value = "";
                         hfCategoria.Value = "";
                         hfComparacion.Value = "";

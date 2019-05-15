@@ -42,6 +42,7 @@ namespace SFW.BE
         public string Color { get; set; }
 
         public string Reporte { get; set; }
+
         public string clasif { get; set; }
 
 
